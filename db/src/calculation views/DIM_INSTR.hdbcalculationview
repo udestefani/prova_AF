@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="DIM_INSTR" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="INST_INTEGRAZ"/>
+  <metadata activatedAt="2023-04-21 16:50:30.0" changedAt="2023-04-21 16:50:27.861"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="36"/>
+  <dataSources>
+    <DataSource id="PA_INST">
+      <resourceUri>PA_INST</resourceUri>
+    </DataSource>
+    <DataSource id="REFERENTI_STORICO">
+      <resourceUri>REFERENTI_STORICO</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="INST_ID"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="LNAME"/>
+        <viewAttribute id="FNAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PA_INST">
+        <mapping xsi:type="Calculation:AttributeMapping" target="INST_ID" source="INST_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LNAME" source="LNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FNAME" source="FNAME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="REF_ID"/>
+        <viewAttribute id="REF_VORNAME"/>
+        <viewAttribute id="REF_NACHNAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="VARCHAR" id="NOTACTIVE" length="1" expressionLanguage="COLUMN_ENGINE">
+          <formula>''</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#REFERENTI_STORICO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="REF_ID" source="REF_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REF_VORNAME" source="REF_VORNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REF_NACHNAME" source="REF_NACHNAME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="INST_ID"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="LNAME"/>
+        <viewAttribute id="FNAME"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="INST_ID" source="INST_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LNAME" source="LNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FNAME" source="FNAME"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="INST_ID" source="REF_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LNAME" source="REF_NACHNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FNAME" source="REF_VORNAME"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="FNAME" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FNAME"/>
+        <keyMapping columnObjectName="Union_1" columnName="FNAME"/>
+      </attribute>
+      <attribute id="LNAME" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LNAME"/>
+        <keyMapping columnObjectName="Union_1" columnName="LNAME"/>
+      </attribute>
+      <attribute id="NOTACTIVE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NOTACTIVE"/>
+        <keyMapping columnObjectName="Union_1" columnName="NOTACTIVE"/>
+      </attribute>
+      <attribute id="INST_ID" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INST_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="INST_ID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="FULL_NAME_INSTR" hidden="false" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FULL_NAME_INSTR"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="256">
+          <formula>&quot;LNAME&quot;||' '||&quot;FNAME&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
