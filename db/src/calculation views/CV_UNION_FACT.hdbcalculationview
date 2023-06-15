@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.3" id="CV_UNION_FACT" applyPrivilegeType="NONE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CV_UNION_FACT"/>
+  <metadata activatedAt="2023-05-25 16:08:14.0" changedAt="2023-05-25 16:08:10.434"/>
+  <localVariables>
+    <variable id="IP_ANNO" parameter="true">
+      <descriptions defaultDescription="IP_ANNO"/>
+      <variableProperties datatype="INTEGER" defaultValue="" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#PERIODO_CORSO_EDIZ_STUD">
+      <targetVariable name="IP_ANNO" resourceUri="/Analisi_Formazione/calculationviews/PERIODO_CORSO_EDIZ_STUD"/>
+      <localVariable>#IP_ANNO</localVariable>
+    </mapping>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#FACT_CONSUNTIVAZIONE">
+      <targetVariable name="IP_ANNO" resourceUri="/Analisi_Formazione/calculationviews/FACT_CONSUNTIVAZIONE"/>
+      <localVariable>#IP_ANNO</localVariable>
+    </mapping>
+  </variableMappings>
+  <informationModelLayout relativeWidthScenario="38"/>
+  <dataSources>
+    <DataSource id="PERIODO_CORSO_EDIZ_STUD" type="CALCULATION_VIEW">
+      <resourceUri>PERIODO_CORSO_EDIZ_STUD</resourceUri>
+    </DataSource>
+    <DataSource id="FACT_CONSUNTIVAZIONE" type="CALCULATION_VIEW">
+      <resourceUri>FACT_CONSUNTIVAZIONE</resourceUri>
+    </DataSource>
+    <DataSource id="SCH_SEG_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>SCH_SEG_INTEGRAZ</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CALMONTH"/>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ENRL_DTE_PERIOD"/>
+        <viewAttribute id="ENRL_DTE_END_PERIOD"/>
+        <viewAttribute id="CANCEL_DTE_PERIOD"/>
+        <viewAttribute id="FLAG_ISCRIZIONE"/>
+        <viewAttribute id="FLAG_ANNULLAMENTO"/>
+        <viewAttribute id="CALMONTH_ISCR"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#PERIODO_CORSO_EDIZ_STUD">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_PERIOD" source="ENRL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_END_PERIOD" source="ENRL_DTE_END_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_PERIOD" source="CANCEL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="STUDENTE"/>
+        <viewAttribute id="CALMONTH"/>
+        <viewAttribute id="NUMEROORE"/>
+        <viewAttribute id="START_DATE_CPNT"/>
+        <viewAttribute id="END_DATE_CPNT"/>
+        <viewAttribute id="CALMONTH_CONS"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#FACT_CONSUNTIVAZIONE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUDENTE" source="STUDENTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_CONS" source="CALMONTH_CONS"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="START_DATE" transparentFilter="false"/>
+        <viewAttribute id="END_DATE" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="START_DATE_CALC" expressionLanguage="SQL">
+          <formula>TO_DATE(&quot;START_DATE&quot;, 'YYYY-MM-DD')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="END_DATE_CALC" expressionLanguage="SQL">
+          <formula>TO_DATE(&quot;END_DATE&quot;, 'YYYY-MM-DD')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#SCH_SEG_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE" source="START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE" source="END_DATE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute aggregationType="min" id="START_DATE_CPNT"/>
+        <viewAttribute aggregationType="max" id="END_DATE_CPNT"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CALC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CALC"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CALMONTH" transparentFilter="false"/>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_END_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="CANCEL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="FLAG_ISCRIZIONE" transparentFilter="false"/>
+        <viewAttribute id="FLAG_ANNULLAMENTO" transparentFilter="false"/>
+        <viewAttribute id="START_DATE_CPNT"/>
+        <viewAttribute id="END_DATE_CPNT"/>
+        <viewAttribute datatype="DATE" id="CALMONTH_ISCR" length="10" scale="0"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_PERIOD" source="ENRL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_END_PERIOD" source="ENRL_DTE_END_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_PERIOD" source="CANCEL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+      </input>
+      <input node="#Aggregation_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+      </input>
+      <joinAttribute name="SCHD_ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="NUMEROORE" transparentFilter="false"/>
+        <viewAttribute id="CALMONTH" transparentFilter="false"/>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_END_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="CANCEL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="FLAG_ISCRIZIONE" transparentFilter="false"/>
+        <viewAttribute id="FLAG_ANNULLAMENTO" transparentFilter="false"/>
+        <viewAttribute id="START_DATE_CPNT" transparentFilter="false"/>
+        <viewAttribute id="END_DATE_CPNT" transparentFilter="false"/>
+        <viewAttribute datatype="DATE" id="CALMONTH_ISCR" length="10" scale="0"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUDENTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ENRL_DTE_PERIOD" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ENRL_DTE_END_PERIOD" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CANCEL_DTE_PERIOD" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLAG_ISCRIZIONE" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="FLAG_ANNULLAMENTO" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_CONS"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Join_1">
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NUMEROORE" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_PERIOD" source="ENRL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_END_PERIOD" source="ENRL_DTE_END_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_PERIOD" source="CANCEL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CALMONTH" transparentFilter="false"/>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_END_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="CANCEL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="FLAG_ISCRIZIONE"/>
+        <viewAttribute id="FLAG_ANNULLAMENTO"/>
+        <viewAttribute id="START_DATE_CPNT" transparentFilter="false"/>
+        <viewAttribute id="END_DATE_CPNT" transparentFilter="false"/>
+        <viewAttribute id="CALMONTH_ISCR"/>
+        <viewAttribute id="NUMEROORE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_PERIOD" source="ENRL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_END_PERIOD" source="ENRL_DTE_END_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_PERIOD" source="CANCEL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
+      </input>
+      <windowFunction>
+        <partitionViewAttributeName>SCHD_ID</partitionViewAttributeName>
+        <partitionViewAttributeName>CALMONTH</partitionViewAttributeName>
+        <partitionViewAttributeName>START_DATE_CPNT</partitionViewAttributeName>
+        <partitionViewAttributeName>END_DATE_CPNT</partitionViewAttributeName>
+        <order byViewAttributeName="STUD_ID" direction="DESC"/>
+        <rankThreshold>
+          <value>99999</value>
+        </rankThreshold>
+        <rankViewAttributeName>RANK</rankViewAttributeName>
+      </windowFunction>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4" filterExpressionLanguage="SQL">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="NUMEROORE"/>
+        <viewAttribute id="CALMONTH_ISCR"/>
+        <viewAttribute id="END_DATE_CPNT" transparentFilter="false"/>
+        <viewAttribute id="START_DATE_CPNT" transparentFilter="false"/>
+        <viewAttribute id="FLAG_ANNULLAMENTO"/>
+        <viewAttribute id="FLAG_ISCRIZIONE"/>
+        <viewAttribute id="CANCEL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_END_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="ENRL_DTE_PERIOD" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="CALMONTH" transparentFilter="false"/>
+        <viewAttribute id="RANK"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Rank_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_PERIOD" source="CANCEL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_END_PERIOD" source="ENRL_DTE_END_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE_PERIOD" source="ENRL_DTE_PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RANK" source="RANK"/>
+      </input>
+      <filter>(&quot;RANK&quot; != 1 and &quot;STUD_ID&quot; is not null) or &quot;RANK&quot; = 1</filter>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_4">
+    <descriptions/>
+    <attributes>
+      <attribute id="CALMONTH_ISCR" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALMONTH"/>
+        <keyMapping columnObjectName="Projection_4" columnName="CALMONTH_ISCR"/>
+      </attribute>
+      <attribute id="END_DATE_CPNT" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="END_DATE_CPNT"/>
+        <keyMapping columnObjectName="Projection_4" columnName="END_DATE_CPNT"/>
+      </attribute>
+      <attribute id="START_DATE_CPNT" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="STAR_DATE_CPNT"/>
+        <keyMapping columnObjectName="Projection_4" columnName="START_DATE_CPNT"/>
+      </attribute>
+      <attribute id="FLAG_ANNULLAMENTO" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FLAG_ANNULLAMENTO"/>
+        <keyMapping columnObjectName="Projection_4" columnName="FLAG_ANNULLAMENTO"/>
+      </attribute>
+      <attribute id="FLAG_ISCRIZIONE" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FLAG_ISCRIZIONE"/>
+        <keyMapping columnObjectName="Projection_4" columnName="FLAG_ISCRIZIONE"/>
+      </attribute>
+      <attribute id="CANCEL_DTE_PERIOD" order="7" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="DUMMY"/>
+        <keyMapping columnObjectName="Projection_4" columnName="CANCEL_DTE_PERIOD"/>
+      </attribute>
+      <attribute id="ENRL_DTE_END_PERIOD" order="8" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="ENRL_DTE_END_PERIOD"/>
+        <keyMapping columnObjectName="Projection_4" columnName="ENRL_DTE_END_PERIOD"/>
+      </attribute>
+      <attribute id="ENRL_DTE_PERIOD" order="9" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="ENRL_DTE_PERIOD"/>
+        <keyMapping columnObjectName="Projection_4" columnName="ENRL_DTE_PERIOD"/>
+      </attribute>
+      <attribute id="SCHD_ID" order="10" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SCHED_ID"/>
+        <keyMapping columnObjectName="Projection_4" columnName="SCHD_ID"/>
+      </attribute>
+      <attribute id="STUD_ID" order="11" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_ID"/>
+        <keyMapping columnObjectName="Projection_4" columnName="STUD_ID"/>
+      </attribute>
+      <attribute id="CALMONTH" order="12" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CALMONTH"/>
+        <keyMapping columnObjectName="Projection_4" columnName="CALMONTH"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="NUMEROORE" order="1" aggregationType="sum" engineAggregation="sum" measureType="simple">
+        <descriptions defaultDescription="NUMEROORE"/>
+        <measureMapping columnObjectName="Projection_4" columnName="NUMEROORE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="533"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="437"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="611"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="533"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="437"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="321"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="243"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

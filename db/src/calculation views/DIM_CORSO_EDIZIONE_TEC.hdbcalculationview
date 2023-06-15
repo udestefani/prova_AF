@@ -1,0 +1,1124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="DIM_CORSO_EDIZIONE_TEC" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="DIM_CORSO_EDIZIONE Calculation view che contiene tutti i calcoli, richiamata da quella esposta verso SAC"/>
+  <metadata activatedAt="2023-05-22 16:10:22.0" changedAt="2023-05-22 16:10:19.697"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="52"/>
+  <dataSources>
+    <DataSource id="CORSI_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>CORSI_INTEGRAZ</resourceUri>
+    </DataSource>
+    <DataSource id="SCHED_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>SCHED_INTEGRAZ</resourceUri>
+    </DataSource>
+    <DataSource id="CORSI_EDIZIONI_INTEGRATE_MAXENDDATE" type="CALCULATION_VIEW">
+      <resourceUri>CORSI_EDIZIONI_INTEGRATE_MAXENDDATE</resourceUri>
+    </DataSource>
+    <DataSource id="FIN_ORDER_ITEM_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>FIN_ORDER_ITEM_INTEGRAZ</resourceUri>
+    </DataSource>
+    <DataSource id="CPNT_SUBJ_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>CPNT_SUBJ_INTEGRAZ</resourceUri>
+    </DataSource>
+    <DataSource id="CORSI_EDIZIONI_INTEGRATE" type="CALCULATION_VIEW">
+      <resourceUri>CORSI_EDIZIONI_INTEGRATE</resourceUri>
+    </DataSource>
+    <DataSource id="T_SEGM" type="DATA_BASE_TABLE">
+      <resourceUri>T_SEGM</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="CERT_TEMPLATE_SYS_GUID"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="CPNT_CREATE_DTE_STAMP" expressionLanguage="SQL">
+          <formula>&quot;CREATE_DTE&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CPNT_CERTIFICAZIONE" length="3" expressionLanguage="SQL">
+          <formula>CASE&#xD;
+&#xD;
+WHEN &quot;CERT_TEMPLATE_SYS_GUID&quot; is NULL OR &quot;CERT_TEMPLATE_SYS_GUID&quot; = '' THEN 'NO'&#xD;
+ELSE 'YES'&#xD;
+&#xD;
+END</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#CORSI_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="CPNT_LEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CERT_TEMPLATE_SYS_GUID" source="CERT_TEMPLATE_SYS_GUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ACT_CPNT_ID"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="FORMAT"/>
+        <viewAttribute id="LABEL_VALUE"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="ENRL_CUT_DTE"/>
+        <viewAttribute id="SCHD_ID_1" transparentFilter="false"/>
+        <viewAttribute id="DESCRIPTION" transparentFilter="false"/>
+        <viewAttribute id="NOTACTIVE_1" transparentFilter="false"/>
+        <viewAttribute id="CANCELLED" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="CANCEL_DTE_1" transparentFilter="false"/>
+        <viewAttribute id="ENRL_CUT_DTE_1" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="CITY_1" transparentFilter="false"/>
+        <viewAttribute id="ADDR_1" transparentFilter="false"/>
+        <viewAttribute id="EMAIL_ADDR_1" transparentFilter="false"/>
+        <viewAttribute id="PHON_NUM_1" transparentFilter="false"/>
+        <viewAttribute id="FORMAT_1" transparentFilter="false"/>
+        <viewAttribute id="ACT_CPNT_ID_1" transparentFilter="false"/>
+        <viewAttribute id="LABEL_VALUE_1" transparentFilter="false"/>
+        <viewAttribute id="REV_DTE" transparentFilter="false"/>
+        <viewAttribute id="ORD" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="WITHDRAW_CUTOFF_DTE" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="CANCEL_DTE_STAMP" expressionLanguage="SQL">
+          <formula>TO_DATE(&quot;CANCEL_DTE&quot;, 'YYYYMMDD')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="SCHED_ENRL_CUT_DATE" expressionLanguage="SQL">
+          <formula>&quot;ENRL_CUT_DTE&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#SCHED_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ACT_CPNT_ID" source="ACT_CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT" source="FORMAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE" source="ENRL_CUT_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID_1" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE_1" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCELLED" source="CANCELLED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_1" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE_1" source="ENRL_CUT_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY_1" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR_1" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR_1" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM_1" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT_1" source="FORMAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ACT_CPNT_ID_1" source="ACT_CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE_1" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REV_DTE" source="REV_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORD" source="ORD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WITHDRAW_CUTOFF_DTE" source="WITHDRAW_CUTOFF_DTE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" dynamic="false" joinOrder="OUTSIDE_IN" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="NOTACTIVE_1"/>
+        <viewAttribute id="LABEL_VALUE"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE_STAMP"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="SCHED_ENRL_CUT_DATE"/>
+        <viewAttribute id="CREATE_DTE_TIMESTAMP"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CPNT_CERTIFICAZIONE"/>
+        <viewAttribute id="ENRL_CUT_DTE"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE_TIMESTAMP" source="CPNT_CREATE_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_CERTIFICAZIONE" source="CPNT_CERTIFICAZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="TOT_ORE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE_1" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_STAMP" source="CANCEL_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHED_ENRL_CUT_DATE" source="SCHED_ENRL_CUT_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE" source="ENRL_CUT_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="ACT_CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID"/>
+      </input>
+      <joinAttribute name="CPNT_ID"/>
+      <joinAttribute name="CPNT_TYP_ID_KEY"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="START_DTE"/>
+        <viewAttribute id="END_DTE"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="MAX_END_DATE"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="STARTDATE_STAMP" expressionLanguage="SQL">
+          <formula>&quot;START_DTE&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="ENDDATE_STAMP" expressionLanguage="SQL">
+          <formula>&quot;END_DTE&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#CORSI_EDIZIONI_INTEGRATE_MAXENDDATE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DTE" source="START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DTE" source="END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_END_DATE" source="MAX_END_DATE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="STARTDATE_STAMP"/>
+        <viewAttribute id="ENDDATE_STAMP"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="MAX_END_DATE"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="SCHD_DURATA_DAYS" expressionLanguage="SQL">
+          <formula>days_between(&quot;STARTDATE_STAMP&quot;,&quot;ENDDATE_STAMP&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="SCHD_DURATA_MONTHS" expressionLanguage="SQL">
+          <formula>MONTHS_BETWEEN(&quot;STARTDATE_STAMP&quot;,&quot;ENDDATE_STAMP&quot; )</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STARTDATE_STAMP" source="STARTDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENDDATE_STAMP" source="ENDDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_END_DATE" source="MAX_END_DATE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" dynamic="false" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STARTDATE_STAMP"/>
+        <viewAttribute id="ENDDATE_STAMP"/>
+        <viewAttribute id="SCHD_DURATA_DAYS"/>
+        <viewAttribute id="SCHD_DURATA_MONTHS"/>
+        <viewAttribute id="NOTACTIVE_1"/>
+        <viewAttribute id="CREATE_DTE_TIMESTAMP"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE_STAMP"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="CPNT_CERTIFICAZIONE"/>
+        <viewAttribute id="SCHED_ENRL_CUT_DATE"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="FORMAT_EDIZIONE"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+        <viewAttribute id="MAX_END_DATE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE_1" source="NOTACTIVE_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE_TIMESTAMP" source="CREATE_DTE_TIMESTAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_STAMP" source="CANCEL_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_CERTIFICAZIONE" source="CPNT_CERTIFICAZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHED_ENRL_CUT_DATE" source="SCHED_ENRL_CUT_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="TOT_ORE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT_EDIZIONE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+      </input>
+      <input node="#Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STARTDATE_STAMP" source="STARTDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENDDATE_STAMP" source="ENDDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_DAYS" source="SCHD_DURATA_DAYS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_MONTHS" source="SCHD_DURATA_MONTHS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_END_DATE" source="MAX_END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+      </input>
+      <joinAttribute name="SCHD_ID"/>
+      <joinAttribute name="CPNT_ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_6">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STARTDATE_STAMP"/>
+        <viewAttribute id="ENDDATE_STAMP"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="CREATE_DTE_TIMESTAMP"/>
+        <viewAttribute id="SCHD_DURATA_DAYS"/>
+        <viewAttribute id="SCHD_DURATA_MONTHS"/>
+        <viewAttribute id="NOTACTIVE_1"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE_STAMP"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="CPNT_CERTIFICAZIONE"/>
+        <viewAttribute id="SCHED_ENRL_CUT_DATE"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="FORMAT_EDIZIONE"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+        <viewAttribute id="MAX_END_DATE"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="STATUS_CORSO_ITA" length="10" expressionLanguage="SQL">
+          <formula>&#xD;
+CASE&#xD;
+WHEN &quot;NOTACTIVE&quot; = 'Y' THEN 'CHIUSO'&#xD;
+WHEN &quot;NOTACTIVE&quot; = 'N' AND &quot;MAX_END_DATE&quot; &lt; NOW() THEN 'APERTO'&#xD;
+WHEN &quot;NOTACTIVE&quot; = 'N' AND &quot;MAX_END_DATE&quot; > NOW() THEN 'INCORSO'&#xD;
+ELSE '0' end</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="STATUS_EDIZIONE" length="10" expressionLanguage="SQL">
+          <formula>CASE &#xD;
+&#xD;
+WHEN &quot;NOTACTIVE_1&quot; = 'Y' THEN 'CHIUSO'&#xD;
+WHEN &quot;NOTACTIVE_1&quot; = 'N' AND &quot;ENDDATE_STAMP&quot; &lt; NOW() THEN 'APERTO'&#xD;
+WHEN &quot;NOTACTIVE_1&quot; = 'N' AND &quot;ENDDATE_STAMP&quot; > NOW() THEN 'INCORSO'&#xD;
+&#xD;
+END</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="STATUS_CORSO_DEU" length="30" expressionLanguage="SQL">
+          <formula>&#xD;
+CASE&#xD;
+WHEN &quot;NOTACTIVE&quot; = 'Y' THEN 'CLOSED'&#xD;
+WHEN &quot;NOTACTIVE&quot; = 'N' AND &quot;MAX_END_DATE&quot;&lt; NOW() THEN 'OPEN'&#xD;
+WHEN &quot;NOTACTIVE&quot; = 'N' AND &quot;MAX_END_DATE&quot; > NOW() THEN 'IN PROGRESS'&#xD;
+ELSE '0' end&#xD;
+</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="STATUS_EDIZIONE_DEU" length="30" expressionLanguage="SQL">
+          <formula>CASE &#xD;
+&#xD;
+WHEN &quot;NOTACTIVE_1&quot; = 'Y' THEN 'CLOSED'&#xD;
+WHEN &quot;NOTACTIVE_1&quot; = 'N' AND &quot;ENDDATE_STAMP&quot; &lt; NOW() THEN 'OPEN'&#xD;
+WHEN &quot;NOTACTIVE_1&quot; = 'N' AND &quot;ENDDATE_STAMP&quot; > NOW() THEN 'IN PROGRESS'&#xD;
+&#xD;
+END</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STARTDATE_STAMP" source="STARTDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENDDATE_STAMP" source="ENDDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE_TIMESTAMP" source="CREATE_DTE_TIMESTAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_DAYS" source="SCHD_DURATA_DAYS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_MONTHS" source="SCHD_DURATA_MONTHS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE_1" source="NOTACTIVE_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_STAMP" source="CANCEL_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_CERTIFICAZIONE" source="CPNT_CERTIFICAZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHED_ENRL_CUT_DATE" source="SCHED_ENRL_CUT_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="TOT_ORE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT_EDIZIONE" source="FORMAT_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_END_DATE" source="MAX_END_DATE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="PRICE"/>
+        <viewAttribute id="ORDER_ITEM_ID"/>
+        <viewAttribute id="STUD_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#FIN_ORDER_ITEM_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ITEM_ID" source="ORDER_ITEM_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute aggregationType="sum" id="PRICE"/>
+        <viewAttribute id="SCHD_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_5">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_4" dynamic="false" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STARTDATE_STAMP"/>
+        <viewAttribute id="ENDDATE_STAMP"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="PRICE"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="STATUS_CORSO"/>
+        <viewAttribute id="CREATE_DTE_TIMESTAMP"/>
+        <viewAttribute id="SCHD_DURATA_DAYS"/>
+        <viewAttribute id="SCHD_DURATA_MONTHS"/>
+        <viewAttribute id="STATUS_EDIZIONE"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE_STAMP"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="CPNT_CERTIFICAZIONE"/>
+        <viewAttribute id="SCHED_ENRL_CUT_DATE"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="FORMAT_EDIZIONE"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="STATUS_CORSO_DEU"/>
+        <viewAttribute id="STATUS_EDIZIONE_DEU"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STARTDATE_STAMP" source="STARTDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENDDATE_STAMP" source="ENDDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO" source="STATUS_CORSO_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE_TIMESTAMP" source="CREATE_DTE_TIMESTAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_DAYS" source="SCHD_DURATA_DAYS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_MONTHS" source="SCHD_DURATA_MONTHS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE" source="STATUS_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_STAMP" source="CANCEL_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_CERTIFICAZIONE" source="CPNT_CERTIFICAZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHED_ENRL_CUT_DATE" source="SCHED_ENRL_CUT_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="TOT_ORE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT_EDIZIONE" source="FORMAT_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO_DEU" source="STATUS_CORSO_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE_DEU" source="STATUS_EDIZIONE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+      </input>
+      <input node="#Aggregation_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+      </input>
+      <joinAttribute name="SCHD_ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_8">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="KTKODEX"/>
+        <viewAttribute id="CATEGORIA_ID"/>
+        <viewAttribute id="CATEGORIA_DESC"/>
+        <viewAttribute id="CPNT_TYP_KEY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CPNT_SUBJ_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTKODEX" source="KTKODEX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORIA_ID" source="SUBJ_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORIA_DESC" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="CPNT_TYP_KEY"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_7">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="LABEL_VALUE" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORSI_EDIZIONI_INTEGRATE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="LABEL_VALUE" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_7">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
+      </input>
+      <windowFunction>
+        <partitionViewAttributeName>CPNT_ID</partitionViewAttributeName>
+        <partitionViewAttributeName>SCHD_ID</partitionViewAttributeName>
+        <order byViewAttributeName="SUBJ_ID" direction="DESC"/>
+        <rankThreshold>
+          <value>1</value>
+        </rankThreshold>
+      </windowFunction>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_6" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CATEGORIA_ID"/>
+        <viewAttribute id="CATEGORIA_DESC"/>
+        <viewAttribute id="KTKODEX"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_TYP_KEY"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_8">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORIA_ID" source="CATEGORIA_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORIA_DESC" source="CATEGORIA_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTKODEX" source="KTKODEX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="CPNT_TYP_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+      </input>
+      <input node="#Rank_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="CPNT_TYP_ID_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+      </input>
+      <joinAttribute name="CPNT_TYP_KEY"/>
+      <joinAttribute name="CPNT_ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_5" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID_DIM"/>
+        <viewAttribute id="CPNT_NOTACTIVE"/>
+        <viewAttribute id="CPNT_PRICE"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="CPNT_MAX_NUMBER_STUDENT"/>
+        <viewAttribute id="STATUS_CORSO"/>
+        <viewAttribute id="SCHD_ID_DIM"/>
+        <viewAttribute id="CPNT_START_DATE"/>
+        <viewAttribute id="CPNT_END_DATE"/>
+        <viewAttribute id="CREATE_DTE_TIMESTAMP"/>
+        <viewAttribute id="SCHD_DURATA_DAYS"/>
+        <viewAttribute id="SCHD_DURATA_MONTHS"/>
+        <viewAttribute id="STATUS_EDIZIONE"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE_STAMP"/>
+        <viewAttribute id="CPNT_CERTIFICAZIONE"/>
+        <viewAttribute id="SCHED_ENRL_CUT_DATE"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="FORMAT_EDIZIONE"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="STATUS_CORSO_DEU"/>
+        <viewAttribute id="STATUS_EDIZIONE_DEU"/>
+        <viewAttribute id="CPNT_TYP_ID_1"/>
+        <viewAttribute id="CATEGORIA_ID"/>
+        <viewAttribute id="CATEGORIA_DESC"/>
+        <viewAttribute id="KTKODEX"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_TYP_KEY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Join_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID_DIM" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_PRICE" source="PRICE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_MAX_NUMBER_STUDENT" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO" source="STATUS_CORSO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID_DIM" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_START_DATE" source="STARTDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_END_DATE" source="ENDDATE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE_TIMESTAMP" source="CREATE_DTE_TIMESTAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_DAYS" source="SCHD_DURATA_DAYS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_MONTHS" source="SCHD_DURATA_MONTHS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE" source="STATUS_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_STAMP" source="CANCEL_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_CERTIFICAZIONE" source="CPNT_CERTIFICAZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHED_ENRL_CUT_DATE" source="SCHED_ENRL_CUT_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="TOT_ORE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT_EDIZIONE" source="FORMAT_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO_DEU" source="STATUS_CORSO_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE_DEU" source="STATUS_EDIZIONE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_1" source="CPNT_TYP_ID"/>
+      </input>
+      <input node="#Join_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORIA_ID" source="CATEGORIA_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORIA_DESC" source="CATEGORIA_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTKODEX" source="KTKODEX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="CPNT_TYP_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID_DIM" source="SCHD_ID"/>
+      </input>
+      <joinAttribute name="SCHD_ID_DIM"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="LAST_LEZIONE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHEDULEID"/>
+        <viewAttribute id="ENDDATETIME"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="CPNT_SCH_LAST_DATE_LEZIONE" expressionLanguage="SQL">
+          <formula>TO_DATE(SUBSTR(&quot;ENDDATETIME&quot;,0,10))</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#T_SEGM">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENDDATETIME" source="ENDDATETIME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHEDULEID"/>
+        <viewAttribute aggregationType="max" id="CPNT_SCH_LAST_DATE_LEZIONE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#LAST_LEZIONE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_SCH_LAST_DATE_LEZIONE" source="CPNT_SCH_LAST_DATE_LEZIONE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID_DIM"/>
+        <viewAttribute id="CPNT_NOTACTIVE"/>
+        <viewAttribute id="CPNT_PRICE"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="CPNT_MAX_NUMBER_STUDENT"/>
+        <viewAttribute id="STATUS_CORSO"/>
+        <viewAttribute id="SCHD_ID_DIM"/>
+        <viewAttribute id="CPNT_START_DATE"/>
+        <viewAttribute id="SCHD_DURATA_DAYS"/>
+        <viewAttribute id="SCHD_DURATA_MONTHS"/>
+        <viewAttribute id="STATUS_EDIZIONE"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE_STAMP"/>
+        <viewAttribute id="CPNT_CERTIFICAZIONE"/>
+        <viewAttribute id="CPNT_AREA_TEMATICA"/>
+        <viewAttribute id="CPNT_AREA_TEMATICA_LABEL"/>
+        <viewAttribute id="KTKODEX"/>
+        <viewAttribute id="SCHED_ENRL_CUT_DATE"/>
+        <viewAttribute id="CREATE_DTE_TIMESTAMP" transparentFilter="false"/>
+        <viewAttribute id="CPNT_END_DATE" transparentFilter="false"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="FORMAT_EDIZIONE"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="STATUS_CORSO_DEU"/>
+        <viewAttribute id="STATUS_EDIZIONE_DEU"/>
+        <viewAttribute id="CPNT_SCH_LAST_DATE_LEZIONE_ORIG"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="CPNT_SCH_LAST_DATE_LEZIONE" expressionLanguage="SQL">
+          <formula>&quot;CPNT_SCH_LAST_DATE_LEZIONE_ORIG&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Join_5">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID_DIM" source="CPNT_ID_DIM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_NOTACTIVE" source="CPNT_NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_PRICE" source="CPNT_PRICE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_MAX_NUMBER_STUDENT" source="CPNT_MAX_NUMBER_STUDENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO" source="STATUS_CORSO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID_DIM" source="SCHD_ID_DIM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_START_DATE" source="CPNT_START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_DAYS" source="SCHD_DURATA_DAYS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_MONTHS" source="SCHD_DURATA_MONTHS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE" source="STATUS_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_STAMP" source="CANCEL_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_CERTIFICAZIONE" source="CPNT_CERTIFICAZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_AREA_TEMATICA" source="CATEGORIA_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_AREA_TEMATICA_LABEL" source="CATEGORIA_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTKODEX" source="KTKODEX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHED_ENRL_CUT_DATE" source="SCHED_ENRL_CUT_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE_TIMESTAMP" source="CREATE_DTE_TIMESTAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_END_DATE" source="CPNT_END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="TOT_ORE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT_EDIZIONE" source="FORMAT_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO_DEU" source="STATUS_CORSO_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE_DEU" source="STATUS_EDIZIONE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+      </input>
+      <input node="#Aggregation_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_SCH_LAST_DATE_LEZIONE_ORIG" source="CPNT_SCH_LAST_DATE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID_DIM" source="SCHEDULEID"/>
+      </input>
+      <joinAttribute name="SCHD_ID_DIM"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_11">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID_DIM"/>
+        <viewAttribute id="CPNT_NOTACTIVE"/>
+        <viewAttribute id="CPNT_PRICE"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="CPNT_MAX_NUMBER_STUDENT"/>
+        <viewAttribute id="STATUS_CORSO"/>
+        <viewAttribute id="SCHD_ID_DIM"/>
+        <viewAttribute id="CPNT_START_DATE"/>
+        <viewAttribute id="SCHD_DURATA_DAYS"/>
+        <viewAttribute id="SCHD_DURATA_MONTHS"/>
+        <viewAttribute id="STATUS_EDIZIONE"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="CANCEL_DTE_STAMP"/>
+        <viewAttribute id="CPNT_CERTIFICAZIONE"/>
+        <viewAttribute id="CPNT_AREA_TEMATICA"/>
+        <viewAttribute id="CPNT_AREA_TEMATICA_LABEL"/>
+        <viewAttribute id="KTKODEX"/>
+        <viewAttribute id="SCHED_ENRL_CUT_DATE"/>
+        <viewAttribute id="CREATE_DTE_TIMESTAMP" transparentFilter="false"/>
+        <viewAttribute id="CPNT_END_DATE" transparentFilter="false"/>
+        <viewAttribute id="TOT_ORE_LEZIONE"/>
+        <viewAttribute id="FORMAT_EDIZIONE"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="STATUS_CORSO_DEU"/>
+        <viewAttribute id="STATUS_EDIZIONE_DEU"/>
+        <viewAttribute id="CPNT_TYP_ID_DIM"/>
+        <viewAttribute id="CPNT_SCH_LAST_DATE_LEZIONE"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CHIAVE_DIM_CORSO_ED_KEY" length="256" expressionLanguage="SQL">
+          <formula>&quot;CPNT_ID_DIM&quot;||coalesce(&quot;CPNT_TYP_ID_DIM&quot;,'')||coalesce(&quot;SCHD_ID_DIM&quot;,'')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Join_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID_DIM" source="CPNT_ID_DIM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_NOTACTIVE" source="CPNT_NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_PRICE" source="CPNT_PRICE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_MAX_NUMBER_STUDENT" source="CPNT_MAX_NUMBER_STUDENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO" source="STATUS_CORSO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID_DIM" source="SCHD_ID_DIM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_START_DATE" source="CPNT_START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_DAYS" source="SCHD_DURATA_DAYS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_DURATA_MONTHS" source="SCHD_DURATA_MONTHS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE" source="STATUS_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE_STAMP" source="CANCEL_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_CERTIFICAZIONE" source="CPNT_CERTIFICAZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_AREA_TEMATICA" source="CPNT_AREA_TEMATICA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_AREA_TEMATICA_LABEL" source="CPNT_AREA_TEMATICA_LABEL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTKODEX" source="KTKODEX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHED_ENRL_CUT_DATE" source="SCHED_ENRL_CUT_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE_TIMESTAMP" source="CREATE_DTE_TIMESTAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_END_DATE" source="CPNT_END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOT_ORE_LEZIONE" source="TOT_ORE_LEZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT_EDIZIONE" source="FORMAT_EDIZIONE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO_DEU" source="STATUS_CORSO_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE_DEU" source="STATUS_EDIZIONE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_DIM" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_SCH_LAST_DATE_LEZIONE" source="CPNT_SCH_LAST_DATE_LEZIONE"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_11">
+    <descriptions/>
+    <attributes>
+      <attribute id="CPNT_ID_DIM" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_ID_DIM"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_ID_DIM"/>
+      </attribute>
+      <attribute id="CPNT_NOTACTIVE" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_NOTACTIVE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_NOTACTIVE"/>
+      </attribute>
+      <attribute id="CPNT_PRICE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_PRICE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_PRICE"/>
+      </attribute>
+      <attribute id="PHON_NUM" order="4" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PHON_NUM"/>
+        <keyMapping columnObjectName="Projection_11" columnName="PHON_NUM"/>
+      </attribute>
+      <attribute id="CITY" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CITY"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CITY"/>
+      </attribute>
+      <attribute id="CPNT_MAX_NUMBER_STUDENT" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_MAX_NUMBER_STUDENT"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_MAX_NUMBER_STUDENT"/>
+      </attribute>
+      <attribute id="STATUS_CORSO" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STATUS_CORSO"/>
+        <keyMapping columnObjectName="Projection_11" columnName="STATUS_CORSO"/>
+      </attribute>
+      <attribute id="SCHD_ID_DIM" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_ID_DIM"/>
+        <keyMapping columnObjectName="Projection_11" columnName="SCHD_ID_DIM"/>
+      </attribute>
+      <attribute id="CPNT_START_DATE" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_START_DATE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_START_DATE"/>
+      </attribute>
+      <attribute id="SCHD_DURATA_DAYS" order="10" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_DURATA_DAYS"/>
+        <keyMapping columnObjectName="Projection_11" columnName="SCHD_DURATA_DAYS"/>
+      </attribute>
+      <attribute id="SCHD_DURATA_MONTHS" order="11" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_DURATA_MONTHS"/>
+        <keyMapping columnObjectName="Projection_11" columnName="SCHD_DURATA_MONTHS"/>
+      </attribute>
+      <attribute id="STATUS_EDIZIONE" hidden="false" order="12" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="STATUS_EDIZIONE"/>
+      </attribute>
+      <attribute id="ADDR" order="13" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ADDR"/>
+        <keyMapping columnObjectName="Projection_11" columnName="ADDR"/>
+      </attribute>
+      <attribute id="EMAIL_ADDR" order="14" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EMAIL_ADDR"/>
+        <keyMapping columnObjectName="Projection_11" columnName="EMAIL_ADDR"/>
+      </attribute>
+      <attribute id="CPNT_CANCEL_DTE" order="15" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_CANCEL_DTE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CANCEL_DTE_STAMP"/>
+      </attribute>
+      <attribute id="CPNT_CERTIFICAZIONE" hidden="false" order="16" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_CERTIFICAZIONE"/>
+      </attribute>
+      <attribute id="CPNT_AREA_TEMATICA" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_AREA_TEMATICA"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_AREA_TEMATICA"/>
+      </attribute>
+      <attribute id="CPNT_AREA_TEMATICA_LABEL" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_AREA_TEMATICA_LABEL"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_AREA_TEMATICA_LABEL"/>
+      </attribute>
+      <attribute id="KTKODEX" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KTKODEX"/>
+        <keyMapping columnObjectName="Projection_11" columnName="KTKODEX"/>
+      </attribute>
+      <attribute id="SCHED_ENRL_CUT_DATE" order="20" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHED_ENRL_CUT_DATE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="SCHED_ENRL_CUT_DATE"/>
+      </attribute>
+      <attribute id="CREATE_DTE_TIMESTAMP" order="21" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CREATE_DTE_TIMESTAMP"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CREATE_DTE_TIMESTAMP"/>
+      </attribute>
+      <attribute id="CPNT_END_DATE" order="22" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_END_DATE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_END_DATE"/>
+      </attribute>
+      <attribute id="CHIAVE_DIM_CORSO_ED_KEY" order="23" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CHIAVE_DIM_CORSO_ED_KEY"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CHIAVE_DIM_CORSO_ED_KEY"/>
+      </attribute>
+      <attribute id="TOT_ORE_LEZIONE" order="24" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="TOT_ORE_LEZIONE"/>
+      </attribute>
+      <attribute id="FORMAT_EDIZIONE" order="25" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FORMAT_EDIZIONE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="FORMAT_EDIZIONE"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_ITA" order="26" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_TITLE_ITA"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_DEU" order="27" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_TITLE_DEU"/>
+      </attribute>
+      <attribute id="FACILITY_ID" order="28" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="FACILITY_ID"/>
+      </attribute>
+      <attribute id="FACILITY_DESC" order="29" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="FACILITY_DESC"/>
+      </attribute>
+      <attribute id="STATUS_CORSO_DEU" order="30" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="STATUS_CORSO_DEU"/>
+      </attribute>
+      <attribute id="STATUS_EDIZIONE_DEU" order="31" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="STATUS_EDIZIONE_DEU"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID_DIM" order="32" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_TYP_ID_DIM"/>
+      </attribute>
+      <attribute id="CPNT_SCH_LAST_DATE_LEZIONE" order="33" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_SCH_LAST_DATE_LEZIONE"/>
+        <keyMapping columnObjectName="Projection_11" columnName="CPNT_SCH_LAST_DATE_LEZIONE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="636" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="801"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="801"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="705"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="801"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="705"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="251" y="609"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="251" y="531"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="405" y="609"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="405" y="531"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="405" y="435"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_8" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="559" y="531"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_7" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="713" y="609"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="713" y="531"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="559" y="435"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="559" y="339"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="LAST_LEZIONE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="713" y="435"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="713" y="339"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="636" y="243"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_11" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="636" y="165"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CATEGORY_HIER" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <descriptions defaultDescription="CATEGORY_HIER"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="TF_CATEGORY_HIER" type="TABLE_FUNCTION">
+      <resourceUri>TF_CATEGORY_HIER</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews/>
+  <logicalModel id="TF_CATEGORY_HIER">
+    <descriptions/>
+    <attributes>
+      <attribute id="CPNT_TYP_KEY" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_TYP_KEY"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="CPNT_TYP_KEY"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_TYP_ID"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="CPNT_TYP_ID"/>
+      </attribute>
+      <attribute id="CPNT_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_ID"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="CPNT_ID"/>
+      </attribute>
+      <attribute id="LEVEL1" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEVEL1"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="LEVEL1"/>
+      </attribute>
+      <attribute id="LEVEL2" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEVEL2"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="LEVEL2"/>
+      </attribute>
+      <attribute id="LEVEL3" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEVEL3"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="LEVEL3"/>
+      </attribute>
+      <attribute id="LEVEL1_DESC" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEVEL1_DESC"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="LEVEL1_DESC"/>
+      </attribute>
+      <attribute id="LEVEL2_DESC" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEVEL2_DESC"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="LEVEL2_DESC"/>
+      </attribute>
+      <attribute id="LEVEL3_DESC" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LEVEL3_DESC"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="LEVEL3_DESC"/>
+      </attribute>
+      <attribute id="KTKODEX" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KTKODEX"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="KTKODEX"/>
+      </attribute>
+      <attribute id="CATEGORIA_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CATEGORIA_ID"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="CATEGORIA_ID"/>
+      </attribute>
+      <attribute id="CATEGORIA_DESC" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CATEGORIA_DESC"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_CATEGORY_HIER" columnName="CATEGORIA_DESC"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

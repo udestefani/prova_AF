@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.3" id="FACT_CPNT_SCHED_STUD" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="FACT_CPNT_SCHED_STUD_SAC calculation view esposta verso SAC"/>
+  <metadata activatedAt="2023-05-22 17:04:23.0" changedAt="2023-05-22 17:04:20.717"/>
+  <localVariables>
+    <variable id="IP_ANNO" parameter="true">
+      <descriptions defaultDescription="IP_ANNO"/>
+      <variableProperties datatype="INTEGER" defaultValue="" mandatory="true">
+        <valueDomain type="empty"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#FACT_CPNT_SCHED_STUD_TEC">
+      <targetVariable name="IP_ANNO" resourceUri="/Analisi_Formazione/calculationviews/FACT_CPNT_SCHED_STUD_TEC"/>
+      <localVariable>#IP_ANNO</localVariable>
+    </mapping>
+  </variableMappings>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="FACT_CPNT_SCHED_STUD_TEC" type="CALCULATION_VIEW">
+      <resourceUri>FACT_CPNT_SCHED_STUD_TEC</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews/>
+  <logicalModel id="FACT_CPNT_SCHED_STUD_TEC">
+    <descriptions/>
+    <attributes>
+      <attribute id="CMPL_STAT_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CMPL_STAT_ID"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CMPL_STAT_ID"/>
+      </attribute>
+      <attribute id="GRADE" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GRADE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="GRADE"/>
+      </attribute>
+      <attribute id="AGE_STUD" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AGE_STUD"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="AGE_STUD"/>
+      </attribute>
+      <attribute id="STUD_CLASSE_ISCRIZIONE" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_CLASSE_ISCRIZIONE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="STUD_CLASSE_ISCRIZIONE"/>
+      </attribute>
+      <attribute id="INST_ID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INST_ID"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="INST_ID"/>
+      </attribute>
+      <attribute id="KEY_DIM_CORSO_ED" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KEY_DIM_CORSO_ED"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="KEY_DIM_CORSO_ED"/>
+      </attribute>
+      <attribute id="FASCE_ETA_STUD" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FASCE_ETA_STUD"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="FASCE_ETA_STUD"/>
+      </attribute>
+      <attribute id="COUNTER_COMPLETED_STUD" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COUNTER_COMPLETED_STUD"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="COUNTER_COMPLETED_STUD"/>
+      </attribute>
+      <attribute id="ENRL_DATE_STAMP" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="ENRL_DATE_STAMP"/>
+      </attribute>
+      <attribute id="STUD_CANCEL_DATE" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="STUD_CANCEL_DATE"/>
+      </attribute>
+      <attribute id="STUD_ID" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_ID"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="STUD_ID"/>
+      </attribute>
+      <attribute id="ANNO_MESE" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ANNO_MESE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="ANNO_MESE"/>
+      </attribute>
+      <attribute id="COUNTER_ENROLLED_ISCR" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COUNTER_ENROLLED_ISCR"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="COUNTER_ENROLLED_ISCR"/>
+      </attribute>
+      <attribute id="COUNTER_CANCELLED_ISCR" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COUNTER_CANCELLED_ISCR"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="COUNTER_CANCELLED_ISCR"/>
+      </attribute>
+      <attribute id="SCHEDULEID" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHEDULEID"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="SCHEDULEID"/>
+      </attribute>
+      <attribute id="CPNT_ID" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_ID"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CPNT_ID"/>
+      </attribute>
+      <attribute id="FASCIA_STUD_ONLINE" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="FASCIA_STUD_ONLINE"/>
+      </attribute>
+      <attribute id="BIRTH_DATE_STAMP" order="19" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="BIRTH_DATE_STAMP"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="BIRTH_DATE_STAMP"/>
+      </attribute>
+      <attribute id="CPNT_START_DATE" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_START_DATE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CPNT_START_DATE"/>
+      </attribute>
+      <attribute id="CPNT_CANCEL_DTE" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_CANCEL_DTE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CPNT_CANCEL_DTE"/>
+      </attribute>
+      <attribute id="SCHED_ENRL_CUT_DATE" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHED_ENRL_CUT_DATE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="SCHED_ENRL_CUT_DATE"/>
+      </attribute>
+      <attribute id="CREATE_DTE_TIMESTAMP" order="23" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CREATE_DTE_TIMESTAMP"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CREATE_DTE_TIMESTAMP"/>
+      </attribute>
+      <attribute id="CPNT_END_DATE" order="24" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_END_DATE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CPNT_END_DATE"/>
+      </attribute>
+      <attribute id="CPNT_SCH_LAST_DATE_LEZIONE" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_SCH_LAST_DATE_LEZIONE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CPNT_SCH_LAST_DATE_LEZIONE"/>
+      </attribute>
+      <attribute id="ID_DOMINIO_SOURCE" order="26" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="ID_DOMINIO_SOURCE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="ID_DOMINIO_SOURCE"/>
+      </attribute>
+      <attribute id="SOURCE" order="27" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SOURCE"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="SOURCE"/>
+      </attribute>
+      <attribute id="DESCRIZIONE_SOURCE_D" order="28" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="DESCRIZIONE_SOURCE_D"/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="DESCRIZIONE_SOURCE_D"/>
+      </attribute>
+      <attribute id="DESC_DOMINIO_SICUREZZA_I" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="DESC_DOMINIO_SICUREZZA_I"/>
+      </attribute>
+      <attribute id="DESCRIZIONE_SOURCE_I" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="DESCRIZIONE_SOURCE_I"/>
+      </attribute>
+      <attribute id="DESC_DOMINIO_SICUREZZA_D" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="DESC_DOMINIO_SICUREZZA_D"/>
+      </attribute>
+      <attribute id="ID_DOMINIO" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="ID_DOMINIO"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="NUMEROORE" order="3" aggregationType="sum" engineAggregation="sum" measureType="simple">
+        <descriptions defaultDescription="NUMEROORE"/>
+        <measureMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="NUMEROORE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

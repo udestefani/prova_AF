@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="DIM_CORSO_EDIZIONE" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="DIM_CORSO_EDIZIONE_SAC Calculation view esposta verso SAC"/>
+  <metadata activatedAt="2023-05-22 16:10:50.0" changedAt="2023-05-22 16:10:47.991"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="DIM_CORSO_EDIZIONE_TEC" type="CALCULATION_VIEW">
+      <resourceUri>DIM_CORSO_EDIZIONE_TEC</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews/>
+  <logicalModel id="DIM_CORSO_EDIZIONE_TEC">
+    <descriptions/>
+    <attributes>
+      <attribute id="CPNT_ID_DIM" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_ID_DIM"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_ID_DIM"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID_DIM" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_TYP_ID_DIM"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_TYP_ID_DIM"/>
+      </attribute>
+      <attribute id="CPNT_NOTACTIVE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_NOTACTIVE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_NOTACTIVE"/>
+      </attribute>
+      <attribute id="CPNT_PRICE" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_PRICE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_PRICE"/>
+      </attribute>
+      <attribute id="PHON_NUM" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PHON_NUM"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="PHON_NUM"/>
+      </attribute>
+      <attribute id="CITY" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CITY"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CITY"/>
+      </attribute>
+      <attribute id="CPNT_MAX_NUMBER_STUDENT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_MAX_NUMBER_STUDENT"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_MAX_NUMBER_STUDENT"/>
+      </attribute>
+      <attribute id="STATUS_CORSO" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STATUS_CORSO"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="STATUS_CORSO"/>
+      </attribute>
+      <attribute id="SCHD_ID_DIM" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_ID_DIM"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="SCHD_ID_DIM"/>
+      </attribute>
+      <attribute id="CPNT_START_DATE" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_START_DATE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_START_DATE"/>
+      </attribute>
+      <attribute id="SCHD_DURATA_DAYS" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_DURATA_DAYS"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="SCHD_DURATA_DAYS"/>
+      </attribute>
+      <attribute id="SCHD_DURATA_MONTHS" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_DURATA_MONTHS"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="SCHD_DURATA_MONTHS"/>
+      </attribute>
+      <attribute id="STATUS_EDIZIONE" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="STATUS_EDIZIONE"/>
+      </attribute>
+      <attribute id="ADDR" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ADDR"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="ADDR"/>
+      </attribute>
+      <attribute id="EMAIL_ADDR" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EMAIL_ADDR"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="EMAIL_ADDR"/>
+      </attribute>
+      <attribute id="CPNT_CANCEL_DTE" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_CANCEL_DTE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_CANCEL_DTE"/>
+      </attribute>
+      <attribute id="CPNT_CERTIFICAZIONE" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_CERTIFICAZIONE"/>
+      </attribute>
+      <attribute id="CPNT_AREA_TEMATICA" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_AREA_TEMATICA"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_AREA_TEMATICA"/>
+      </attribute>
+      <attribute id="CPNT_AREA_TEMATICA_LABEL" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_AREA_TEMATICA_LABEL"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_AREA_TEMATICA_LABEL"/>
+      </attribute>
+      <attribute id="KTKODEX" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KTKODEX"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="KTKODEX"/>
+      </attribute>
+      <attribute id="SCHED_ENRL_CUT_DATE" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHED_ENRL_CUT_DATE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="SCHED_ENRL_CUT_DATE"/>
+      </attribute>
+      <attribute id="CREATE_DTE_TIMESTAMP" order="22" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CREATE_DTE_TIMESTAMP"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CREATE_DTE_TIMESTAMP"/>
+      </attribute>
+      <attribute id="CPNT_END_DATE" order="23" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_END_DATE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_END_DATE"/>
+      </attribute>
+      <attribute id="CHIAVE_DIM_CORSO_ED_KEY" order="24" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CHIAVE_DIM_CORSO_ED_KEY"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CHIAVE_DIM_CORSO_ED_KEY"/>
+      </attribute>
+      <attribute id="TOT_ORE_LEZIONE" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="TOT_ORE_LEZIONE"/>
+      </attribute>
+      <attribute id="FORMAT_EDIZIONE" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FORMAT_EDIZIONE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="FORMAT_EDIZIONE"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_ITA" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_TITLE_ITA"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_DEU" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_TITLE_DEU"/>
+      </attribute>
+      <attribute id="FACILITY_ID" order="29" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="FACILITY_ID"/>
+      </attribute>
+      <attribute id="FACILITY_DESC" order="30" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="FACILITY_DESC"/>
+      </attribute>
+      <attribute id="STATUS_CORSO_DEU" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="STATUS_CORSO_DEU"/>
+      </attribute>
+      <attribute id="STATUS_EDIZIONE_DEU" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="STATUS_EDIZIONE_DEU"/>
+      </attribute>
+      <attribute id="CPNT_SCH_LAST_DATE_LEZIONE" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_SCH_LAST_DATE_LEZIONE"/>
+        <keyMapping columnObjectName="DIM_CORSO_EDIZIONE_TEC" columnName="CPNT_SCH_LAST_DATE_LEZIONE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="FACT_CONSUNTIVAZIONE_V2" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="FACT_CPNT_SCHED_STUD"/>
+  <metadata activatedAt="2023-05-08 16:54:35.0" changedAt="2023-05-08 16:54:32.862"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="44"/>
+  <dataSources>
+    <DataSource id="T_CONS_LMS" type="DATA_BASE_TABLE">
+      <resourceUri>T_CONS_LMS</resourceUri>
+    </DataSource>
+    <DataSource id="T_SEGM" type="DATA_BASE_TABLE">
+      <resourceUri>T_SEGM</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="ORE_EFFETTIVE">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="NUMEROORE"/>
+        <viewAttribute id="STUDENTE"/>
+        <viewAttribute id="SCHEDULEID"/>
+        <viewAttribute id="IDSEGMENTO"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#T_CONS_LMS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUDENTE" source="STUDENTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDSEGMENTO" source="IDSEGMENTO"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="PERIODO_SEGMENTO">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHEDULEID"/>
+        <viewAttribute id="SEGMENTID"/>
+        <viewAttribute id="ENDDATETIME"/>
+        <viewAttribute id="STARTDATETIME"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="PERIOD_DATE" expressionLanguage="SQL">
+          <formula>TO_TIMESTAMP (&quot;ENDDATETIME&quot; ,'YYYY-MM-DD HH24:MI:SS.FF7')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="PERIOD" expressionLanguage="SQL">
+          <formula>TO_DATE((YEAR(&quot;PERIOD_DATE&quot;)|| MONTH(&quot;PERIOD_DATE&quot;)),'YYYYMM')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="START_DATE" expressionLanguage="SQL">
+          <formula>TO_TIMESTAMP (&quot;STARTDATETIME&quot; ,'YYYY-MM-DD HH24:MI:SS.FF7')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#T_SEGM">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SEGMENTID" source="SEGMENTID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENDDATETIME" source="ENDDATETIME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STARTDATETIME" source="STARTDATETIME"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="CONSUNTIVAZIONE_DAL_2021" joinOrder="OUTSIDE_IN" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="NUMEROORE"/>
+        <viewAttribute id="STUDENTE"/>
+        <viewAttribute id="SCHEDULEID"/>
+        <viewAttribute id="IDSEGMENTO"/>
+        <viewAttribute id="PERIOD"/>
+        <viewAttribute id="START_DATE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ORE_EFFETTIVE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUDENTE" source="STUDENTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDSEGMENTO" source="IDSEGMENTO"/>
+      </input>
+      <input node="#PERIODO_SEGMENTO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERIOD" source="PERIOD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE" source="START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDSEGMENTO" source="SEGMENTID"/>
+      </input>
+      <joinAttribute name="SCHEDULEID"/>
+      <joinAttribute name="IDSEGMENTO"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="CONSUNTIVAZIONE_DAL_2021">
+    <descriptions/>
+    <attributes>
+      <attribute id="STUDENTE" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUDENTE"/>
+        <keyMapping columnObjectName="CONSUNTIVAZIONE_DAL_2021" columnName="STUDENTE"/>
+      </attribute>
+      <attribute id="SCHEDULEID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHEDULEID"/>
+        <keyMapping columnObjectName="CONSUNTIVAZIONE_DAL_2021" columnName="SCHEDULEID"/>
+      </attribute>
+      <attribute id="PERIOD" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PERIOD"/>
+        <keyMapping columnObjectName="CONSUNTIVAZIONE_DAL_2021" columnName="PERIOD"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="NUMEROORE" order="2" aggregationType="sum" engineAggregation="sum" measureType="simple">
+        <descriptions defaultDescription="NUMEROORE"/>
+        <measureMapping columnObjectName="CONSUNTIVAZIONE_DAL_2021" columnName="NUMEROORE"/>
+      </measure>
+      <measure id="START_DATE" order="5" aggregationType="min" engineAggregation="min" measureType="simple">
+        <descriptions defaultDescription="START_DATE"/>
+        <measureMapping columnObjectName="CONSUNTIVAZIONE_DAL_2021" columnName="START_DATE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="ORE_EFFETTIVE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="339"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="PERIODO_SEGMENTO" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="339"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="CONSUNTIVAZIONE_DAL_2021" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="243"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="ENROLL_SEAT_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="ENROLL_SEAT_INTEGRAZ"/>
+  <metadata activatedAt="2023-05-23 18:20:31.0" changedAt="2023-05-23 18:20:30.531"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="49"/>
+  <dataSources>
+    <DataSource id="ISCRIZIONE_STORICO" type="DATA_BASE_TABLE">
+      <resourceUri>ISCRIZIONE_STORICO</resourceUri>
+    </DataSource>
+    <DataSource id="PH_ENROLL_SEAT" type="DATA_BASE_TABLE">
+      <resourceUri>PH_ENROLL_SEAT</resourceUri>
+    </DataSource>
+    <DataSource id="PH_ENROLL_SEAT_DELTA" type="CALCULATION_VIEW">
+      <resourceUri>PH_ENROLL_SEAT_DELTA</resourceUri>
+    </DataSource>
+    <DataSource id="SCH_SEG_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>SCH_SEG_INTEGRAZ</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TNA_TNM_ID"/>
+        <viewAttribute id="TNA_VORGEMERKTAM"/>
+        <viewAttribute id="TNA_KURS_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="TIMESTAMP" id="TNA_VORGEMERKTAM_CALC" expressionLanguage="SQL">
+          <formula>case when (&quot;TNA_VORGEMERKTAM&quot; is null or &quot;TNA_VORGEMERKTAM&quot; ='') then to_Date('19000101','yyyymmdd') &#xD;
+else TO_TIMESTAMP (&quot;TNA_VORGEMERKTAM&quot; ,'DD/MM/YYYY HH24:MI:SS') end&#xD;
+</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="3" expressionLanguage="SQL">
+          <formula>'STO'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="DATA_FIX" length="80" expressionLanguage="SQL">
+          <formula>CASE WHEN length(&quot;TNA_VORGEMERKTAM&quot;) = 16 then concat(&quot;TNA_VORGEMERKTAM&quot;, ':00') else &quot;TNA_VORGEMERKTAM&quot; end</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#ISCRIZIONE_STORICO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TNA_TNM_ID" source="TNA_TNM_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TNA_VORGEMERKTAM" source="TNA_VORGEMERKTAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TNA_KURS_ID" source="TNA_KURS_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="ENRL_SEAT_ID"/>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="ENRL_SLOT_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ENRL_STAT_ID"/>
+        <viewAttribute id="ENRL_DTE"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="LST_UPD_TSTMP"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="TIMESTAMP" id="LST_UPD_TSTMP_CALC" expressionLanguage="SQL">
+          <formula>TO_TIMESTAMP(&quot;LST_UPD_TSTMP&quot;, 'DD/MM/YYYY HH24:MI:SS')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#PH_ENROLL_SEAT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_SEAT_ID" source="ENRL_SEAT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_SLOT_ID" source="ENRL_SLOT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_STAT_ID" source="ENRL_STAT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE" source="ENRL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LST_UPD_TSTMP" source="LST_UPD_TSTMP"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ENRL_DTE"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="LST_UPD_TSTMP_CALC"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE" source="ENRL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LST_UPD_TSTMP_CALC" source="LST_UPD_TSTMP_CALC"/>
+      </input>
+      <windowFunction>
+        <partitionViewAttributeName>STUD_ID</partitionViewAttributeName>
+        <partitionViewAttributeName>SCHD_ID</partitionViewAttributeName>
+        <order byViewAttributeName="LST_UPD_TSTMP_CALC" direction="DESC"/>
+        <rankThreshold>
+          <value>1000000</value>
+        </rankThreshold>
+        <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+      </windowFunction>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_4">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute aggregationType="max" id="CANCEL_DTE"/>
+        <viewAttribute aggregationType="min" id="ENRL_DTE"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="STUD_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="DATA_ENROL" expressionLanguage="SQL">
+          <formula>TO_DATE(&quot;ENRL_DTE&quot;, 'YYYYMMDD')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="CANCEL_ENROL" expressionLanguage="SQL">
+          <formula>TO_DATE(&quot;CANCEL_DTE&quot;, 'YYYYMMDD')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="3" expressionLanguage="SQL">
+          <formula>'LMS'</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Rank_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE" source="ENRL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ENRL_DTE"/>
+        <viewAttribute id="CANCEL_DTE"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>'LSM'</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#PH_ENROLL_SEAT_DELTA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE" source="ENRL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="DATA_ENROL" transparentFilter="false"/>
+        <viewAttribute id="CANCEL_DTE" transparentFilter="false"/>
+        <viewAttribute id="SOURCE" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="TNA_TNM_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="TNA_KURS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATA_ENROL" source="TNA_VORGEMERKTAM_CALC"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CANCEL_DTE" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Aggregation_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATA_ENROL" source="DATA_ENROL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_ENROL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATA_ENROL" source="ENRL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="END_DATE" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#SCH_SEG_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE" source="END_DATE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute aggregationType="max" id="END_DATE" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE" source="END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CANCEL_DTE" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="DATA_ENROL" transparentFilter="false"/>
+        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="END_DATE" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATA_ENROL" source="DATA_ENROL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      </input>
+      <input node="#Aggregation_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE" source="END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+      </input>
+      <joinAttribute name="SCHD_ID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="CANCEL_DTE" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CANCEL_DTE"/>
+        <keyMapping columnObjectName="Join_1" columnName="CANCEL_DTE"/>
+      </attribute>
+      <attribute id="SCHD_ID" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SCHD_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="SCHD_ID"/>
+      </attribute>
+      <attribute id="STUD_ID" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="STUD_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="STUD_ID"/>
+      </attribute>
+      <attribute id="END_DATE" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="END_DATE"/>
+        <keyMapping columnObjectName="Join_1" columnName="END_DATE"/>
+      </attribute>
+      <attribute id="DATA_ENROL" order="5" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="DATA_ENROL"/>
+        <keyMapping columnObjectName="Join_1" columnName="DATA_ENROL"/>
+      </attribute>
+      <attribute id="SOURCE" order="8" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SOURCE"/>
+        <keyMapping columnObjectName="Join_1" columnName="SOURCE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="ENRL_DTE_END" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ENRL_DTE_END"/>
+        <keyCalculation datatype="DATE" expressionLanguage="SQL">
+          <formula>CASE WHEN (&quot;CANCEL_DTE&quot;= '' or &quot;CANCEL_DTE&quot; is null or CANCEL_DTE > END_DATE)  THEN &quot;END_DATE&quot;&#xD;
+ELSE &quot;CANCEL_DTE&quot;&#xD;
+END</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="DUMMY" hidden="false" order="7" aggregationType="sum" engineAggregation="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="DUMMY"/>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="253" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="533"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="455"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="360" y="480"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="261"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="165"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

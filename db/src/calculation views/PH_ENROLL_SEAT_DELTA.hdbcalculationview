@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="PH_ENROLL_SEAT_DELTA" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="PH_ENROLL_SEAT_DELTA"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="TF_PH_ENROLL_SEAT_DELTA" type="TABLE_FUNCTION">
+      <resourceUri>TF_PH_ENROLL_SEAT_DELTA</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews/>
+  <logicalModel id="TF_PH_ENROLL_SEAT_DELTA">
+    <descriptions/>
+    <attributes>
+      <attribute id="STUD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_ID"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PH_ENROLL_SEAT_DELTA" columnName="STUD_ID"/>
+      </attribute>
+      <attribute id="SCHD_ID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_ID"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PH_ENROLL_SEAT_DELTA" columnName="SCHD_ID"/>
+      </attribute>
+      <attribute id="ENRL_DTE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ENRL_DTE"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PH_ENROLL_SEAT_DELTA" columnName="ENRL_DTE"/>
+      </attribute>
+      <attribute id="CANCEL_DTE" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CANCEL_DTE"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PH_ENROLL_SEAT_DELTA" columnName="CANCEL_DTE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DUMMY" order="5" aggregationType="sum" engineAggregation="sum" measureType="simple">
+        <descriptions defaultDescription="DUMMY"/>
+        <measureMapping schemaName="FORMAZIONE" columnObjectName="TF_PH_ENROLL_SEAT_DELTA" columnName="DUMMY"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

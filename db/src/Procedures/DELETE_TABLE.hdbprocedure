@@ -1,0 +1,371 @@
+PROCEDURE "DELETE_TABLE"( in TABLENAME nvarchar(256))
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   AS
+BEGIN
+    if :TABLENAME = 'PA_CPNT' then 
+ 
+        delete from "PA_CPNT_LAST_DAY_BCK";
+        
+        insert into "PA_CPNT_LAST_DAY_BCK"
+        (
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "REV_DTE",
+        "DMN_ID",
+        "NOTACTIVE",
+        "CREATE_DTE",
+        "CPNT_LEN",
+        "MAX_ENRL",
+        "CERT_TEMPLATE_SYS_GUID",
+        "DMN_DESC",
+        "ITA",
+        "CPNT_TITLE_ITA",
+        "DEU",
+        "CPNT_TITLE_DEU"
+         )
+         select 
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "REV_DTE",
+        "DMN_ID",
+        "NOTACTIVE",
+        "CREATE_DTE",
+        "CPNT_LEN",
+        "MAX_ENRL",
+        "CERT_TEMPLATE_SYS_GUID",
+        "DMN_DESC",
+        "ITA",
+        "CPNT_TITLE_ITA",
+        "DEU",
+        "CPNT_TITLE_DEU"
+         from "PA_CPNT";
+         
+         DELETE from "PA_CPNT";
+         
+    end if;
+    
+    if :TABLENAME = 'T_CONS_LMS' then 
+     
+        delete from "T_CONS_LMS_LAST_DAY_BCK";
+        
+        insert into "T_CONS_LMS_LAST_DAY_BCK"
+        (
+    "SEGMENTID",
+    "STUDENTE",
+    "SCHEDULEID",
+    "NUMEROORE",
+    "IDSEGMENTO",
+    "ORDINAMENTO"
+         )
+         select 
+    "SEGMENTID",
+    "STUDENTE",
+    "SCHEDULEID",
+    "NUMEROORE",
+    "IDSEGMENTO",
+    "ORDINAMENTO"
+         from "T_CONS_LMS";
+         
+         DELETE from "T_CONS_LMS";
+         
+    end if;
+    
+    if :TABLENAME = 'T_SEGM' then 
+     
+        delete from "T_SEGM_LAST_DAY_BCK";
+        
+        insert into "T_SEGM_LAST_DAY_BCK"
+        (
+        "SEGMENTID",
+         "SCHEDULEID",
+         "ENDDATETIME",
+         "ORDINAMENTO",
+         "STARTDATETIME"
+         )
+         select 
+        "SEGMENTID",
+         "SCHEDULEID",
+         "ENDDATETIME",
+         "ORDINAMENTO",
+         "STARTDATETIME"
+         from "T_SEGM";
+         
+         DELETE from "T_SEGM";
+         
+    end if;
+    
+    if :TABLENAME = 'PA_CPNT_EVTHST' then 
+     
+        delete from "PA_CPNT_EVTHST_LAST_DAY_BCK";
+        
+        insert into "PA_CPNT_EVTHST_LAST_DAY_BCK"
+        (
+        "STUD_ID",
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "CMPL_STAT_ID",
+        "COMPL_DTE",
+        "SCHD_ID",
+        "CPNT_DESC",
+        "GRADE" 
+         )
+         select 
+        "STUD_ID",
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "CMPL_STAT_ID",
+        "COMPL_DTE",
+        "SCHD_ID",
+        "CPNT_DESC",
+        "GRADE" 
+         from "PA_CPNT_EVTHST";
+         
+         DELETE from "PA_CPNT_EVTHST";
+         
+    end if;
+    
+    if :TABLENAME = 'PA_CPNT_SUBJ' then 
+     
+        delete from "PA_CPNT_SUBJ_LAST_DAY_BCK";
+        
+        insert into "PA_CPNT_SUBJ_LAST_DAY_BCK"
+        (
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "SUBJ_ID",
+        "LABEL_VALUE",
+        "KTKODEX",
+        "PARENT_SUBJ"
+         )
+         select 
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "SUBJ_ID",
+        "LABEL_VALUE",
+        "KTKODEX",
+        "PARENT_SUBJ"
+         from "PA_CPNT_SUBJ";
+         DELETE from "PA_CPNT_SUBJ";
+         
+    end if;
+    
+    if :TABLENAME = 'PA_FIN_ORDER_ITEM' then 
+     
+        delete from "PA_FIN_ORDER_ITEM_LAST_DAY_BCK";
+        
+        insert into "PA_FIN_ORDER_ITEM_LAST_DAY_BCK"
+        (
+        "ORDER_ITEM_ID",
+        "SCHD_ID",
+        "PRICE",
+        "STUD_ID"
+         )
+         select 
+        "ORDER_ITEM_ID",
+        "SCHD_ID",
+        "PRICE",
+        "STUD_ID"
+         from "PA_FIN_ORDER_ITEM";
+         DELETE from "PA_FIN_ORDER_ITEM";
+         
+    end if;
+    
+    if :TABLENAME = 'PA_INST' then 
+     
+        delete from "PA_INST_LAST_DAY_BCK";
+        
+        insert into "PA_INST_LAST_DAY_BCK"
+        (
+        "INST_ID",
+        "NOTACTIVE",
+        "LNAME",
+        "FNAME",
+        "STUD_ID"
+         )
+         select 
+        "INST_ID",
+        "NOTACTIVE",
+        "LNAME",
+        "FNAME",
+        "STUD_ID"
+         from "PA_INST";
+         DELETE from "PA_INST";
+         
+    end if;
+    
+    if :TABLENAME = 'PA_SCHED' then 
+     
+        delete from "PA_SCHED_LAST_DAY_BCK";
+        
+        insert into "PA_SCHED_LAST_DAY_BCK"
+        (
+        "SCHD_ID",
+        "DESCRIPTION",
+        "NOTACTIVE",
+        "CANCELLED",
+        "CPNT_TYP_ID",
+        "CANCEL_DTE",
+        "ENRL_CUT_DTE",
+        "FACILITY_ID",
+        "CITY",
+        "ADDR",
+        "EMAIL_ADDR",
+        "PHON_NUM",
+        "FORMAT",
+        "ACT_CPNT_ID",
+        "LABEL_VALUE",
+        "REV_DTE",
+        "ORD",
+        "FACILITY_DESC",
+        "WITHDRAW_CUTOFF_DTE"
+         )
+         select 
+        "SCHD_ID",
+        "DESCRIPTION",
+        "NOTACTIVE",
+        "CANCELLED",
+        "CPNT_TYP_ID",
+        "CANCEL_DTE",
+        "ENRL_CUT_DTE",
+        "FACILITY_ID",
+        "CITY",
+        "ADDR",
+        "EMAIL_ADDR",
+        "PHON_NUM",
+        "FORMAT",
+        "ACT_CPNT_ID",
+        "LABEL_VALUE",
+        "REV_DTE",
+        "ORD",
+        "FACILITY_DESC",
+        "WITHDRAW_CUTOFF_DTE"
+         from "PA_SCHED";
+         DELETE from "PA_SCHED";
+         
+    end if;
+    
+    
+    if :TABLENAME = 'PA_SCH_SEG' then 
+     
+        delete from "PA_SCH_SEG_LAST_DAY_BCK";
+        
+        insert into "PA_SCH_SEG_LAST_DAY_BCK"
+        (
+        "SCHD_ID",
+        "SSG_SEG_NUM",
+        "START_DTE",
+        "END_DTE",
+        "CLASS_HRS",
+        "SEG_DESC",
+        "ONLINE_ACCESS_ALLOWED",
+        "LOCN_ID",
+        "LOCN_DESC",
+        "LST_UPD_TSTMP",
+        "INST_ID"
+         )
+         select 
+        "SCHD_ID",
+        "SSG_SEG_NUM",
+        "START_DTE",
+        "END_DTE",
+        "CLASS_HRS",
+        "SEG_DESC",
+        "ONLINE_ACCESS_ALLOWED",
+        "LOCN_ID",
+        "LOCN_DESC",
+        "LST_UPD_TSTMP",
+        "INST_ID"
+         from "PA_SCH_SEG";
+         DELETE from "PA_SCH_SEG";
+         
+    end if;
+    
+    if :TABLENAME = 'PA_STUDENT' then 
+     
+        delete from "PA_STUDENT_LAST_DAY_BCK";
+        
+        insert into "PA_STUDENT_LAST_DAY_BCK"
+        (
+        "STUD_ID",
+        "PERSON_ID_EXTERNAL",
+        "DMN_ID",
+        "NOTACTIVE",
+        "EMP_STAT_ID",
+        "LNAME",
+        "FNAME",
+        "GENDER",
+        "BIRTH_DATE",
+        "STUD_CF"
+         )
+         select 
+        "STUD_ID",
+        "PERSON_ID_EXTERNAL",
+        "DMN_ID",
+        "NOTACTIVE",
+        "EMP_STAT_ID",
+        "LNAME",
+        "FNAME",
+        "GENDER",
+        "BIRTH_DATE",
+        "STUD_CF"
+         from "PA_STUDENT";
+         DELETE from "PA_STUDENT";
+         
+    end if;
+    
+    if :TABLENAME = 'PA_STUD_CPNT' then 
+     
+        delete from "PA_STUD_CPNT_LAST_DAY_BCK";
+        
+        insert into "PA_STUD_CPNT_LAST_DAY_BCK"
+        (
+        "STUD_ID",
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "COMPL_DTE",
+        "CMPL_STAT_ID",
+        "SCHD_ID"
+         )
+         select 
+        "STUD_ID",
+        "CPNT_TYP_ID",
+        "CPNT_ID",
+        "COMPL_DTE",
+        "CMPL_STAT_ID",
+        "SCHD_ID"
+         from "PA_STUD_CPNT";
+         DELETE from "PA_STUD_CPNT";
+         
+    end if;
+    
+    if :TABLENAME = 'PH_ENROLL_SEAT' then 
+     
+        delete from "PH_ENROLL_SEAT_LAST_DAY_BCK";
+        
+        insert into "PH_ENROLL_SEAT_LAST_DAY_BCK"
+        (
+        "ENRL_SEAT_ID",
+        "STUD_ID",
+        "ENRL_SLOT_ID",
+        "SCHD_ID",
+        "ENRL_STAT_ID",
+        "ENRL_DTE",
+        "CANCEL_DTE",
+        "ACTION"
+         )
+         select 
+        "ENRL_SEAT_ID",
+        "STUD_ID",
+        "ENRL_SLOT_ID",
+        "SCHD_ID",
+        "ENRL_STAT_ID",
+        "ENRL_DTE",
+        "CANCEL_DTE",
+        "ACTION"
+         from "PH_ENROLL_SEAT";
+         DELETE from "PH_ENROLL_SEAT";
+         
+    end if;
+END

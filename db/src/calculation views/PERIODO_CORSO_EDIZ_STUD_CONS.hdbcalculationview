@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.3" id="PERIODO_CORSO_EDIZ_STUD_CONS" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <descriptions defaultDescription="PERIODO_CORSO_EDIZ_STUD_CONS"/>
+  <localVariables>
+    <variable id="IP_ANNO" parameter="true">
+      <descriptions defaultDescription="IP_ANNO"/>
+      <variableProperties datatype="INTEGER" length="0" mandatory="false">
+        <valueDomain type="empty"/>
+        <selection type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="#TF_PERIODO_CORSO_EDIZ_STUD_CONS">
+      <targetVariable name="IP_ANNO" resourceUri="&quot;FORMAZIONE&quot;.TF_PERIODO_CORSO_EDIZ_STUD_CONS"/>
+      <localVariable>#IP_ANNO</localVariable>
+    </mapping>
+  </variableMappings>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="TF_PERIODO_CORSO_EDIZ_STUD_CONS" type="TABLE_FUNCTION">
+      <resourceUri>TF_PERIODO_CORSO_EDIZ_STUD_CONS</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews/>
+  <logicalModel id="TF_PERIODO_CORSO_EDIZ_STUD_CONS">
+    <descriptions/>
+    <attributes>
+      <attribute id="CALMONTH" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALMONTH"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD_CONS" columnName="CALMONTH"/>
+      </attribute>
+      <attribute id="CALMONTH_CONS" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALMONTH_CONS"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD_CONS" columnName="CALMONTH_CONS"/>
+      </attribute>
+      <attribute id="STUD_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_ID"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD_CONS" columnName="STUD_ID"/>
+      </attribute>
+      <attribute id="SCHD_ID" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHD_ID"/>
+        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD_CONS" columnName="SCHD_ID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="NUMEROORE_MM" order="5" aggregationType="sum" engineAggregation="sum" measureType="simple">
+        <descriptions defaultDescription="NUMEROORE_MM"/>
+        <measureMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD_CONS" columnName="NUMEROORE_MM"/>
+      </measure>
+      <measure id="NUMEROORE_TOT" order="6" aggregationType="sum" engineAggregation="sum" measureType="simple">
+        <descriptions defaultDescription="NUMEROORE_TOT"/>
+        <measureMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD_CONS" columnName="NUMEROORE_TOT"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

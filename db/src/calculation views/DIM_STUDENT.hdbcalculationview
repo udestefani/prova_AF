@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="DIM_STUDENT" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="DIM_STUDENT"/>
+  <metadata activatedAt="2023-05-03 12:50:18.0" changedAt="2023-05-03 12:50:16.436"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="40"/>
+  <dataSources>
+    <DataSource id="STUDENT_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>STUDENT_INTEGRAZ</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="FNAME"/>
+        <viewAttribute id="LNAME"/>
+        <viewAttribute id="GENDER"/>
+        <viewAttribute id="DMN_ID"/>
+        <viewAttribute id="BIRTH_DATE"/>
+        <viewAttribute id="STUD_CF"/>
+        <viewAttribute id="NOTACTIVE"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="BIRTH_DATE_STAMP" expressionLanguage="SQL">
+          <formula>&quot;BIRTH_DATE&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#STUDENT_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FNAME" source="FNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LNAME" source="LNAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DMN_ID" source="DMN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BIRTH_DATE" source="BIRTH_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CF" source="STUD_CF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Projection_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="STUD_ID_DIM" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_ID_DIM"/>
+        <keyMapping columnObjectName="Projection_2" columnName="STUD_ID"/>
+      </attribute>
+      <attribute id="FIRST_NAME_STUD" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FIRST_NAME_STUD"/>
+        <keyMapping columnObjectName="Projection_2" columnName="FNAME"/>
+      </attribute>
+      <attribute id="LAST_NAME_STUD" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LAST_NAME_STUD"/>
+        <keyMapping columnObjectName="Projection_2" columnName="LNAME"/>
+      </attribute>
+      <attribute id="STUD_GENDER" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_GENDER"/>
+        <keyMapping columnObjectName="Projection_2" columnName="GENDER"/>
+      </attribute>
+      <attribute id="STUD_DOMAIN_ID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_DOMAIN_ID"/>
+        <keyMapping columnObjectName="Projection_2" columnName="DMN_ID"/>
+      </attribute>
+      <attribute id="STUD_CF" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_CF"/>
+        <keyMapping columnObjectName="Projection_2" columnName="STUD_CF"/>
+      </attribute>
+      <attribute id="STUD_NOTACTIVE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STUD_NOTACTIVE"/>
+        <keyMapping columnObjectName="Projection_2" columnName="NOTACTIVE"/>
+      </attribute>
+      <attribute id="BIRTH_DATE_STAMP" order="9" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="BIRTH_DATE_STAMP"/>
+        <keyMapping columnObjectName="Projection_2" columnName="BIRTH_DATE_STAMP"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="FULL_NAME" hidden="false" order="1" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FULL_NAME"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="256">
+          <formula>&quot;LAST_NAME_STUD&quot;||' '||&quot;FIRST_NAME_STUD&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

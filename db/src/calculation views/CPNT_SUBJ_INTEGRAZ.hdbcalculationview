@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CPNT_SUBJ_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="CPNT_SUBJ_INTEGRAZ"/>
+  <metadata activatedAt="2023-05-09 09:50:54.0" changedAt="2023-05-09 09:50:52.794"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="36"/>
+  <dataSources>
+    <DataSource id="CATEGORY_HIER" type="CALCULATION_VIEW">
+      <resourceUri>CATEGORY_HIER</resourceUri>
+    </DataSource>
+    <DataSource id="CORSI_STORICO" type="DATA_BASE_TABLE">
+      <resourceUri>CORSI_STORICO</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="SUBJ_ID"/>
+        <viewAttribute id="LABEL_VALUE"/>
+        <viewAttribute id="KTKODEX"/>
+        <viewAttribute id="CPNT_TYP_KEY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CATEGORY_HIER">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="CATEGORIA_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="CATEGORIA_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTKODEX" source="KTKODEX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="CPNT_TYP_KEY"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="KKI_BEZEICHNUNG"/>
+        <viewAttribute id="KURS_ID"/>
+        <viewAttribute id="PERI_BEZEICHNUNG"/>
+        <viewAttribute id="KKI_NUM"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORSI_STORICO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KKI_BEZEICHNUNG" source="KKI_BEZEICHNUNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KURS_ID" source="KURS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERI_BEZEICHNUNG" source="PERI_BEZEICHNUNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KKI_NUM" source="KKI_NUM"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="LABEL_VALUE" transparentFilter="false"/>
+        <viewAttribute id="KTKODEX" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_KEY"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTKODEX" source="KTKODEX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="CPNT_TYP_KEY"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="PERI_BEZEICHNUNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="KURS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="KKI_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="KKI_BEZEICHNUNG"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="KTKODEX" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="PERI_BEZEICHNUNG"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="CPNT_TYP_ID" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_TYP_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="CPNT_TYP_ID"/>
+      </attribute>
+      <attribute id="CPNT_ID" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="CPNT_ID"/>
+      </attribute>
+      <attribute id="SUBJ_ID" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SUBJ_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="SUBJ_ID"/>
+      </attribute>
+      <attribute id="LABEL_VALUE" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="LABEL_VALUE"/>
+        <keyMapping columnObjectName="Union_1" columnName="LABEL_VALUE"/>
+      </attribute>
+      <attribute id="KTKODEX" order="5" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="KTKODEX"/>
+        <keyMapping columnObjectName="Union_1" columnName="KTKODEX"/>
+      </attribute>
+      <attribute id="CPNT_TYP_KEY" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_TYP_KEY"/>
+        <keyMapping columnObjectName="Union_1" columnName="CPNT_TYP_KEY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
