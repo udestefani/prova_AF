@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CORSI_EDIZIONI_INTEGRATE" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CORSI_EDIZIONI_INTEGRATE"/>
+  <metadata activatedAt="2023-06-05 11:41:30.0" changedAt="2023-06-05 11:41:25.798"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="32"/>
+  <dataSources>
+    <DataSource id="CORSI_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>CORSI_INTEGRAZ</resourceUri>
+    </DataSource>
+    <DataSource id="SCHED_INTEGRAZ" type="CALCULATION_VIEW">
+      <resourceUri>SCHED_INTEGRAZ</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="CREATE_DTE" transparentFilter="false"/>
+        <viewAttribute id="NOTACTIVE" transparentFilter="false"/>
+        <viewAttribute id="CPNT_LEN"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="CERT_TEMPLATE_SYS_GUID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TITLE_ITA" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TITLE_DEU" transparentFilter="false"/>
+        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
+        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORSI_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_LEN" source="CPNT_LEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CERT_TEMPLATE_SYS_GUID" source="CERT_TEMPLATE_SYS_GUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="DESCRIPTION" transparentFilter="false"/>
+        <viewAttribute id="NOTACTIVE" transparentFilter="false"/>
+        <viewAttribute id="CANCELLED" transparentFilter="false"/>
+        <viewAttribute id="CANCEL_DTE" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="CITY" transparentFilter="false"/>
+        <viewAttribute id="ADDR" transparentFilter="false"/>
+        <viewAttribute id="EMAIL_ADDR" transparentFilter="false"/>
+        <viewAttribute id="PHON_NUM" transparentFilter="false"/>
+        <viewAttribute id="FORMAT" transparentFilter="false"/>
+        <viewAttribute id="LABEL_VALUE" transparentFilter="false"/>
+        <viewAttribute id="REV_DTE" transparentFilter="false"/>
+        <viewAttribute id="ORD" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="WITHDRAW_CUTOFF_DTE" transparentFilter="false"/>
+        <viewAttribute id="ENRL_CUT_DTE" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="ACT_CPNT_ID" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#SCHED_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCELLED" source="CANCELLED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT" source="FORMAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REV_DTE" source="REV_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORD" source="ORD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WITHDRAW_CUTOFF_DTE" source="WITHDRAW_CUTOFF_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE" source="ENRL_CUT_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ACT_CPNT_ID" source="ACT_CPNT_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinOrder="OUTSIDE_IN" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="CREATE_DTE" transparentFilter="false"/>
+        <viewAttribute id="NOTACTIVE" transparentFilter="false"/>
+        <viewAttribute id="CPNT_LEN"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="CERT_TEMPLATE_SYS_GUID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TITLE_ITA" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TITLE_DEU" transparentFilter="false"/>
+        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="DESCRIPTION" transparentFilter="false"/>
+        <viewAttribute id="NOTACTIVE_1" transparentFilter="false"/>
+        <viewAttribute id="CANCELLED" transparentFilter="false"/>
+        <viewAttribute id="CANCEL_DTE" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
+        <viewAttribute id="CITY" transparentFilter="false"/>
+        <viewAttribute id="ADDR" transparentFilter="false"/>
+        <viewAttribute id="EMAIL_ADDR" transparentFilter="false"/>
+        <viewAttribute id="PHON_NUM" transparentFilter="false"/>
+        <viewAttribute id="FORMAT" transparentFilter="false"/>
+        <viewAttribute id="LABEL_VALUE" transparentFilter="false"/>
+        <viewAttribute id="REV_DTE_1" transparentFilter="false"/>
+        <viewAttribute id="ORD" transparentFilter="false"/>
+        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
+        <viewAttribute id="WITHDRAW_CUTOFF_DTE" transparentFilter="false"/>
+        <viewAttribute id="ENRL_CUT_DTE" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID_KEY" transparentFilter="false"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
+        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_LEN" source="CPNT_LEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CERT_TEMPLATE_SYS_GUID" source="CERT_TEMPLATE_SYS_GUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
+      </input>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE_1" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCELLED" source="CANCELLED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT" source="FORMAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REV_DTE_1" source="REV_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORD" source="ORD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WITHDRAW_CUTOFF_DTE" source="WITHDRAW_CUTOFF_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE" source="ENRL_CUT_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="ACT_CPNT_ID"/>
+      </input>
+      <joinAttribute name="CPNT_ID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="CPNT_ID" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_ID"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_TYP_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TYP_ID"/>
+      </attribute>
+      <attribute id="CREATE_DTE" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CREATE_DTE"/>
+        <keyMapping columnObjectName="Join_1" columnName="CREATE_DTE"/>
+      </attribute>
+      <attribute id="NOTACTIVE" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="NOTACTIVE"/>
+        <keyMapping columnObjectName="Join_1" columnName="NOTACTIVE"/>
+      </attribute>
+      <attribute id="CERT_TEMPLATE_SYS_GUID" order="7" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CERT_TEMPLATE_SYS_GUID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CERT_TEMPLATE_SYS_GUID"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_ITA" order="8" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_TITLE_ITA"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TITLE_ITA"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_DEU" order="9" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_TITLE_DEU"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TITLE_DEU"/>
+      </attribute>
+      <attribute id="SOURCE" order="10" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SOURCE"/>
+        <keyMapping columnObjectName="Join_1" columnName="SOURCE"/>
+      </attribute>
+      <attribute id="SCHD_ID" order="11" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SCHD_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="SCHD_ID"/>
+      </attribute>
+      <attribute id="DESCRIPTION" order="12" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="DESCRIPTION"/>
+        <keyMapping columnObjectName="Join_1" columnName="DESCRIPTION"/>
+      </attribute>
+      <attribute id="NOTACTIVE_1" order="13" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="NOTACTIVE"/>
+        <keyMapping columnObjectName="Join_1" columnName="NOTACTIVE_1"/>
+      </attribute>
+      <attribute id="CANCELLED" order="14" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CANCELLED"/>
+        <keyMapping columnObjectName="Join_1" columnName="CANCELLED"/>
+      </attribute>
+      <attribute id="CANCEL_DTE" order="15" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CANCEL_DTE"/>
+        <keyMapping columnObjectName="Join_1" columnName="CANCEL_DTE"/>
+      </attribute>
+      <attribute id="FACILITY_ID" order="16" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="FACILITY_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="FACILITY_ID"/>
+      </attribute>
+      <attribute id="CITY" order="17" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CITY"/>
+        <keyMapping columnObjectName="Join_1" columnName="CITY"/>
+      </attribute>
+      <attribute id="ADDR" order="18" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="ADDR"/>
+        <keyMapping columnObjectName="Join_1" columnName="ADDR"/>
+      </attribute>
+      <attribute id="EMAIL_ADDR" order="19" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="EMAIL_ADDR"/>
+        <keyMapping columnObjectName="Join_1" columnName="EMAIL_ADDR"/>
+      </attribute>
+      <attribute id="PHON_NUM" order="20" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="PHON_NUM"/>
+        <keyMapping columnObjectName="Join_1" columnName="PHON_NUM"/>
+      </attribute>
+      <attribute id="FORMAT" order="21" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="FORMAT"/>
+        <keyMapping columnObjectName="Join_1" columnName="FORMAT"/>
+      </attribute>
+      <attribute id="LABEL_VALUE" order="22" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="LABEL_VALUE"/>
+        <keyMapping columnObjectName="Join_1" columnName="LABEL_VALUE"/>
+      </attribute>
+      <attribute id="REV_DTE_1" order="23" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="REV_DTE"/>
+        <keyMapping columnObjectName="Join_1" columnName="REV_DTE_1"/>
+      </attribute>
+      <attribute id="ORD" order="24" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="ORD"/>
+        <keyMapping columnObjectName="Join_1" columnName="ORD"/>
+      </attribute>
+      <attribute id="FACILITY_DESC" order="25" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="FACILITY_DESC"/>
+        <keyMapping columnObjectName="Join_1" columnName="FACILITY_DESC"/>
+      </attribute>
+      <attribute id="WITHDRAW_CUTOFF_DTE" order="26" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="WITHDRAW_CUTOFF_DTE"/>
+        <keyMapping columnObjectName="Join_1" columnName="WITHDRAW_CUTOFF_DTE"/>
+      </attribute>
+      <attribute id="ENRL_CUT_DTE" order="27" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="ENRL_CUT_DTE"/>
+        <keyMapping columnObjectName="Join_1" columnName="ENRL_CUT_DTE"/>
+      </attribute>
+      <attribute id="SUBJ_ID" order="28" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SUBJ_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="SUBJ_ID"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID_KEY" order="29" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_TYP_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TYP_ID_KEY"/>
+      </attribute>
+      <attribute id="ID_DOMINIO" hidden="false" order="30" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="ID_DOMINIO"/>
+      </attribute>
+      <attribute id="DESC_DOMINIO_SICUREZZA_D" hidden="false" order="31" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="DESC_DOMINIO_SICUREZZA_D"/>
+      </attribute>
+      <attribute id="DESCRIZIONE_SOURCE_I" hidden="false" order="32" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="DESCRIZIONE_SOURCE_I"/>
+      </attribute>
+      <attribute id="DESC_DOMINIO_SICUREZZA_I" hidden="false" order="33" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="DESC_DOMINIO_SICUREZZA_I"/>
+      </attribute>
+      <attribute id="ID_DOMINIO_SOURCE" order="34" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="ID_DOMINIO_SOURCE"/>
+        <keyMapping columnObjectName="Join_1" columnName="ID_DOMINIO_SOURCE"/>
+      </attribute>
+      <attribute id="DESCRIZIONE_SOURCE_D" order="35" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="DESCRIZIONE_SOURCE_D"/>
+        <keyMapping columnObjectName="Join_1" columnName="DESCRIZIONE_SOURCE_D"/>
+      </attribute>
+      <attribute id="FIX_ID_DOMINIO_SOURCE" hidden="false" order="36" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="FIX_ID_DOMINIO_SOURCE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="CPNT_LEN" order="5" aggregationType="max" engineAggregation="max" measureType="simple">
+        <descriptions defaultDescription="CPNT_LEN"/>
+        <measureMapping columnObjectName="Join_1" columnName="CPNT_LEN"/>
+      </measure>
+      <measure id="MAX_ENRL" order="6" aggregationType="max" engineAggregation="max" measureType="simple">
+        <descriptions defaultDescription="MAX_ENRL"/>
+        <measureMapping columnObjectName="Join_1" columnName="MAX_ENRL"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

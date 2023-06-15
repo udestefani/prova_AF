@@ -1,0 +1,133 @@
+FUNCTION "TF_CATEGORY_HIER"( )
+    RETURNS TABLE (
+        CPNT_TYP_KEY nvarchar(127),
+        "CPNT_TYP_ID" nvarchar(127),
+        "CPNT_ID" nvarchar(127),
+        "LEVEL1" nvarchar(127),
+        "LEVEL2" nvarchar(127),
+        "LEVEL3" nvarchar(127),
+        "LEVEL1_DESC" nvarchar(127),
+        "LEVEL2_DESC" nvarchar(127),
+        "LEVEL3_DESC" nvarchar(127),
+        "KTKODEX" nvarchar(127),
+        "CATEGORIA_ID" nvarchar(127),
+        "CATEGORIA_DESC" nvarchar(127)
+    )
+    LANGUAGE SQLSCRIPT
+    AS
+BEGIN
+    L1 = select * from (select --distinct
+"CPNT_TYP_ID" as TIT1,
+"CPNT_ID",
+"SUBJ_ID" as "LEVEL1",
+'-' as "LEVEL2",
+'-' as "LEVEL3",
+"LABEL_VALUE" as "LEVEL1_DESC",
+'-' as "LEVEL2_DESC",
+'-' as "LEVEL3_DESC",
+"KTKODEX",
+"PARENT_SUBJ",
+1 as "LEVEL_ID",
+row_number() over (partition by CPNT_TYP_ID, CPNT_ID order by "SUBJ_ID") as RN
+ from "PA_CPNT_SUBJ" where "PARENT_SUBJ" is null or "PARENT_SUBJ"= '') where RN = 1;
+ 
+ --select  * from :L1 WHERE CPNT_ID = '3217';
+
+L2 = select * from (select 
+TIT1,
+b."CPNT_TYP_ID" as TIT2,
+b."CPNT_ID",
+--'-' as "LEVEL1",
+STRING_AGG(b."SUBJ_ID",'-') as "LEVEL2",
+--'-' as "LEVEL3",
+--'-' as "LEVEL1_DESC",
+STRING_AGG(b."LABEL_VALUE",'-') as "LEVEL2_DESC",
+--'-' as "LEVEL3_DESC",
+--STRING_AGG(coalesce(b."KTKODEX", 'NA'),'-') as "KTKODEX",
+b."PARENT_SUBJ"
+--2 as "LEVEL_ID",
+--row_number() over (partition by TIT1,b.CPNT_ID order by b."SUBJ_ID") as RN
+from :L1 as a
+inner join "PA_CPNT_SUBJ" as b on a."LEVEL1" = b."PARENT_SUBJ" and a."CPNT_ID" = b."CPNT_ID" and a.TIT1 = b.CPNT_TYP_ID
+GROUP BY 
+TIT1,
+b."CPNT_TYP_ID", /*,
+b."SUBJ_ID",
+b."LABEL_VALUE",
+b."KTKODEX",*/
+b."CPNT_ID",
+b."PARENT_SUBJ") ;--where RN = 1 ;
+--select * from :L2 where CPNT_ID = '3217'; --WHERE RN = 18;--CPNT_ID = '1051';
+--select distinct RN from :L2;
+--SELECT grp, STRING_AGG(str,','ORDER BY a)AS agg FROM R1 GROUP BY grp;
+
+
+L3 = select * from (select 
+TIT1,
+TIT2,
+b."CPNT_TYP_ID" as TIT3,
+b."CPNT_ID",
+--'-' as "LEVEL1",
+--'-' as "LEVEL2",
+STRING_AGG(b."SUBJ_ID",'-') as "LEVEL3",
+--b."SUBJ_ID" as "LEVEL3",
+--'-' as "LEVEL1_DESC",
+--'-' as "LEVEL2_DESC",
+STRING_AGG(b."LABEL_VALUE",'-') as "LEVEL3_DESC",
+--b."LABEL_VALUE" as "LEVEL3_DESC",
+--b."KTKODEX",
+b."PARENT_SUBJ"
+--3 as "LEVEL_ID",
+--row_number() over (partition by TIT2,b.CPNT_ID order by b."SUBJ_ID") as RN
+from :L2 as a
+inner join "PA_CPNT_SUBJ" as b on a."LEVEL2" = b."PARENT_SUBJ" and a."CPNT_ID" = b."CPNT_ID" and a.TIT2 = b.CPNT_TYP_ID
+GROUP BY 
+TIT1,
+TIT2,
+b."CPNT_TYP_ID", 
+b."CPNT_ID",
+b."PARENT_SUBJ") ;--where RN = 1;
+--select * from :L3 WHERE RN = 8;
+--select * from :L3;
+
+FlatHier = select
+a.TIT1,
+b.TIT2,
+c.TIT3,
+a."CPNT_ID",
+a."LEVEL1",
+b."LEVEL2",
+c."LEVEL3",
+substr(a."LEVEL1_DESC",0,127) as "LEVEL1_DESC",
+substr(b."LEVEL2_DESC",0,127) as "LEVEL2_DESC",
+substr(c."LEVEL3_DESC",0,127) as "LEVEL3_DESC",
+substr(a."KTKODEX",0,127) as "KTKODEX"
+--b."PARENT_SUBJ",
+--3 as "LEVEL_ID"
+from :L1 as a
+left outer join :L2 as b on a."CPNT_ID" = b."CPNT_ID" and a.TIT1 = b.TIT2
+left outer join :L3 as c on b."CPNT_ID" = c."CPNT_ID" and b.TIT2 = c.TIT3;
+--select * from :FlatHier ;--WHERE CPNT_ID = '47';
+
+RETURN
+
+ SELECT
+(case when "TIT3" is not null then "TIT3"
+when ("TIT3" is null and  "TIT2" is not null) then "TIT2"
+else "TIT1"  end ) CPNT_TYP_KEY,
+"TIT1" || (case when "TIT2" is not null then '-' else '' end ) || coalesce("TIT2", '') || 
+(case when "TIT3" is not null then '-' else '' end ) || coalesce("TIT3", '') "CPNT_TYP_ID",
+"CPNT_ID",
+"LEVEL1",
+"LEVEL2",
+"LEVEL3",
+"LEVEL1_DESC",
+"LEVEL2_DESC",
+"LEVEL3_DESC",
+"KTKODEX",
+substr("LEVEL1" || (case when "LEVEL2" is not null then '-' else '' end ) || coalesce("LEVEL2", '') || 
+(case when "LEVEL3" is not null then '-' else '' end ) || coalesce("LEVEL3", ''),0,127) as "CATEGORIA_ID",
+substr("LEVEL1_DESC", 0, 40) || (case when "LEVEL2_DESC" is not null then '-' else '' end ) || coalesce(substr("LEVEL2_DESC", 0, 40), '') ||
+ (case when "LEVEL3_DESC" is not null then '-' else '' end ) || coalesce(substr("LEVEL3_DESC", 0, 40), '') as "CATEGORIA_DESC"
+from :FlatHier;
+END;

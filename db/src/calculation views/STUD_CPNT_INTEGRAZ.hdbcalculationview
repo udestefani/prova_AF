@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="STUD_CPNT_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+  <origin/>
+  <descriptions defaultDescription="STUD_CPNT_INTEGRAZ"/>
+  <metadata activatedAt="2023-05-12 18:57:31.0" changedAt="2023-05-12 18:57:24.739"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="49"/>
+  <dataSources>
+    <DataSource id="PA_STUD_CPNT" type="DATA_BASE_TABLE">
+      <resourceUri>PA_STUD_CPNT</resourceUri>
+    </DataSource>
+    <DataSource id="CORSI_STORICO" type="DATA_BASE_TABLE">
+      <resourceUri>CORSI_STORICO</resourceUri>
+    </DataSource>
+    <DataSource id="ISCRIZIONE_STORICO" type="DATA_BASE_TABLE">
+      <resourceUri>ISCRIZIONE_STORICO</resourceUri>
+    </DataSource>
+    <DataSource id="CORSI_EDIZIONI_INTEGRATE_MAXENDDATE" type="CALCULATION_VIEW">
+      <resourceUri>CORSI_EDIZIONI_INTEGRATE_MAXENDDATE</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CMPL_STAT_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>'LMS'</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#PA_STUD_CPNT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="KURS_ID"/>
+        <viewAttribute id="PERI_BEZEICHNUNG"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORSI_STORICO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KURS_ID" source="KURS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PERI_BEZEICHNUNG" source="PERI_BEZEICHNUNG"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="TNA_TNM_ID"/>
+        <viewAttribute id="TNA_KURS_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ISCRIZIONE_STORICO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TNA_TNM_ID" source="TNA_TNM_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TNA_KURS_ID" source="TNA_KURS_ID"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinOrder="OUTSIDE_IN" joinType="inner">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="TNA_TNM_ID"/>
+      </viewAttributes>
+      <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>'STO'</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="#Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="PERI_BEZEICHNUNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="KURS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="KURS_ID"/>
+      </input>
+      <input node="#Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TNA_TNM_ID" source="TNA_TNM_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="TNA_KURS_ID"/>
+      </input>
+      <joinAttribute name="CPNT_ID"/>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="CMPL_STAT_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="SOURCE" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="TNA_TNM_ID"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CMPL_STAT_ID" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="START_DATE"/>
+        <viewAttribute id="END_DATE"/>
+        <viewAttribute id="MAX_END_DATE"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#CORSI_EDIZIONI_INTEGRATE_MAXENDDATE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE" source="START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE" source="END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_END_DATE" source="MAX_END_DATE"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinOrder="OUTSIDE_IN" joinType="leftOuter">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="STUD_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
+        <viewAttribute id="CPNT_ID" transparentFilter="false"/>
+        <viewAttribute id="CMPL_STAT_ID" transparentFilter="false"/>
+        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
+        <viewAttribute id="START_DATE"/>
+        <viewAttribute id="END_DATE"/>
+        <viewAttribute id="SOURCE" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      </input>
+      <input node="#Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE" source="START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE" source="END_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
+      </input>
+      <joinAttribute name="CPNT_ID"/>
+      <joinAttribute name="SCHD_ID"/>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Join_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="STUD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="STUD_ID"/>
+        <keyMapping columnObjectName="Join_2" columnName="STUD_ID"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_TYP_ID"/>
+        <keyMapping columnObjectName="Join_2" columnName="CPNT_TYP_ID"/>
+      </attribute>
+      <attribute id="CPNT_ID" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CPNT_ID"/>
+        <keyMapping columnObjectName="Join_2" columnName="CPNT_ID"/>
+      </attribute>
+      <attribute id="CMPL_STAT_ID" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="CMPL_STAT_ID"/>
+        <keyMapping columnObjectName="Join_2" columnName="CMPL_STAT_ID"/>
+      </attribute>
+      <attribute id="SCHD_ID" order="5" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="SCHD_ID"/>
+        <keyMapping columnObjectName="Join_2" columnName="SCHD_ID"/>
+      </attribute>
+      <attribute id="START_DATE" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="START_DATE"/>
+        <keyMapping columnObjectName="Join_2" columnName="START_DATE"/>
+      </attribute>
+      <attribute id="END_DATE" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="END_DATE"/>
+        <keyMapping columnObjectName="Join_2" columnName="END_DATE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="379"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="475"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="475"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="379"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="263"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="340" y="230"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>

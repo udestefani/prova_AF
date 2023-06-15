@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CORSI_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+<origin/>
+  <descriptions defaultDescription="CORSI_INTEGRAZ"/>
+  <metadata activatedAt="2023-06-05 11:39:02.0" changedAt="2023-06-05 11:38:58.512"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="35"/>
+  <dataSources>
+    <DataSource id="CORSI_STORICO">
+      <resourceUri>CORSI_STORICO</resourceUri>
+    </DataSource>
+    <DataSource id="PA_CPNT">
+      <resourceUri>PA_CPNT</resourceUri>
+    </DataSource>
+    <DataSource id="MAP_DOMINIO">
+      <resourceUri>MAP_DOMINIO</resourceUri>
+    </DataSource>
+    <DataSource id="CPNT_SUBJ_INTEGRAZ">
+      <resourceUri>CPNT_SUBJ_INTEGRAZ</resourceUri>
+    </DataSource>
+  </dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KURS_ID"/>
+        <viewAttribute id="PERI_BEZEICHNUNG"/>
+        <viewAttribute id="KURS_KURSTITEL"/>
+        <viewAttribute id="KURS_DATUMBIS"/>
+        <viewAttribute id="KKI_BEZEICHNUNG"/>
+        <viewAttribute id="KURS_KORT_ID"/>
+        <viewAttribute id="KORT_GEM_BEZEICHNUNG"/>
+        <viewAttribute id="KURS_ANMELDESCHLUSS"/>
+        <viewAttribute id="KURS_ERSTELLUNGSDATUM"/>
+        <viewAttribute id="KURS_TEILNANZAHLMAX"/>
+        <viewAttribute id="KURS_DATUMVON"/>
+        <viewAttribute id="KURS_DAUER_IN_EIGEN_UE"/>
+        <viewAttribute id="KURS_BROSCHUERE_KOSTEN"/>
+        <viewAttribute id="KSTA_BEZEICHNUNG"/>
+        <viewAttribute id="ORG_BEZEICHNUNG"/>
+        <viewAttribute id="ORG_BEZEICHNUNG_I"/>
+        <viewAttribute id="SICHERHEITSDOMAENE"/>
+        <viewAttribute id="KURS_ORG_ID"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="KURS_KURSTITEL_127" length="127" expressionLanguage="SQL">
+          <formula>SUBSTR(&quot;KURS_KURSTITEL&quot;,0,127)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="KURS_NOTACTIVE" length="1" expressionLanguage="SQL">
+          <formula>CASE
+
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'verschoben' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'keine Anmeldung möglich' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'in Vorbereitung/in Planung' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'abgesagt' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'abgeschlossen' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'in Durchführung' THEN 'Y'
+
+END</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="KURS_ERSTELLUNGSDATUM_STAMP" expressionLanguage="SQL">
+          <formula> CASE WHEN &quot;KURS_ERSTELLUNGSDATUM&quot; != '' then TO_date (&quot;KURS_ERSTELLUNGSDATUM&quot; ,'DD/MM/YYYY HH24:MI')
+else TO_date (&quot;KURS_DATUMVON&quot; ,'DD/MM/YYYY HH24:MI')
+end</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="6" expressionLanguage="SQL">
+          <formula>'ATHENA'</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="CORSI_STORICO"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="REV_DTE"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="CPNT_LEN"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="CERT_TEMPLATE_SYS_GUID"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="ITA"/>
+        <viewAttribute id="CPNT_TITLE_ITA_ORIGIN"/>
+        <viewAttribute id="DEU"/>
+        <viewAttribute id="CPNT_TITLE_DEU_ORIGIN"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CPNT_TITLE_ITA_SUBSTR" length="63" expressionLanguage="SQL">
+          <formula>SUBSTR(&quot;CPNT_TITLE_ITA_ORIGIN&quot;,0,63)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CPNT_TITLE_DEU_SUBSTR" length="63" expressionLanguage="SQL">
+          <formula>SUBSTRING(&quot;CPNT_TITLE_DEU_ORIGIN&quot;,0,63)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CPNT_TITLE_CONC" length="127" expressionLanguage="SQL">
+          <formula>CASE
+
+WHEN UPPER(&quot;CPNT_TITLE_ITA_SUBSTR&quot;) = UPPER(&quot;CPNT_TITLE_DEU_SUBSTR&quot;)  THEN &quot;CPNT_TITLE_ITA&quot;
+ELSE &quot;CPNT_TITLE_ITA_SUBSTR&quot;||'/'||&quot;CPNT_TITLE_DEU_SUBSTR&quot;
+
+END</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CPNT_TITLE_ITA" length="127" expressionLanguage="SQL">
+          <formula>SUBSTR(&quot;CPNT_TITLE_ITA_ORIGIN&quot;,0,127)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CPNT_TITLE_DEU" length="127" expressionLanguage="SQL">
+          <formula>SUBSTRING(&quot;CPNT_TITLE_DEU_ORIGIN&quot;,0,127)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="6" expressionLanguage="SQL">
+          <formula>'SSF'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="REV_TIMESTAMP" expressionLanguage="SQL">
+          <formula>TO_DATE(&quot;REV_DTE&quot;, 'YYYYMMDD')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="CREATE_DTE_STAMP" expressionLanguage="SQL">
+          <formula>TO_DATE(replace(&quot;CREATE_DTE&quot;, '-', ''), 'YYYYMMDD')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="ID_DOMINIO" length="90" expressionLanguage="SQL">
+          <formula>&quot;ID_DOMINIO_SOURCE&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="DESC_DOMINIO_SICUREZZA_D" length="256" expressionLanguage="SQL">
+          <formula>&quot;DESCRIZIONE_SOURCE_D&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="DESCRIZIONE_SOURCE_I" length="256" expressionLanguage="SQL">
+          <formula>&quot;DESCRIZIONE_SOURCE_D&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="DESC_DOMINIO_SICUREZZA_I" length="256" expressionLanguage="SQL">
+          <formula>&quot;DESCRIZIONE_SOURCE_D&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="PA_CPNT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="DMN_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DMN_DESC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA_ORIGIN" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU_ORIGIN" source="CPNT_TITLE_DEU"/>
+      </input>
+    <filter>&quot;CREATE_DTE&quot;!=''</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="TIPO_SOURCE"/>
+      
+      <viewAttribute id="SOURCE"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="FIX_ID_DOMINIO_SOURCE" length="50" expressionLanguage="SQL">
+          <formula>CASE 
+WHEN &quot;ID_DOMINIO_SOURCE&quot; = '128' and &quot;DESCRIZIONE_SOURCE_D&quot; ='Fachschule für Hauswirtschaft Haslach' THEN &quot;ID_DOMINIO_SOURCE&quot; || '_v2' 
+WHEN &quot;ID_DOMINIO_SOURCE&quot; = '130' and &quot;DESCRIZIONE_SOURCE_D&quot; ='Fachschule für Hauswirtschaft Griesfeld' THEN &quot;ID_DOMINIO_SOURCE&quot; || '_v2' 
+WHEN &quot;ID_DOMINIO_SOURCE&quot; = '157' and &quot;DESCRIZIONE_SOURCE_D&quot; ='Landeshotelfachschule Bruneck' THEN &quot;ID_DOMINIO_SOURCE&quot; || '_v2' 
+ELSE &quot;ID_DOMINIO_SOURCE&quot; END</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MAP_DOMINIO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO SICUREZZA_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO SICUREZZA_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TIPO_SOURCE" source="TIPO SOURCE"/>
+      </input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="SUBJ_ID"/>
+        <viewAttribute id="CPNT_TYP_KEY"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="CPNT_SUBJ_INTEGRAZ"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CPNT_LEN"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="CERT_TEMPLATE_SYS_GUID"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="ITA"/>
+        <viewAttribute id="DEU"/>
+        <viewAttribute id="SOURCE"/>
+        <viewAttribute id="REV_TIMESTAMP"/>
+        <viewAttribute id="REV_DTE"/>
+        <viewAttribute id="CREATE_DTE_STAMP"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_2"/>
+    <windowFunction dynamicPartitionAttributes="false">
+      <partitionViewAttributeName>CPNT_ID</partitionViewAttributeName>
+      <partitionViewAttributeName>CPNT_TYP_ID</partitionViewAttributeName>
+        <order byViewAttributeName="REV_TIMESTAMP" direction="DESC"/>
+      <rankThreshold>
+        <value>1</value>
+      </rankThreshold>
+    </windowFunction>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CPNT_LEN"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="SOURCE"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="TIPO_SOURCE"/>
+        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
+      <viewAttribute hidden="true" id="JOIN$KURS_ORG_ID$ID_DOMINIO_SOURCE"/>
+      <viewAttribute hidden="true" id="JOIN$ORG_BEZEICHNUNG$DESCRIZIONE_SOURCE_D"/>
+      <viewAttribute hidden="true" id="JOIN$ORG_BEZEICHNUNG_I$DESCRIZIONE_SOURCE_I"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="KURS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="PERI_BEZEICHNUNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="KURS_ERSTELLUNGSDATUM_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="KURS_NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_LEN" source="KURS_DAUER_IN_EIGEN_UE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="KURS_TEILNANZAHLMAX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KURS_ORG_ID$ID_DOMINIO_SOURCE" source="KURS_ORG_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORG_BEZEICHNUNG$DESCRIZIONE_SOURCE_D" source="ORG_BEZEICHNUNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORG_BEZEICHNUNG_I$DESCRIZIONE_SOURCE_I" source="ORG_BEZEICHNUNG_I"/>
+      </input>
+      <input node="Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TIPO_SOURCE" source="TIPO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KURS_ORG_ID$ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORG_BEZEICHNUNG$DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORG_BEZEICHNUNG_I$DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
+      </input>
+    <joinAttribute name="JOIN$KURS_ORG_ID$ID_DOMINIO_SOURCE"/>
+    <joinAttribute name="JOIN$ORG_BEZEICHNUNG$DESCRIZIONE_SOURCE_D"/>
+    <joinAttribute name="JOIN$ORG_BEZEICHNUNG_I$DESCRIZIONE_SOURCE_I"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CERT_TEMPLATE_SYS_GUID"/>
+        <viewAttribute id="ITA"/>
+        <viewAttribute id="DEU"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CPNT_LEN"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="SOURCE"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Rank_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CERT_TEMPLATE_SYS_GUID" source="CERT_TEMPLATE_SYS_GUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ITA" source="ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DEU" source="DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE_STAMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_LEN" source="CPNT_LEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="Join_2">
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CERT_TEMPLATE_SYS_GUID" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ITA" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DEU" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CPNT_TITLE_ITA" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CPNT_TITLE_DEU" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_LEN" source="CPNT_LEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="TIPO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
+      </input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CREATE_DTE"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CPNT_LEN"/>
+        <viewAttribute id="CERT_TEMPLATE_SYS_GUID"/>
+        <viewAttribute id="SOURCE"/>
+        <viewAttribute id="MAX_ENRL"/>
+        <viewAttribute id="SUBJ_ID"/>
+        <viewAttribute id="CPNT_TITLE_ITA"/>
+        <viewAttribute id="CPNT_TITLE_DEU"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_TYP_ID_1"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
+      <viewAttribute hidden="true" id="JOIN$CPNT_ID$CPNT_ID"/>
+      <viewAttribute hidden="true" id="JOIN$CPNT_TYP_ID$CPNT_TYP_KEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CREATE_DTE" source="CREATE_DTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_LEN" source="CPNT_LEN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CERT_TEMPLATE_SYS_GUID" source="CERT_TEMPLATE_SYS_GUID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAX_ENRL" source="MAX_ENRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_1" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_ID$CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_TYP_ID$CPNT_TYP_KEY" source="CPNT_TYP_ID"/>
+      </input>
+      <input node="Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_ID$CPNT_ID" source="CPNT_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_TYP_ID$CPNT_TYP_KEY" source="CPNT_TYP_KEY"/>
+      </input>
+    <joinAttribute name="JOIN$CPNT_ID$CPNT_ID"/>
+    <joinAttribute name="JOIN$CPNT_TYP_ID$CPNT_TYP_KEY"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="CPNT_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_ID"/>
+      </attribute>
+      <attribute id="CREATE_DTE" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CREATE_DTE"/>
+        <keyMapping columnObjectName="Join_1" columnName="CREATE_DTE"/>
+      </attribute>
+      <attribute id="NOTACTIVE" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NOTACTIVE"/>
+        <keyMapping columnObjectName="Join_1" columnName="NOTACTIVE"/>
+      </attribute>
+      <attribute id="CPNT_LEN" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_LEN"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_LEN"/>
+      </attribute>
+      <attribute id="CERT_TEMPLATE_SYS_GUID" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CERT_TEMPLATE_SYS_GUID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CERT_TEMPLATE_SYS_GUID"/>
+      </attribute>
+      <attribute id="SOURCE" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SOURCE"/>
+        <keyMapping columnObjectName="Join_1" columnName="SOURCE"/>
+      </attribute>
+      <attribute id="SUBJ_ID" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SUBJ_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="SUBJ_ID"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_ITA" order="9" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TITLE_ITA"/>
+      </attribute>
+      <attribute id="CPNT_TITLE_DEU" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_TITLE_DEU"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TITLE_DEU"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_TYP_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TYP_ID"/>
+      </attribute>
+      <attribute id="CPNT_TYP_ID_KEY" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CPNT_TYP_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CPNT_TYP_ID_1"/>
+      </attribute>
+      <attribute id="ID_DOMINIO" order="13" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="ID_DOMINIO"/>
+      </attribute>
+      <attribute id="DESC_DOMINIO_SICUREZZA_D" order="14" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="DESC_DOMINIO_SICUREZZA_D"/>
+      </attribute>
+      <attribute id="DESCRIZIONE_SOURCE_I" order="15" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="DESCRIZIONE_SOURCE_I"/>
+      </attribute>
+      <attribute id="DESC_DOMINIO_SICUREZZA_I" order="16" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="DESC_DOMINIO_SICUREZZA_I"/>
+      </attribute>
+      <attribute id="DESCRIZIONE_SOURCE_D" order="17" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DESCRIZIONE_SOURCE_D"/>
+        <keyMapping columnObjectName="Join_1" columnName="DESCRIZIONE_SOURCE_D"/>
+      </attribute>
+      <attribute id="ID_DOMINIO_SOURCE" order="18" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ID_DOMINIO_SOURCE"/>
+        <keyMapping columnObjectName="Join_1" columnName="ID_DOMINIO_SOURCE"/>
+      </attribute>
+      <attribute id="FIX_ID_DOMINIO_SOURCE" order="19" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_1" columnName="FIX_ID_DOMINIO_SOURCE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="MAX_ENRL" order="7" aggregationType="max" measureType="simple" restrictionExpressionLanguage="SQL">
+        <descriptions defaultDescription="MAX_ENRL"/>
+        <measureMapping columnObjectName="Join_1" columnName="MAX_ENRL"/>
+      
+        <exceptionAggregationMetadata/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="427" y="112"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="512" y="676"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="92" y="676"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="302" y="676"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="481" y="376"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="92" y="534"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="372" y="516"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="118" y="376"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="427" y="217"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+    
+    <shape modelObjectName="Union_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>
