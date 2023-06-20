@@ -353,7 +353,8 @@ BEGIN
         "ENRL_STAT_ID",
         "ENRL_DTE",
         "CANCEL_DTE",
-        "ACTION"
+        "ACTION",
+        "LST_UPD_TSTMP"
          )
          select 
         "ENRL_SEAT_ID",
@@ -363,9 +364,37 @@ BEGIN
         "ENRL_STAT_ID",
         "ENRL_DTE",
         "CANCEL_DTE",
-        "ACTION"
+        "ACTION",
+        "LST_UPD_TSTMP"
          from "PH_ENROLL_SEAT";
          DELETE from "PH_ENROLL_SEAT";
          
     end if;
+
+        if :TABLENAME = 'PA_ENROLL_SEAT' then 
+     
+            delete from "PA_ENROLL_SEAT_LAST_DAY_BCK";
+            
+            insert into "PA_ENROLL_SEAT_LAST_DAY_BCK"
+            (
+            "ENRL_SEAT_ID",
+            "STUD_ID",
+            "ENRL_SLOT_ID",
+            "SCHD_ID",
+            "ENRL_STAT_ID",
+            "ENRL_DTE",
+            "CANCEL_DTE"
+             )
+             select 
+            "ENRL_SEAT_ID",
+            "STUD_ID",
+            "ENRL_SLOT_ID",
+            "SCHD_ID",
+            "ENRL_STAT_ID",
+            "ENRL_DTE",
+            "CANCEL_DTE"
+             from "PA_ENROLL_SEAT";
+             DELETE from "PA_ENROLL_SEAT";
+             
+        end if;
 END
