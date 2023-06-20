@@ -25,8 +25,8 @@
     <DataSource id="CORSI_EDIZIONI_INTEGRATE">
       <resourceUri>CORSI_EDIZIONI_INTEGRATE</resourceUri>
     </DataSource>
-    <DataSource id="T_SEGM">
-      <resourceUri>T_SEGM</resourceUri>
+    <DataSource id="CONSUNTIVO">
+      <resourceUri>CONSUNTIVO</resourceUri>
     </DataSource>
   </dataSources>
 <snapshotProcedures/>
@@ -187,7 +187,9 @@ END</formula>
           <formula>TO_DATE(SUBSTR(&quot;ENDDATETIME&quot;,0,10))</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="T_SEGM"/>
+      <input node="CONSUNTIVO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENDDATETIME" source="CONS_DTE"/>
+      </input>
     </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_1" dynamic="false" joinType="inner">
     <descriptions/>
@@ -216,7 +218,6 @@ END</formula>
         <viewAttribute id="FACILITY_ID"/>
         <viewAttribute id="FACILITY_DESC"/>
         <viewAttribute id="CPNT_TYP_ID_KEY"/>
-      
       <viewAttribute hidden="true" id="JOIN$CPNT_ID$ACT_CPNT_ID"/>
       <viewAttribute hidden="true" id="JOIN$CPNT_TYP_ID_KEY$CPNT_TYP_ID"/>
     </viewAttributes>
@@ -233,7 +234,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_ITA" source="CPNT_TITLE_ITA"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TITLE_DEU" source="CPNT_TITLE_DEU"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_ID$ACT_CPNT_ID" source="CPNT_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_TYP_ID_KEY$CPNT_TYP_ID" source="CPNT_TYP_ID_KEY"/>
       </input>
@@ -348,7 +348,6 @@ END</formula>
         <viewAttribute id="FACILITY_DESC"/>
         <viewAttribute id="CPNT_TYP_ID_KEY"/>
         <viewAttribute id="MAX_END_DATE"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHD_ID$SCHD_ID"/>
       <viewAttribute hidden="true" id="JOIN$CPNT_ID$CPNT_ID"/>
     </viewAttributes>
@@ -377,7 +376,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHD_ID$SCHD_ID" source="SCHD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_ID$CPNT_ID" source="CPNT_ID"/>
       </input>
@@ -403,7 +401,6 @@ END</formula>
         <viewAttribute id="CPNT_TYP_KEY"/>
         <viewAttribute id="CPNT_ID"/>
         <viewAttribute id="SCHD_ID"/>
-      
       <viewAttribute hidden="true" id="JOIN$CPNT_TYP_KEY$CPNT_TYP_ID_KEY"/>
       <viewAttribute hidden="true" id="JOIN$CPNT_ID$CPNT_ID"/>
     </viewAttributes>
@@ -415,7 +412,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_KEY" source="CPNT_TYP_KEY"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_TYP_KEY$CPNT_TYP_ID_KEY" source="CPNT_TYP_KEY"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CPNT_ID$CPNT_ID" source="CPNT_ID"/>
       </input>
@@ -532,7 +528,6 @@ END</formula>
         <viewAttribute id="STATUS_CORSO_DEU"/>
         <viewAttribute id="STATUS_EDIZIONE_DEU"/>
         <viewAttribute id="CPNT_TYP_ID_KEY"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHD_ID$SCHD_ID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -567,7 +562,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO_DEU" source="STATUS_CORSO_DEU"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE_DEU" source="STATUS_EDIZIONE_DEU"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_KEY" source="CPNT_TYP_ID_KEY"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHD_ID$SCHD_ID" source="SCHD_ID"/>
       </input>
       <input node="Aggregation_2">
@@ -612,7 +606,6 @@ END</formula>
         <viewAttribute id="KTKODEX"/>
         <viewAttribute id="CPNT_TYP_ID"/>
         <viewAttribute id="CPNT_TYP_KEY"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHD_ID$SCHD_ID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -645,7 +638,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO_DEU" source="STATUS_CORSO_DEU"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE_DEU" source="STATUS_EDIZIONE_DEU"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_1" source="CPNT_TYP_ID"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHD_ID$SCHD_ID" source="SCHD_ID"/>
       </input>
       <input node="Join_6">
@@ -693,7 +685,6 @@ END</formula>
         <viewAttribute id="STATUS_EDIZIONE_DEU"/>
         <viewAttribute id="CPNT_SCH_LAST_DATE_LEZIONE_ORIG"/>
         <viewAttribute id="CPNT_TYP_ID"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHD_ID_DIM$SCHEDULEID"/>
     </viewAttributes>
     <calculatedViewAttributes>
@@ -733,7 +724,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_CORSO_DEU" source="STATUS_CORSO_DEU"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STATUS_EDIZIONE_DEU" source="STATUS_EDIZIONE_DEU"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHD_ID_DIM$SCHEDULEID" source="SCHD_ID_DIM"/>
       </input>
       <input node="Aggregation_3">
@@ -939,19 +929,39 @@ END</formula>
 <layout>
   <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="585.3104775365734" y="112"/>
+        <upperLeftCorner x="585" y="112"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="91.99999999999989" y="1266.9999916553497"/>
+        <upperLeftCorner x="91" y="1266"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="302.0000000000001" y="1266.9999916553497"/>
+        <upperLeftCorner x="302" y="1266"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="511" y="1266"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="543" y="946"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_8" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="753" y="821"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_7" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="954" y="946"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="LAST_LEZIONE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="334" y="661"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="275.3333333333334" y="1106.9999928474426"/>
+        <upperLeftCorner x="275" y="1106"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
     <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
@@ -962,16 +972,24 @@ END</formula>
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="250"/>
     </shape>
-      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="511.99999999999994" y="1266.9999916553497"/>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="511" y="1124"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="543" y="821"/>
         <rectangleSize height="0" width="160"/>
       </shape>
-      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="511.99999999999994" y="1124.4999928474426"/>
+      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="963" y="821"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="334" y="519"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="333.276051002021" y="946.9999940395355"/>
+        <upperLeftCorner x="333" y="946"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
     <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
@@ -982,44 +1000,8 @@ END</formula>
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="250"/>
     </shape>
-      <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="333.276051002021" y="821.9999952316284"/>
-        <rectangleSize height="0" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Projection_5" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="543.2760510020212" y="946.9999940395355"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="543.2760510020212" y="821.9999952316284"/>
-        <rectangleSize height="0" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="555.7996571262934" y="661.9999964237213"/>
-        <rectangleSize height="0" width="160"/>
-      </shape>
-    <shape modelObjectName="Projection_6" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="250"/>
-    </shape>
-    <shape modelObjectName="Aggregation_2" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="250"/>
-    </shape>
-      <shape expanded="true" modelObjectName="Projection_8" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="753.2760510020212" y="821.9999952316284"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Projection_7" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="954.2941992213823" y="946.9999940395355"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="963.2760510020212" y="821.9999952316284"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
       <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="779.9427176686878" y="661.9999964237213"/>
+        <upperLeftCorner x="779" y="661"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     <shape modelObjectName="Projection_8" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
@@ -1030,8 +1012,24 @@ END</formula>
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="250"/>
     </shape>
+      <shape expanded="true" modelObjectName="Projection_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="333" y="821"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="555" y="661"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+    <shape modelObjectName="Projection_6" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Aggregation_2" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="624.3739477037935" y="501.9999976158142"/>
+        <upperLeftCorner x="624" y="501"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
@@ -1042,16 +1040,8 @@ END</formula>
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="250"/>
     </shape>
-      <shape expanded="true" modelObjectName="LAST_LEZIONE" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="334.89965594214794" y="661.9999964237213"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Aggregation_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="334.89965594214794" y="519.4999976158142"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
       <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="555.6673981363218" y="341.9999988079071"/>
+        <upperLeftCorner x="555" y="341"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     <shape modelObjectName="Join_5" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
@@ -1063,7 +1053,7 @@ END</formula>
       <rectangleSize width="250"/>
     </shape>
       <shape expanded="true" modelObjectName="Projection_11" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="555.6673981363218" y="236.9999988079071"/>
+        <upperLeftCorner x="555" y="236"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     </shapes>

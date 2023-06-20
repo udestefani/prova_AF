@@ -46,7 +46,7 @@ BEGIN
          
     end if;
     
-    if :TABLENAME = 'T_CONS_LMS' then 
+    /*if :TABLENAME = 'T_CONS_LMS' then 
      
         delete from "T_CONS_LMS_LAST_DAY_BCK";
         
@@ -94,7 +94,7 @@ BEGIN
          
          DELETE from "T_SEGM";
          
-    end if;
+    end if;*/
     
     if :TABLENAME = 'PA_CPNT_EVTHST' then 
      
