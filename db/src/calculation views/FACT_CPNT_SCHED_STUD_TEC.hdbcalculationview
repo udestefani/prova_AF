@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.3" id="FACT_CPNT_SCHED_STUD_TEC" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED">
-  <origin/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="3.0" id="FACT_CPNT_SCHED_STUD_TEC" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED">
+<origin/>
   <descriptions defaultDescription="FACT_CPNT_SCHED_STUD calculation view che viene letta dalla cv_SAC"/>
   <localVariables>
     <variable id="IP_ANNO" parameter="true">
@@ -12,36 +12,37 @@
     </variable>
   </localVariables>
   <variableMappings>
-    <mapping xsi:type="Variable:VariableMapping" dataSource="#CV_UNION_FACT">
-      <targetVariable name="IP_ANNO" resourceUri="/Analisi_Formazione/calculationviews/CV_UNION_FACT"/>
-      <localVariable>#IP_ANNO</localVariable>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="CV_UNION_FACT">
+      <targetVariable name="IP_ANNO" resourceUri="CV_UNION_FACT"/>
+      <localVariable>IP_ANNO</localVariable>
     </mapping>
   </variableMappings>
   <informationModelLayout relativeWidthScenario="44"/>
   <dataSources>
-    <DataSource id="CPNT_EVTHST_INTEGRAZ" type="CALCULATION_VIEW">
+    <DataSource id="CPNT_EVTHST_INTEGRAZ">
       <resourceUri>CPNT_EVTHST_INTEGRAZ</resourceUri>
     </DataSource>
-    <DataSource id="STUDENT_INTEGRAZ" type="CALCULATION_VIEW">
+    <DataSource id="STUDENT_INTEGRAZ">
       <resourceUri>STUDENT_INTEGRAZ</resourceUri>
     </DataSource>
-    <DataSource id="CV_UNION_FACT" type="CALCULATION_VIEW">
+    <DataSource id="CV_UNION_FACT">
       <resourceUri>CV_UNION_FACT</resourceUri>
     </DataSource>
-    <DataSource id="ENROLL_SEAT_INTEGRAZ" type="CALCULATION_VIEW">
+    <DataSource id="ENROLL_SEAT_INTEGRAZ">
       <resourceUri>ENROLL_SEAT_INTEGRAZ</resourceUri>
     </DataSource>
-    <DataSource id="CORSI_EDIZIONI_INTEGRATE" type="CALCULATION_VIEW">
+    <DataSource id="CORSI_EDIZIONI_INTEGRATE">
       <resourceUri>CORSI_EDIZIONI_INTEGRATE</resourceUri>
     </DataSource>
-    <DataSource id="SCH_SEG_INTEGRAZ" type="CALCULATION_VIEW">
+    <DataSource id="SCH_SEG_INTEGRAZ">
       <resourceUri>SCH_SEG_INTEGRAZ</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews>
-    <calculationView xsi:type="Calculation:ProjectionView" id="CORSI_COMPLETATI">
-      <descriptions/>
-      <viewAttributes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="CORSI_COMPLETATI">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="CMPL_STAT_ID"/>
         <viewAttribute id="STUD_ID"/>
         <viewAttribute id="CPNT_ID"/>
@@ -49,35 +50,25 @@
         <viewAttribute id="CPNT_TYP_ID"/>
         <viewAttribute id="GRADE"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#CPNT_EVTHST_INTEGRAZ">
-        <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="GRADE" source="GRADE"/>
-      </input>
+    <calculatedViewAttributes/>
+      <input node="CPNT_EVTHST_INTEGRAZ"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="BIRTH_DATE">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:ProjectionView" id="BIRTH_DATE">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="STUD_ID"/>
         <viewAttribute id="BIRTH_DATE"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="DATE" id="BIRTH_DATE_STAMP" expressionLanguage="SQL">
           <formula>&quot;BIRTH_DATE&quot;</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#STUDENT_INTEGRAZ">
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="BIRTH_DATE" source="BIRTH_DATE"/>
-      </input>
+      <input node="STUDENT_INTEGRAZ"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="NUMEROORE"/>
         <viewAttribute id="SCHEDULEID"/>
         <viewAttribute id="START_DATE_STAMP"/>
@@ -88,22 +79,84 @@
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
         <viewAttribute id="CALMONTH_ISCR"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#CV_UNION_FACT">
-        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
+    <calculatedViewAttributes/>
+      <input node="CV_UNION_FACT">
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_STAMP" source="START_DATE_CPNT"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="ANNO_MESE_FORMAT" source="CALMONTH"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_STAMP" source="END_DATE_CPNT"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUDENTE" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STUDENTE" source="STUD_ID"/></input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="START_ENROLL">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ENRL_DTE"/>
+        <viewAttribute id="CANCEL_DTE"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="ENRL_DATE_STAMP" expressionLanguage="SQL">
+          <formula>case when &quot;ENRL_DTE&quot; is null or &quot;ENRL_DTE&quot; = '' then to_date('190012', 'YYYYMM') 
+ELSE &quot;ENRL_DTE&quot; END</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="CANCEL_DATE_STAMP" expressionLanguage="SQL">
+          <formula>case when &quot;CANCEL_DTE&quot; is null or &quot;CANCEL_DTE&quot; = '' then to_date('220012', 'YYYYMM') 
+ELSE &quot;CANCEL_DTE&quot; END</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ENROLL_SEAT_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE" source="DATA_ENROL"/></input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="LABEL_VALUE"/>
+        <viewAttribute id="SUBJ_ID"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="SOURCE"/>
+        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="CORSI_EDIZIONI_INTEGRATE"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="SSG_SEG_NUM"/>
+        <viewAttribute id="INST_ID"/>
+        <viewAttribute id="LMS_START_DTE"/>
+        <viewAttribute id="LMS_END_DTE"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="LOCN_FORMAT" length="256" expressionLanguage="SQL">
+          <formula>CASE
+
+WHEN '&quot;LOCN_DESC&quot;'='Webinar' THEN 'ONLINE'
+WHEN '&quot;LOCN_DESC&quot;'='ONLINE' THEN 'ONLINE'
+WHEN '&quot;LOCN_DESC&quot;'='Webinar (online)' THEN 'ONLINE'
+else 'PRESENCE' 
+
+END</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="SCH_SEG_INTEGRAZ">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_START_DTE" source="START_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_END_DTE" source="END_DATE"/>
       </input>
     </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinOrder="OUTSIDE_IN" joinType="leftOuter">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="BIRTH_DATE_STAMP"/>
         <viewAttribute id="STUD_ID"/>
         <viewAttribute id="NUMEROORE"/>
@@ -114,10 +167,10 @@
         <viewAttribute id="FLAG_ISCRIZIONE"/>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
         <viewAttribute id="CALMONTH_ISCR"/>
-        <viewAttribute hidden="true" id="JOIN$STUDENTE$STUD_ID"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Projection_2">
+      <viewAttribute hidden="true" id="JOIN$STUDENTE$STUD_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_2">
         <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_STAMP" source="START_DATE_STAMP"/>
@@ -128,72 +181,72 @@
         <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUDENTE$STUD_ID" source="STUDENTE"/>
       </input>
-      <input node="#BIRTH_DATE">
+      <input node="BIRTH_DATE">
         <mapping xsi:type="Calculation:AttributeMapping" target="BIRTH_DATE_STAMP" source="BIRTH_DATE_STAMP"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUDENTE$STUD_ID" source="STUD_ID"/>
       </input>
-      <joinAttribute name="JOIN$STUDENTE$STUD_ID"/>
-    </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="START_ENROLL">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="STUD_ID"/>
-        <viewAttribute id="SCHD_ID"/>
-        <viewAttribute id="ENRL_DTE"/>
-        <viewAttribute id="CANCEL_DTE"/>
-      </viewAttributes>
-      <calculatedViewAttributes>
-        <calculatedViewAttribute datatype="DATE" id="ENRL_DATE_STAMP" expressionLanguage="SQL">
-          <formula>case when &quot;ENRL_DTE&quot; is null or &quot;ENRL_DTE&quot; = '' then to_date('190012', 'YYYYMM') &#xD;
-ELSE &quot;ENRL_DTE&quot; END</formula>
-        </calculatedViewAttribute>
-        <calculatedViewAttribute datatype="DATE" id="CANCEL_DATE_STAMP" expressionLanguage="SQL">
-          <formula>case when &quot;CANCEL_DTE&quot; is null or &quot;CANCEL_DTE&quot; = '' then to_date('220012', 'YYYYMM') &#xD;
-ELSE &quot;CANCEL_DTE&quot; END</formula>
-        </calculatedViewAttribute>
-      </calculatedViewAttributes>
-      <input node="#ENROLL_SEAT_INTEGRAZ">
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DTE" source="DATA_ENROL"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
-      </input>
-    </calculationView>
-    <calculationView xsi:type="Calculation:RankView" id="Rank_1">
-      <descriptions/>
-      <viewAttributes>
+    <joinAttribute name="JOIN$STUDENTE$STUD_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="ENRL_DATE_STAMP"/>
         <viewAttribute id="SCHD_ID"/>
         <viewAttribute id="STUD_ID"/>
         <viewAttribute id="CANCEL_DTE"/>
         <viewAttribute id="CANCEL_DATE_STAMP"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#START_ENROLL">
-        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DATE_STAMP" source="ENRL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DATE_STAMP" source="CANCEL_DATE_STAMP"/>
-      </input>
-      <windowFunction>
-        <partitionViewAttributeName>STUD_ID</partitionViewAttributeName>
+    <calculatedViewAttributes/>
+      <input node="START_ENROLL"/>
+    <windowFunction dynamicPartitionAttributes="false">
+      <partitionViewAttributeName>STUD_ID</partitionViewAttributeName>
         <order byViewAttributeName="ENRL_DATE_STAMP" direction="ASC"/>
-        <rankThreshold>
-          <value>1</value>
-        </rankThreshold>
-      </windowFunction>
-    </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
-      <descriptions/>
-      <viewAttributes>
+      <rankThreshold>
+        <value>1</value>
+      </rankThreshold>
+    </windowFunction>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_2">
+    <descriptions>
+      <comment text="E&apos; necessario prendere solo un&apos;area tematica altrimenti le misure vengono calcolata in maniera errata (associazione aree tematiche 1:n -&gt; non univoca per corso), a fronte della reportistica questi KPI non sono esposti per area tematica, quindi si può prendere in maniera casuale di fatto serve solo per la KEY su SAC"/>
+    </descriptions>
+    <viewAttributes>
+        <viewAttribute id="LABEL_VALUE"/>
+        <viewAttribute id="CPNT_ID"/>
+        <viewAttribute id="CPNT_TYP_ID_1"/>
+        <viewAttribute id="SUBJ_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ID_DOMINIO"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
+        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="SOURCE"/>
+        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_1" source="CPNT_TYP_ID"/></input>
+    <windowFunction dynamicPartitionAttributes="false">
+      <partitionViewAttributeName>CPNT_ID</partitionViewAttributeName>
+      <partitionViewAttributeName>SCHD_ID</partitionViewAttributeName>
+        <order byViewAttributeName="SUBJ_ID" direction="DESC"/>
+      <rankThreshold>
+        <value>1</value>
+      </rankThreshold>
+    </windowFunction>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="ENRL_DATE_STAMP"/>
         <viewAttribute id="CANCEL_DATE_STAMP"/>
         <viewAttribute id="STUD_ID"/>
         <viewAttribute id="SCHD_ID"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="INTEGER" id="DAYS_ISCR" expressionLanguage="SQL">
           <formula>DAYS_BETWEEN(&quot;ENRL_DATE_STAMP&quot;,now())</formula>
         </calculatedViewAttribute>
@@ -204,25 +257,20 @@ ELSE &quot;CANCEL_DTE&quot; END</formula>
           <formula>&quot;DAYS_ISCR&quot;/365</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="NVARCHAR" id="STUD_CLASSE_ISCRIZIONE" length="10" expressionLanguage="SQL">
-          <formula>CASE&#xD;
-&#xD;
-WHEN &quot;YEAR_ISCR&quot;&lt;1 THEN '&lt;1 year'&#xD;
-WHEN &quot;YEAR_ISCR&quot;>=1 AND &quot;YEAR_ISCR&quot;&lt;5 THEN '1-5 years'&#xD;
-WHEN &quot;YEAR_ISCR&quot;>=5 THEN '>5 years'&#xD;
-&#xD;
+          <formula>CASE
+
+WHEN &quot;YEAR_ISCR&quot;&lt;1 THEN '&lt;1 year'
+WHEN &quot;YEAR_ISCR&quot;&gt;=1 AND &quot;YEAR_ISCR&quot;&lt;5 THEN '1-5 years'
+WHEN &quot;YEAR_ISCR&quot;&gt;=5 THEN '&gt;5 years'
+
 END</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#Rank_1">
-        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DATE_STAMP" source="ENRL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DATE_STAMP" source="CANCEL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-      </input>
+      <input node="Rank_1"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_5" joinOrder="OUTSIDE_IN" joinType="leftOuter">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="SCHEDULEID"/>
         <viewAttribute id="NUMEROORE"/>
         <viewAttribute id="BIRTH_DATE_STAMP"/>
@@ -235,9 +283,11 @@ END</formula>
         <viewAttribute id="FLAG_ISCRIZIONE"/>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
         <viewAttribute id="CALMONTH_ISCR"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Join_2">
+      
+      <viewAttribute hidden="true" id="JOIN$STUD_ID$STUD_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_2">
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="BIRTH_DATE_STAMP" source="BIRTH_DATE_STAMP"/>
@@ -247,18 +297,20 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+      
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUD_ID$STUD_ID" source="STUD_ID"/>
       </input>
-      <input node="#Projection_4">
+      <input node="Projection_4">
         <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DATE_STAMP" source="ENRL_DATE_STAMP"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DATE_STAMP" source="CANCEL_DATE_STAMP"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CLASSE_ISCRIZIONE" source="STUD_CLASSE_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUD_ID$STUD_ID" source="STUD_ID"/>
       </input>
-      <joinAttribute name="STUD_ID"/>
-    </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="ETA_STUD">
-      <descriptions/>
-      <viewAttributes>
+    <joinAttribute name="JOIN$STUD_ID$STUD_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="ETA_STUD">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="BIRTH_DATE_STAMP"/>
         <viewAttribute id="NUMEROORE"/>
         <viewAttribute id="SCHEDULEID"/>
@@ -272,7 +324,7 @@ END</formula>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
         <viewAttribute id="CALMONTH_ISCR"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="INTEGER" id="AGE_STUD_DAYS" expressionLanguage="SQL">
           <formula>days_between(&quot;BIRTH_DATE_STAMP&quot;,&quot;START_DATE_STAMP&quot; )</formula>
         </calculatedViewAttribute>
@@ -280,115 +332,24 @@ END</formula>
           <formula>&quot;AGE_STUD_DAYS&quot;/365</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="NVARCHAR" id="FASCE_ETA_STUD" length="20" expressionLanguage="SQL">
-          <formula> CASE&#xD;
- &#xD;
- WHEN &quot;AGE_STUD&quot;&lt;=18 THEN 'A18'&#xD;
- WHEN &quot;AGE_STUD&quot;>=19 AND &quot;AGE_STUD&quot;&lt;=29 then 'A1929'&#xD;
- WHEN &quot;AGE_STUD&quot;>=30 AND &quot;AGE_STUD&quot;&lt;=39 then 'A3039'&#xD;
- WHEN &quot;AGE_STUD&quot;>=40 AND &quot;AGE_STUD&quot;&lt;=49 then 'A4049'&#xD;
- WHEN &quot;AGE_STUD&quot;>=50 AND &quot;AGE_STUD&quot;&lt;=59 then 'A5059'&#xD;
- WHEN &quot;AGE_STUD&quot;>=60 THEN 'A60'&#xD;
- ELSE '0'&#xD;
- &#xD;
+          <formula> CASE
+ 
+ WHEN &quot;AGE_STUD&quot;&lt;=18 THEN 'A18'
+ WHEN &quot;AGE_STUD&quot;&gt;=19 AND &quot;AGE_STUD&quot;&lt;=29 then 'A1929'
+ WHEN &quot;AGE_STUD&quot;&gt;=30 AND &quot;AGE_STUD&quot;&lt;=39 then 'A3039'
+ WHEN &quot;AGE_STUD&quot;&gt;=40 AND &quot;AGE_STUD&quot;&lt;=49 then 'A4049'
+ WHEN &quot;AGE_STUD&quot;&gt;=50 AND &quot;AGE_STUD&quot;&lt;=59 then 'A5059'
+ WHEN &quot;AGE_STUD&quot;&gt;=60 THEN 'A60'
+ ELSE '0'
+ 
  END</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#Join_5">
-        <mapping xsi:type="Calculation:AttributeMapping" target="BIRTH_DATE_STAMP" source="BIRTH_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CLASSE_ISCRIZIONE" source="STUD_CLASSE_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DATE_STAMP" source="ENRL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DATE_STAMP" source="CANCEL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_STAMP" source="START_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ANNO_MESE_FORMAT" source="ANNO_MESE_FORMAT"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
-      </input>
+      <input node="Join_5"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="CPNT_TYP_ID"/>
-        <viewAttribute id="CPNT_ID"/>
-        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
-        <viewAttribute id="LABEL_VALUE" transparentFilter="false"/>
-        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
-        <viewAttribute id="ID_DOMINIO"/>
-        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
-        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
-        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
-        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#CORSI_EDIZIONI_INTEGRATE">
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
-      </input>
-    </calculationView>
-    <calculationView xsi:type="Calculation:RankView" id="Rank_2">
-      <descriptions>
-        <comment text="E' necessario prendere solo un'area tematica altrimenti le misure vengono calcolata in maniera errata (associazione aree tematiche 1:n -> non univoca per corso), a fronte della reportistica questi KPI non sono esposti per area tematica, quindi si può prendere in maniera casuale di fatto serve solo per la KEY su SAC"/>
-      </descriptions>
-      <viewAttributes>
-        <viewAttribute id="LABEL_VALUE"/>
-        <viewAttribute id="CPNT_ID"/>
-        <viewAttribute id="CPNT_TYP_ID_1"/>
-        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
-        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
-        <viewAttribute id="ID_DOMINIO"/>
-        <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
-        <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
-        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
-        <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Projection_3">
-        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_1" source="CPNT_TYP_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
-      </input>
-      <windowFunction>
-        <partitionViewAttributeName>CPNT_ID</partitionViewAttributeName>
-        <partitionViewAttributeName>SCHD_ID</partitionViewAttributeName>
-        <order byViewAttributeName="SUBJ_ID" direction="DESC"/>
-        <rankThreshold>
-          <value>1</value>
-        </rankThreshold>
-      </windowFunction>
-    </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_4" dynamic="false" joinOrder="OUTSIDE_IN" joinType="leftOuter">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" dynamic="false" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="SCHEDULEID"/>
         <viewAttribute id="NUMEROORE"/>
         <viewAttribute id="AGE_STUD"/>
@@ -405,19 +366,21 @@ END</formula>
         <viewAttribute id="LABEL_VALUE"/>
         <viewAttribute id="CPNT_ID"/>
         <viewAttribute id="CPNT_TYP_ID_1"/>
-        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID"/>
         <viewAttribute id="CALMONTH_ISCR"/>
         <viewAttribute id="ID_DOMINIO"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
         <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
-        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="SOURCE"/>
         <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#ETA_STUD">
+      
+      <viewAttribute hidden="true" id="JOIN$SCHEDULEID$SCHD_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ETA_STUD">
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="AGE_STUD" source="AGE_STUD"/>
@@ -432,8 +395,10 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
+      
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHEDULEID"/>
       </input>
-      <input node="#Rank_2">
+      <input node="Rank_2">
         <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID_1" source="CPNT_TYP_ID_1"/>
@@ -446,13 +411,13 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHD_ID"/>
       </input>
-      <joinAttribute name="SCHEDULEID"/>
-    </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinOrder="OUTSIDE_IN" joinType="leftOuter">
-      <descriptions/>
-      <viewAttributes>
+    <joinAttribute name="JOIN$SCHEDULEID$SCHD_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="CMPL_STAT_ID"/>
         <viewAttribute id="NUMEROORE"/>
         <viewAttribute id="SCHEDULEID"/>
@@ -470,19 +435,22 @@ END</formula>
         <viewAttribute id="ANNO_MESE_FORMAT"/>
         <viewAttribute id="FLAG_ISCRIZIONE"/>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
-        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID"/>
         <viewAttribute id="CALMONTH_ISCR"/>
         <viewAttribute id="ID_DOMINIO"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
         <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
-        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="SOURCE"/>
         <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Join_4">
+      
+      <viewAttribute hidden="true" id="JOIN$SCHEDULEID$SCHD_ID"/>
+      <viewAttribute hidden="true" id="JOIN$STUD_ID$STUD_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_4">
         <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="AGE_STUD" source="AGE_STUD"/>
@@ -508,48 +476,22 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
+      
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUD_ID$STUD_ID" source="STUD_ID"/>
       </input>
-      <input node="#CORSI_COMPLETATI">
+      <input node="CORSI_COMPLETATI">
         <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="GRADE" source="GRADE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUD_ID$STUD_ID" source="STUD_ID"/>
       </input>
-      <joinAttribute name="SCHEDULEID"/>
-      <joinAttribute name="STUD_ID"/>
-    </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="SCHD_ID"/>
-        <viewAttribute id="SSG_SEG_NUM"/>
-        <viewAttribute id="INST_ID"/>
-        <viewAttribute id="LMS_START_DTE"/>
-        <viewAttribute id="LMS_END_DTE"/>
-      </viewAttributes>
-      <calculatedViewAttributes>
-        <calculatedViewAttribute datatype="NVARCHAR" id="LOCN_FORMAT" length="256" expressionLanguage="SQL">
-          <formula>CASE&#xD;
-&#xD;
-WHEN '&quot;LOCN_DESC&quot;'='Webinar' THEN 'ONLINE'&#xD;
-WHEN '&quot;LOCN_DESC&quot;'='ONLINE' THEN 'ONLINE'&#xD;
-WHEN '&quot;LOCN_DESC&quot;'='Webinar (online)' THEN 'ONLINE'&#xD;
-else 'PRESENCE' &#xD;
-&#xD;
-END</formula>
-        </calculatedViewAttribute>
-      </calculatedViewAttributes>
-      <input node="#SCH_SEG_INTEGRAZ">
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SSG_SEG_NUM" source="SSG_SEG_NUM"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="INST_ID" source="INST_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_START_DTE" source="START_DATE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_END_DTE" source="END_DATE"/>
-      </input>
-    </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_6" dynamic="false" joinOrder="OUTSIDE_IN" joinType="leftOuter">
-      <descriptions/>
-      <viewAttributes>
+    <joinAttribute name="JOIN$SCHEDULEID$SCHD_ID"/>
+    <joinAttribute name="JOIN$STUD_ID$STUD_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_6" dynamic="false" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="CMPL_STAT_ID"/>
         <viewAttribute id="SCHEDULEID"/>
         <viewAttribute id="NUMEROORE"/>
@@ -570,19 +512,21 @@ END</formula>
         <viewAttribute id="ANNO_MESE_FORMAT"/>
         <viewAttribute id="FLAG_ISCRIZIONE"/>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
-        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID"/>
         <viewAttribute id="CALMONTH_ISCR"/>
         <viewAttribute id="ID_DOMINIO"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
         <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
-        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="SOURCE"/>
         <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Join_3">
+      
+      <viewAttribute hidden="true" id="JOIN$SCHEDULEID$SCHD_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_3">
         <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
@@ -610,18 +554,20 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
+      
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHEDULEID"/>
       </input>
-      <input node="#Projection_1">
+      <input node="Projection_1">
         <mapping xsi:type="Calculation:AttributeMapping" target="INST_ID" source="INST_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="LMS_START_DTE" source="LMS_START_DTE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="LMS_END_DTE" source="LMS_END_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHD_ID"/>
       </input>
-      <joinAttribute name="SCHEDULEID"/>
-    </calculationView>
-    <calculationView xsi:type="Calculation:RankView" id="Rank_Stud">
-      <descriptions/>
-      <viewAttributes>
+    <joinAttribute name="JOIN$SCHEDULEID$SCHD_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_Stud">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="CMPL_STAT_ID"/>
         <viewAttribute id="SCHEDULEID"/>
         <viewAttribute id="NUMEROORE"/>
@@ -642,63 +588,33 @@ END</formula>
         <viewAttribute id="ANNO_MESE_FORMAT"/>
         <viewAttribute id="FLAG_ISCRIZIONE"/>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
-        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID"/>
         <viewAttribute id="CALMONTH_ISCR"/>
         <viewAttribute id="ID_DOMINIO"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
         <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
-        <viewAttribute id="ID_DOMINIO_SOURCE" transparentFilter="false"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="ID_DOMINIO_SOURCE"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="SOURCE"/>
         <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Join_6">
-        <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="AGE_STUD" source="AGE_STUD"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="GRADE" source="GRADE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CLASSE_ISCRIZIONE" source="STUD_CLASSE_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="INST_ID" source="INST_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_END_DTE" source="LMS_END_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_START_DTE" source="LMS_START_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FASCE_ETA_STUD" source="FASCE_ETA_STUD"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID_1"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DATE_STAMP" source="ENRL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DATE_STAMP" source="CANCEL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_STAMP" source="START_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ANNO_MESE_FORMAT" source="ANNO_MESE_FORMAT"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="ID_DOMINIO_SOURCE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
-      </input>
-      <windowFunction>
-        <partitionViewAttributeName>CPNT_ID</partitionViewAttributeName>
-        <partitionViewAttributeName>SCHEDULEID</partitionViewAttributeName>
+    <calculatedViewAttributes/>
+      <input node="Join_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID_1"/></input>
+    <windowFunction dynamicPartitionAttributes="false">
+      <partitionViewAttributeName>CPNT_ID</partitionViewAttributeName>
+      <partitionViewAttributeName>SCHEDULEID</partitionViewAttributeName>
         <order byViewAttributeName="NUMEROORE" direction="ASC"/>
-        <rankThreshold>
-          <value>100000</value>
-        </rankThreshold>
-        <rankViewAttributeName>Rank_Column_Stud</rankViewAttributeName>
-      </windowFunction>
-    </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="FORMATTAZIONE_DATI" filterExpressionLanguage="SQL">
-      <descriptions/>
-      <viewAttributes>
+      <rankThreshold>
+        <value>100000</value>
+      </rankThreshold>
+      <rankViewAttributeName>Rank_Column_Stud</rankViewAttributeName>
+    </windowFunction>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="FORMATTAZIONE_DATI" filterExpressionLanguage="SQL">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="CMPL_STAT_ID"/>
         <viewAttribute id="SCHEDULEID"/>
         <viewAttribute id="NUMEROORE"/>
@@ -720,17 +636,17 @@ END</formula>
         <viewAttribute id="ANNO_MESE"/>
         <viewAttribute id="COUNTER_ENROLLED_ISCR"/>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
-        <viewAttribute id="SUBJ_ID" transparentFilter="false"/>
+        <viewAttribute id="SUBJ_ID"/>
         <viewAttribute id="CALMONTH_ISCR"/>
         <viewAttribute id="ID_DOMINIO"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_D"/>
         <viewAttribute id="DESCRIZIONE_SOURCE_I"/>
         <viewAttribute id="DESC_DOMINIO_SICUREZZA_I"/>
-        <viewAttribute id="DESCRIZIONE_SOURCE_D" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
+        <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
+        <viewAttribute id="SOURCE"/>
         <viewAttribute id="ID_DOMINIO_SOURCE"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="NVARCHAR" id="CMPL_STAT_ID_FORMAT" length="256" expressionLanguage="SQL">
           <formula>case when &quot;CMPL_STAT_ID&quot; is null then 'COURSE_NotComplete' else &quot;CMPL_STAT_ID&quot; end</formula>
         </calculatedViewAttribute>
@@ -738,60 +654,35 @@ END</formula>
           <formula>&quot;CPNT_ID&quot; || COALESCE(&quot;CPNT_TYP_ID&quot;,'')|| COALESCE(&quot;SCHEDULEID&quot;,'') </formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="INTEGER" id="COUNTER_COMPLETED_STUD" expressionLanguage="SQL">
-          <formula>CASE WHEN &quot;CMPL_STAT_ID_FORMAT&quot; IN('CERTIFICATION_Complete', 'COURSE_Complete', 'HALBTAGSVERANST_Complete', 'KURSFOLGE_Complete', 'LEHRGANG_Complete', 'ONLINE_Complete', 'SEMINARREIHE_Complete', 'SEMINAR_Complete', 'WERKSTAETTE_Complete')  THEN 1&#xD;
-ELSE 0&#xD;
-&#xD;
+          <formula>CASE WHEN &quot;CMPL_STAT_ID_FORMAT&quot; IN('CERTIFICATION_Complete', 'COURSE_Complete', 'HALBTAGSVERANST_Complete', 'KURSFOLGE_Complete', 'LEHRGANG_Complete', 'ONLINE_Complete', 'SEMINARREIHE_Complete', 'SEMINAR_Complete', 'WERKSTAETTE_Complete')  THEN 1
+ELSE 0
+
 END</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="NVARCHAR" id="FASCIA_STUD_ONLINE" length="127" expressionLanguage="SQL">
-          <formula>CASE&#xD;
-WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A18' THEN 'A18'&#xD;
-WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A1929' THEN 'A1929'&#xD;
-WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A3039' THEN 'A3039'&#xD;
-WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A4049' THEN 'A4049'&#xD;
-WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A5059' THEN 'A5059'&#xD;
-WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A60' THEN 'A60'&#xD;
+          <formula>CASE
+WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A18' THEN 'A18'
+WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A1929' THEN 'A1929'
+WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A3039' THEN 'A3039'
+WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A4049' THEN 'A4049'
+WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A5059' THEN 'A5059'
+WHEN &quot;LABEL_VALUE&quot;='Online' AND &quot;FASCE_ETA_STUD&quot; = 'A60' THEN 'A60'
 END</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="DATE" id="ANNO_MESE_CALC" expressionLanguage="SQL">
           <formula>CASE WHEN (&quot;CALMONTH_ISCR&quot; is null or &quot;CALMONTH_ISCR&quot; = '') then &quot;ANNO_MESE&quot; else &quot;CALMONTH_ISCR&quot; end</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#Rank_Stud">
-        <mapping xsi:type="Calculation:AttributeMapping" target="CMPL_STAT_ID" source="CMPL_STAT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHEDULEID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="AGE_STUD" source="AGE_STUD"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="GRADE" source="GRADE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CLASSE_ISCRIZIONE" source="STUD_CLASSE_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="INST_ID" source="INST_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_END_DTE" source="LMS_END_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LMS_START_DTE" source="LMS_START_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FASCE_ETA_STUD" source="FASCE_ETA_STUD"/>
+      <input node="Rank_Stud">
         <mapping xsi:type="Calculation:AttributeMapping" target="Rank_Column" source="Rank_Column_Stud"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_DATE_STAMP" source="ENRL_DATE_STAMP"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CANCEL_DATE" source="CANCEL_DATE_STAMP"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_STAMP" source="START_DATE_STAMP"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="ANNO_MESE" source="ANNO_MESE_FORMAT"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="COUNTER_ENROLLED_ISCR" source="FLAG_ISCRIZIONE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SUBJ_ID" source="SUBJ_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO" source="ID_DOMINIO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUREZZA_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_I" source="DESCRIZIONE_SOURCE_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUREZZA_I"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
       </input>
-      <filter>&quot;CPNT_ID&quot; is not null</filter>
-    </calculationView>
-  </calculationViews>
+    <filter>&quot;CPNT_ID&quot; is not null</filter>
+  </calculationView>
+</calculationViews>
   <logicalModel id="FORMATTAZIONE_DATI">
     <descriptions/>
     <attributes>
@@ -847,7 +738,7 @@ END</formula>
         <descriptions defaultDescription="CPNT_ID"/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="CPNT_ID"/>
       </attribute>
-      <attribute id="FASCIA_STUD_ONLINE" hidden="false" order="17" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <attribute id="FASCIA_STUD_ONLINE" order="17" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="FASCIA_STUD_ONLINE"/>
       </attribute>
@@ -863,27 +754,27 @@ END</formula>
         <descriptions defaultDescription="ANNO_MESE"/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="ANNO_MESE"/>
       </attribute>
-      <attribute id="ID_DOMINIO" hidden="false" order="21" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <attribute id="ID_DOMINIO" order="21" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="ID_DOMINIO"/>
       </attribute>
-      <attribute id="DESC_DOMINIO_SICUREZZA_D" hidden="false" order="22" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <attribute id="DESC_DOMINIO_SICUREZZA_D" order="22" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="DESC_DOMINIO_SICUREZZA_D"/>
       </attribute>
-      <attribute id="DESCRIZIONE_SOURCE_I" hidden="false" order="23" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <attribute id="DESCRIZIONE_SOURCE_I" order="23" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="DESCRIZIONE_SOURCE_I"/>
       </attribute>
-      <attribute id="DESC_DOMINIO_SICUREZZA_I" hidden="false" order="24" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+      <attribute id="DESC_DOMINIO_SICUREZZA_I" order="24" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="DESC_DOMINIO_SICUREZZA_I"/>
       </attribute>
-      <attribute id="DESCRIZIONE_SOURCE_D" order="25" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="DESCRIZIONE_SOURCE_D" order="25" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="DESCRIZIONE_SOURCE_D"/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="DESCRIZIONE_SOURCE_D"/>
       </attribute>
-      <attribute id="SOURCE" order="26" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="SOURCE" order="26" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="SOURCE"/>
         <keyMapping columnObjectName="FORMATTAZIONE_DATI" columnName="SOURCE"/>
       </attribute>
@@ -909,17 +800,23 @@ END</formula>
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="NUMEROORE" order="3" aggregationType="sum" engineAggregation="sum" measureType="simple">
+      <measure id="NUMEROORE" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="NUMEROORE"/>
         <measureMapping columnObjectName="FORMATTAZIONE_DATI" columnName="NUMEROORE"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
-      <measure id="COUNTER_ENROLLED_ISCR" order="13" aggregationType="max" engineAggregation="max" measureType="simple">
+      <measure id="COUNTER_ENROLLED_ISCR" order="13" aggregationType="max" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="COUNTER_ENROLLED_ISCR"/>
         <measureMapping columnObjectName="FORMATTAZIONE_DATI" columnName="COUNTER_ENROLLED_ISCR"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
-      <measure id="COUNTER_CANCELLED_ISCR" order="14" aggregationType="max" engineAggregation="max" measureType="simple">
+      <measure id="COUNTER_CANCELLED_ISCR" order="14" aggregationType="max" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="COUNTER_CANCELLED_ISCR"/>
         <measureMapping columnObjectName="FORMATTAZIONE_DATI" columnName="FLAG_ANNULLAMENTO"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
     </baseMeasures>
     <calculatedMeasures/>
@@ -928,12 +825,12 @@ END</formula>
     <sharedDimensions>
       <logicalJoin associatedObjectUri="DIM_STUDENT">
         <attributes>
-          <attributeRef>#STUD_ID$local</attributeRef>
+          <attributeRef>STUD_ID$local</attributeRef>
         </attributes>
         <associatedAttributeNames>
           <attributeName>STUD_ID_DIM</attributeName>
         </associatedAttributeNames>
-        <properties joinOperator="Equal" joinType="leftOuter"/>
+        <properties joinType="leftOuter" joinOperator="Equal"/>
         <associatedAttributeFeatures>
           <attributeReference attributeName="FULL_NAME" hidden="true"/>
           <attributeReference attributeName="STUD_ID_DIM" hidden="true"/>
@@ -947,12 +844,12 @@ END</formula>
       </logicalJoin>
       <logicalJoin associatedObjectUri="DIM_CORSO_EDIZIONE_TEC">
         <attributes>
-          <attributeRef>#KEY_DIM_CORSO_ED$local</attributeRef>
+          <attributeRef>KEY_DIM_CORSO_ED$local</attributeRef>
         </attributes>
         <associatedAttributeNames>
           <attributeName>CHIAVE_DIM_CORSO_ED_KEY</attributeName>
         </associatedAttributeNames>
-        <properties joinOperator="Equal" joinType="leftOuter"/>
+        <properties joinType="leftOuter" joinOperator="Equal"/>
         <associatedAttributeFeatures>
           <attributeReference attributeName="SCHD_ID_DIM" hidden="true"/>
           <attributeReference attributeName="STATUS_CORSO" hidden="true"/>
@@ -987,79 +884,119 @@ END</formula>
       </logicalJoin>
     </sharedDimensions>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="325" y="87"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="377.5534844615145" y="112"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="CORSI_COMPLETATI" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="480" y="569"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="354.45413441017763" y="816.9999964237213"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="BIRTH_DATE" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="176" y="935"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="301.99999999999994" y="1441.9999916553497"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="22" y="935"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="511.9999999999999" y="1441.9999916553497"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="176" y="839"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="388.01483007811805" y="1281.9999928474426"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="BIRTH_DATE" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="START_ENROLL" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="330" y="1013"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="91.99999999999989" y="1546.9999916553497"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="330" y="935"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="91.99999999999989" y="1441.9999916553497"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="330" y="839"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="91.99999999999989" y="1299.4999928474426"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="251" y="743"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="361.3481634114514" y="1121.9999940395355"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="ETA_STUD" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="251" y="665"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="361.3481634114514" y="986.9999952316284"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="405" y="743"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="577.4568727384985" y="1121.9999940395355"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Rank_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="405" y="665"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="594.2921294178551" y="976.9999952316284"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="326" y="569"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="564.4541344101776" y="816.9999964237213"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
+    <shape modelObjectName="ETA_STUD" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Rank_2" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="402" y="473"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="478.07280010351974" y="656.9999976158142"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="CORSI_COMPLETATI" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="248" y="473"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="268.07280010351974" y="656.9999976158142"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="325" y="377"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="359.44330146119125" y="496.9999988079071"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="Rank_Stud" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="325" y="299"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="359.44330146119125" y="391.9999988079071"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="FORMATTAZIONE_DATI" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="325" y="221"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="359.44330146119125" y="266.9999988079071"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape modelObjectName="FORMATTAZIONE_DATI" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
         <upperLeftCorner x="9" y="30"/>
@@ -1071,5 +1008,5 @@ END</formula>
         <upperLeftCorner x="526" y="315"/>
       </shape>
     </shapes>
-  </layout>
+</layout>
 </Calculation:scenario>

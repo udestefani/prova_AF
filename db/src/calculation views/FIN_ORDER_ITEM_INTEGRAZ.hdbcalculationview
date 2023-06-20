@@ -1,99 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="FIN_ORDER_ITEM_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
-  <origin/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="FIN_ORDER_ITEM_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+<origin/>
   <descriptions defaultDescription="FIN_ORDER_ITEM_INTEGRAZ"/>
   <localVariables/>
   <variableMappings/>
   <informationModelLayout relativeWidthScenario="41"/>
   <dataSources>
-    <DataSource id="PA_FIN_ORDER_ITEM" type="DATA_BASE_TABLE">
+    <DataSource id="PA_FIN_ORDER_ITEM">
       <resourceUri>PA_FIN_ORDER_ITEM</resourceUri>
     </DataSource>
-    <DataSource id="CORSI_STORICO" type="DATA_BASE_TABLE">
+    <DataSource id="CORSI_STORICO">
       <resourceUri>CORSI_STORICO</resourceUri>
     </DataSource>
-    <DataSource id="ISCRIZIONE_STORICO" type="DATA_BASE_TABLE">
+    <DataSource id="ISCRIZIONE_STORICO">
       <resourceUri>ISCRIZIONE_STORICO</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
-      <descriptions/>
-      <viewAttributes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="ORDER_ITEM_ID"/>
         <viewAttribute id="SCHD_ID"/>
         <viewAttribute id="PRICE"/>
         <viewAttribute id="STUD_ID"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#PA_FIN_ORDER_ITEM">
-        <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ITEM_ID" source="ORDER_ITEM_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-      </input>
+    <calculatedViewAttributes/>
+      <input node="PA_FIN_ORDER_ITEM"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="KURS_ID"/>
         <viewAttribute id="KURS_BROSCHUERE_KOSTEN"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#CORSI_STORICO">
-        <mapping xsi:type="Calculation:AttributeMapping" target="KURS_ID" source="KURS_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="KURS_BROSCHUERE_KOSTEN" source="KURS_BROSCHUERE_KOSTEN"/>
-      </input>
+    <calculatedViewAttributes/>
+      <input node="CORSI_STORICO"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinOrder="OUTSIDE_IN" joinType="rightOuter">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
-        <viewAttribute id="PRICE" transparentFilter="false"/>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="rightOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="PRICE"/>
         <viewAttribute id="TNA_TNM_ID"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Projection_2">
+      
+      <viewAttribute hidden="true" id="JOIN$KURS_ID$TNA_KURS_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_2">
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="KURS_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="KURS_BROSCHUERE_KOSTEN"/>
+      
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KURS_ID$TNA_KURS_ID" source="KURS_ID"/>
       </input>
-      <input node="#ISCRIZIONE_STORICO">
+      <input node="ISCRIZIONE_STORICO">
         <mapping xsi:type="Calculation:AttributeMapping" target="TNA_TNM_ID" source="TNA_TNM_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="TNA_KURS_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KURS_ID$TNA_KURS_ID" source="TNA_KURS_ID"/>
       </input>
-      <joinAttribute name="SCHD_ID"/>
-    </calculationView>
-    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="ORDER_ITEM_ID" transparentFilter="false"/>
-        <viewAttribute id="STUD_ID" transparentFilter="false"/>
-        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
-        <viewAttribute id="PRICE" transparentFilter="false"/>
+    <joinAttribute name="JOIN$KURS_ID$TNA_KURS_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ORDER_ITEM_ID"/>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="PRICE"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Projection_1">
         <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_ITEM_ID" source="ORDER_ITEM_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
       </input>
-      <input emptyUnionBehavior="NO_ROW" node="#Join_1">
+      <input emptyUnionBehavior="NO_ROW" node="Join_1">
         <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ORDER_ITEM_ID" null="true" value=""/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="TNA_TNM_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
       </input>
     </calculationView>
-  </calculationViews>
+</calculationViews>
   <logicalModel id="Union_1">
     <descriptions/>
     <attributes>
-      <attribute id="SCHD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="SCHD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="SCHD_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="SCHD_ID"/>
       </attribute>
-      <attribute id="STUD_ID" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="STUD_ID" order="2" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="STUD_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="STUD_ID"/>
       </attribute>
@@ -111,37 +108,47 @@
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="PRICE" order="4" aggregationType="max" engineAggregation="max" measureType="simple">
+      <measure id="PRICE" order="4" aggregationType="max" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="PRICE"/>
         <measureMapping columnObjectName="Union_1" columnName="PRICE"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
     </baseMeasures>
     <calculatedMeasures/>
     <restrictedMeasures/>
     <localDimensions/>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="99" y="87"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="213.23951013324876" y="112"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="22" y="281"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="301.99999999999994" y="356.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="176" y="377"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="91.99999999999997" y="496.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="176" y="281"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="91.99999999999997" y="356.9999988079071"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="ISCRIZIONE_STORICO" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="99" y="165"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="213.23951013324876" y="217"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
     </shapes>
-  </layout>
+</layout>
 </Calculation:scenario>

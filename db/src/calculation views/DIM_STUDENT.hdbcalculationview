@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="DIM_STUDENT" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
-  <origin/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="DIM_STUDENT" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+<origin/>
   <descriptions defaultDescription="DIM_STUDENT"/>
   <metadata activatedAt="2023-05-03 12:50:18.0" changedAt="2023-05-03 12:50:16.436"/>
   <localVariables/>
   <variableMappings/>
   <informationModelLayout relativeWidthScenario="40"/>
   <dataSources>
-    <DataSource id="STUDENT_INTEGRAZ" type="CALCULATION_VIEW">
+    <DataSource id="STUDENT_INTEGRAZ">
       <resourceUri>STUDENT_INTEGRAZ</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
-      <descriptions/>
-      <viewAttributes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="STUD_ID"/>
         <viewAttribute id="FNAME"/>
         <viewAttribute id="LNAME"/>
@@ -24,23 +25,14 @@
         <viewAttribute id="STUD_CF"/>
         <viewAttribute id="NOTACTIVE"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="DATE" id="BIRTH_DATE_STAMP" expressionLanguage="SQL">
           <formula>&quot;BIRTH_DATE&quot;</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#STUDENT_INTEGRAZ">
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FNAME" source="FNAME"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LNAME" source="LNAME"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DMN_ID" source="DMN_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="BIRTH_DATE" source="BIRTH_DATE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CF" source="STUD_CF"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
-      </input>
+      <input node="STUDENT_INTEGRAZ"/>
     </calculationView>
-  </calculationViews>
+</calculationViews>
   <logicalModel id="Projection_2">
     <descriptions/>
     <attributes>
@@ -72,7 +64,7 @@
         <descriptions defaultDescription="STUD_NOTACTIVE"/>
         <keyMapping columnObjectName="Projection_2" columnName="NOTACTIVE"/>
       </attribute>
-      <attribute id="BIRTH_DATE_STAMP" order="9" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="BIRTH_DATE_STAMP" order="9" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="BIRTH_DATE_STAMP"/>
         <keyMapping columnObjectName="Projection_2" columnName="BIRTH_DATE_STAMP"/>
       </attribute>
@@ -97,16 +89,16 @@
     <restrictedMeasures/>
     <localDimensions/>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="22" y="87"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="92" y="112"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="22" y="165"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="92" y="217"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
     </shapes>
-  </layout>
+</layout>
 </Calculation:scenario>

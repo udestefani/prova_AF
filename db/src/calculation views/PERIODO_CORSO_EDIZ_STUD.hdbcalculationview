@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.3" id="PERIODO_CORSO_EDIZ_STUD" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="3.0" id="PERIODO_CORSO_EDIZ_STUD" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
   <descriptions defaultDescription="PERIODO_CORSO_EDIZ_STUD"/>
   <localVariables>
     <variable id="IP_ANNO" parameter="true">
@@ -11,9 +11,9 @@
     </variable>
   </localVariables>
   <variableMappings>
-    <mapping xsi:type="Variable:VariableMapping" dataSource="#TF_PERIODO_CORSO_EDIZ_STUD">
-      <targetVariable name="IP_ANNO" resourceUri="&quot;FORMAZIONE&quot;.TF_PERIODO_CORSO_EDIZ_STUD"/>
-      <localVariable>#IP_ANNO</localVariable>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="TF_PERIODO_CORSO_EDIZ_STUD">
+      <targetVariable name="IP_ANNO" resourceUri="TF_PERIODO_CORSO_EDIZ_STUD"/>
+      <localVariable>IP_ANNO</localVariable>
     </mapping>
   </variableMappings>
   <informationModelLayout relativeWidthScenario="27"/>
@@ -22,49 +22,50 @@
       <resourceUri>TF_PERIODO_CORSO_EDIZ_STUD</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews/>
+<snapshotProcedures/>
+<calculationViews/>
   <logicalModel id="TF_PERIODO_CORSO_EDIZ_STUD">
     <descriptions/>
     <attributes>
       <attribute id="CALMONTH" order="1" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CALMONTH"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CALMONTH"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CALMONTH"/>
       </attribute>
       <attribute id="CALMONTH_ISCR" order="2" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CALMONTH_ISCR"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CALMONTH_ISCR"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CALMONTH_ISCR"/>
       </attribute>
       <attribute id="STUD_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="STUD_ID"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="STUD_ID"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="STUD_ID"/>
       </attribute>
       <attribute id="SCHD_ID" order="4" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="SCHD_ID"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="SCHD_ID"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="SCHD_ID"/>
       </attribute>
       <attribute id="DATA_ENROL" order="5" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="DATA_ENROL"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="DATA_ENROL"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="DATA_ENROL"/>
       </attribute>
       <attribute id="CANCEL_DTE" order="6" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CANCEL_DTE"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CANCEL_DTE"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CANCEL_DTE"/>
       </attribute>
       <attribute id="ENRL_DTE_END" order="7" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ENRL_DTE_END"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="ENRL_DTE_END"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="ENRL_DTE_END"/>
       </attribute>
       <attribute id="ENRL_DTE_PERIOD" order="8" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ENRL_DTE_PERIOD"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="ENRL_DTE_PERIOD"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="ENRL_DTE_PERIOD"/>
       </attribute>
       <attribute id="ENRL_DTE_END_PERIOD" order="9" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ENRL_DTE_END_PERIOD"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="ENRL_DTE_END_PERIOD"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="ENRL_DTE_END_PERIOD"/>
       </attribute>
       <attribute id="CANCEL_DTE_PERIOD" order="10" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CANCEL_DTE_PERIOD"/>
-        <keyMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CANCEL_DTE_PERIOD"/>
+        <keyMapping columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="CANCEL_DTE_PERIOD"/>
       </attribute>
     </attributes>
     <calculatedAttributes/>
@@ -76,25 +77,29 @@
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="FLAG_ISCRIZIONE" order="11" aggregationType="sum" engineAggregation="sum" measureType="simple">
+      <measure id="FLAG_ISCRIZIONE" order="11" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="FLAG_ISCRIZIONE"/>
         <measureMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="FLAG_ISCRIZIONE"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
-      <measure id="FLAG_ANNULLAMENTO" order="12" aggregationType="sum" engineAggregation="sum" measureType="simple">
+      <measure id="FLAG_ANNULLAMENTO" order="12" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="FLAG_ANNULLAMENTO"/>
         <measureMapping schemaName="FORMAZIONE" columnObjectName="TF_PERIODO_CORSO_EDIZ_STUD" columnName="FLAG_ANNULLAMENTO"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
     </baseMeasures>
     <calculatedMeasures/>
     <restrictedMeasures/>
     <localDimensions/>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
         <upperLeftCorner x="40" y="85"/>
         <rectangleSize height="0" width="0"/>
       </shape>
     </shapes>
-  </layout>
+</layout>
 </Calculation:scenario>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.3" id="FACT_CPNT_SCHED_STUD" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
-  <origin/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="3.0" id="FACT_CPNT_SCHED_STUD" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+<origin/>
   <descriptions defaultDescription="FACT_CPNT_SCHED_STUD_SAC calculation view esposta verso SAC"/>
   <metadata activatedAt="2023-05-22 17:04:23.0" changedAt="2023-05-22 17:04:20.717"/>
   <localVariables>
@@ -13,18 +13,19 @@
     </variable>
   </localVariables>
   <variableMappings>
-    <mapping xsi:type="Variable:VariableMapping" dataSource="#FACT_CPNT_SCHED_STUD_TEC">
-      <targetVariable name="IP_ANNO" resourceUri="/Analisi_Formazione/calculationviews/FACT_CPNT_SCHED_STUD_TEC"/>
-      <localVariable>#IP_ANNO</localVariable>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="FACT_CPNT_SCHED_STUD_TEC">
+      <targetVariable name="IP_ANNO" resourceUri="FACT_CPNT_SCHED_STUD_TEC"/>
+      <localVariable>IP_ANNO</localVariable>
     </mapping>
   </variableMappings>
   <informationModelLayout relativeWidthScenario="27"/>
   <dataSources>
-    <DataSource id="FACT_CPNT_SCHED_STUD_TEC" type="CALCULATION_VIEW">
+    <DataSource id="FACT_CPNT_SCHED_STUD_TEC">
       <resourceUri>FACT_CPNT_SCHED_STUD_TEC</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews/>
+<snapshotProcedures/>
+<calculationViews/>
   <logicalModel id="FACT_CPNT_SCHED_STUD_TEC">
     <descriptions/>
     <attributes>
@@ -96,7 +97,7 @@
         <descriptions/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="FASCIA_STUD_ONLINE"/>
       </attribute>
-      <attribute id="BIRTH_DATE_STAMP" order="19" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="BIRTH_DATE_STAMP" order="19" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="BIRTH_DATE_STAMP"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="BIRTH_DATE_STAMP"/>
       </attribute>
@@ -112,11 +113,11 @@
         <descriptions defaultDescription="SCHED_ENRL_CUT_DATE"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="SCHED_ENRL_CUT_DATE"/>
       </attribute>
-      <attribute id="CREATE_DTE_TIMESTAMP" order="23" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="CREATE_DTE_TIMESTAMP" order="23" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CREATE_DTE_TIMESTAMP"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CREATE_DTE_TIMESTAMP"/>
       </attribute>
-      <attribute id="CPNT_END_DATE" order="24" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="CPNT_END_DATE" order="24" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CPNT_END_DATE"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CPNT_END_DATE"/>
       </attribute>
@@ -124,15 +125,15 @@
         <descriptions defaultDescription="CPNT_SCH_LAST_DATE_LEZIONE"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="CPNT_SCH_LAST_DATE_LEZIONE"/>
       </attribute>
-      <attribute id="ID_DOMINIO_SOURCE" order="26" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="ID_DOMINIO_SOURCE" order="26" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ID_DOMINIO_SOURCE"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="ID_DOMINIO_SOURCE"/>
       </attribute>
-      <attribute id="SOURCE" order="27" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="SOURCE" order="27" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="SOURCE"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="SOURCE"/>
       </attribute>
-      <attribute id="DESCRIZIONE_SOURCE_D" order="28" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="DESCRIZIONE_SOURCE_D" order="28" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="DESCRIZIONE_SOURCE_D"/>
         <keyMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="DESCRIZIONE_SOURCE_D"/>
       </attribute>
@@ -162,21 +163,23 @@
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="NUMEROORE" order="3" aggregationType="sum" engineAggregation="sum" measureType="simple">
+      <measure id="NUMEROORE" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="NUMEROORE"/>
         <measureMapping columnObjectName="FACT_CPNT_SCHED_STUD_TEC" columnName="NUMEROORE"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
     </baseMeasures>
     <calculatedMeasures/>
     <restrictedMeasures/>
     <localDimensions/>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
         <upperLeftCorner x="40" y="85"/>
         <rectangleSize height="0" width="0"/>
       </shape>
     </shapes>
-  </layout>
+</layout>
 </Calculation:scenario>

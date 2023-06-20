@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="SCHED_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
-  <origin/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="SCHED_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+<origin/>
   <descriptions defaultDescription="SCHED_INTEGRAZ"/>
   <metadata activatedAt="2023-05-12 14:20:55.0" changedAt="2023-05-12 14:20:48.612"/>
   <localVariables/>
   <variableMappings/>
   <informationModelLayout relativeWidthScenario="43"/>
   <dataSources>
-    <DataSource id="PA_SCHED" type="DATA_BASE_TABLE">
+    <DataSource id="PA_SCHED">
       <resourceUri>PA_SCHED</resourceUri>
     </DataSource>
-    <DataSource id="CORSI_STORICO" type="DATA_BASE_TABLE">
+    <DataSource id="CORSI_STORICO">
       <resourceUri>CORSI_STORICO</resourceUri>
     </DataSource>
-    <DataSource id="LOCATION_STORICO" type="DATA_BASE_TABLE">
+    <DataSource id="LOCATION_STORICO">
       <resourceUri>LOCATION_STORICO</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
-      <descriptions/>
-      <viewAttributes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="SCHD_ID"/>
         <viewAttribute id="DESCRIPTION"/>
         <viewAttribute id="NOTACTIVE"/>
@@ -41,93 +42,61 @@
         <viewAttribute id="FACILITY_DESC"/>
         <viewAttribute id="WITHDRAW_CUTOFF_DTE"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="DATE" id="ENRL_CUT_DATE" expressionLanguage="SQL">
-          <formula>case when (&quot;ENRL_CUT_DTE&quot; is null or &quot;ENRL_CUT_DTE&quot; ='') then to_date('22001231','YYYYMMDD') else &#xD;
- TO_DATE(&quot;ENRL_CUT_DTE&quot;, 'YYYYMMDD')&#xD;
+          <formula>case when (&quot;ENRL_CUT_DTE&quot; is null or &quot;ENRL_CUT_DTE&quot; ='') then to_date('22001231','YYYYMMDD') else 
+ TO_DATE(&quot;ENRL_CUT_DTE&quot;, 'YYYYMMDD')
  end</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#PA_SCHED">
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCELLED" source="CANCELLED"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="CPNT_TYP_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CANCEL_DTE" source="CANCEL_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE" source="ENRL_CUT_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_ID" source="FACILITY_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ADDR" source="ADDR"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_ADDR" source="EMAIL_ADDR"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="PHON_NUM" source="PHON_NUM"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FORMAT" source="FORMAT"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ACT_CPNT_ID" source="ACT_CPNT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LABEL_VALUE" source="LABEL_VALUE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="REV_DTE" source="REV_DTE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ORD" source="ORD"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FACILITY_DESC" source="FACILITY_DESC"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="WITHDRAW_CUTOFF_DTE" source="WITHDRAW_CUTOFF_DTE"/>
-      </input>
+      <input node="PA_SCHED"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="KURS_ID"/>
         <viewAttribute id="KURS_ORG_ID"/>
         <viewAttribute id="KSTA_BEZEICHNUNG"/>
         <viewAttribute id="PERI_BEZEICHNUNG"/>
         <viewAttribute id="KURS_ANMELDESCHLUSS"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="NVARCHAR" id="KURS_NOTACTIVE" length="1" expressionLanguage="SQL">
-          <formula>CASE&#xD;
-&#xD;
-WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'verschoben' THEN 'Y'&#xD;
-WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'keine Anmeldung möglich' THEN 'Y'&#xD;
-WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'in Vorbereitung/in Planung' THEN 'Y'&#xD;
-WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'abgesagt' THEN 'Y'&#xD;
-WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'abgeschlossen' THEN 'Y'&#xD;
-WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'in Durchführung' THEN 'Y'&#xD;
-&#xD;
+          <formula>CASE
+
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'verschoben' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'keine Anmeldung möglich' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'in Vorbereitung/in Planung' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'abgesagt' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'abgeschlossen' THEN 'Y'
+WHEN &quot;KSTA_BEZEICHNUNG&quot; = 'in Durchführung' THEN 'Y'
+
 END</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="DATE" id="ANMELDESCHLUSS_FORMAT" expressionLanguage="SQL">
-          <formula>CASE WHEN (&quot;KURS_ANMELDESCHLUSS&quot;='' OR &quot;KURS_ANMELDESCHLUSS&quot; IS NULL) THEN &#xD;
+          <formula>CASE WHEN (&quot;KURS_ANMELDESCHLUSS&quot;='' OR &quot;KURS_ANMELDESCHLUSS&quot; IS NULL) THEN 
 TO_DATE('22001231','YYYYMMDD') ELSE TO_DATE(substr(&quot;KURS_ANMELDESCHLUSS&quot;,0,10), 'DD/MM/YYYY') END</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#CORSI_STORICO">
-        <mapping xsi:type="Calculation:AttributeMapping" target="KURS_ID" source="KURS_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="KURS_ORG_ID" source="KURS_ORG_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="KSTA_BEZEICHNUNG" source="KSTA_BEZEICHNUNG"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="PERI_BEZEICHNUNG" source="PERI_BEZEICHNUNG"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="KURS_ANMELDESCHLUSS" source="KURS_ANMELDESCHLUSS"/>
-      </input>
+      <input node="CORSI_STORICO"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="ORG_EMAIL"/>
         <viewAttribute id="ORG_TELEFON1"/>
         <viewAttribute id="ORG_ADRESSE_CO"/>
         <viewAttribute id="GEM_BEZEICHNUNG"/>
         <viewAttribute id="ORG_ID"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#LOCATION_STORICO">
-        <mapping xsi:type="Calculation:AttributeMapping" target="ORG_EMAIL" source="ORG_EMAIL"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ORG_TELEFON1" source="ORG_TELEFON1"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ORG_ADRESSE_CO" source="ORG_ADRESSE_CO"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="GEM_BEZEICHNUNG" source="GEM_BEZEICHNUNG"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="ORG_ID" source="ORG_ID"/>
-      </input>
+    <calculatedViewAttributes/>
+      <input node="LOCATION_STORICO"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinOrder="OUTSIDE_IN" joinType="leftOuter">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
-        <viewAttribute id="ACT_CPNT_ID" transparentFilter="false"/>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ACT_CPNT_ID"/>
         <viewAttribute id="ORG_TELEFON1"/>
         <viewAttribute id="ORG_ADRESSE_CO"/>
         <viewAttribute id="GEM_BEZEICHNUNG"/>
@@ -136,10 +105,10 @@ TO_DATE('22001231','YYYYMMDD') ELSE TO_DATE(substr(&quot;KURS_ANMELDESCHLUSS&quo
         <viewAttribute id="KURS_NOTACTIVE"/>
         <viewAttribute id="PERI_BEZEICHNUNG"/>
         <viewAttribute id="ANMELDESCHLUSS_FORMAT"/>
-        <viewAttribute hidden="true" id="JOIN$KURS_ORG_ID$ORG_ID"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Projection_2">
+      <viewAttribute hidden="true" id="JOIN$KURS_ORG_ID$ORG_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_2">
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="KURS_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="ACT_CPNT_ID" source="KURS_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="KURS_ID" source="KURS_ID"/>
@@ -148,40 +117,40 @@ TO_DATE('22001231','YYYYMMDD') ELSE TO_DATE(substr(&quot;KURS_ANMELDESCHLUSS&quo
         <mapping xsi:type="Calculation:AttributeMapping" target="ANMELDESCHLUSS_FORMAT" source="ANMELDESCHLUSS_FORMAT"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KURS_ORG_ID$ORG_ID" source="KURS_ORG_ID"/>
       </input>
-      <input node="#Projection_3">
+      <input node="Projection_3">
         <mapping xsi:type="Calculation:AttributeMapping" target="ORG_TELEFON1" source="ORG_TELEFON1"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="ORG_ADRESSE_CO" source="ORG_ADRESSE_CO"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="GEM_BEZEICHNUNG" source="GEM_BEZEICHNUNG"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="ORG_EMAIL" source="ORG_EMAIL"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KURS_ORG_ID$ORG_ID" source="ORG_ID"/>
       </input>
-      <joinAttribute name="JOIN$KURS_ORG_ID$ORG_ID"/>
-    </calculationView>
-    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="DESCRIPTION" transparentFilter="false"/>
-        <viewAttribute id="NOTACTIVE" transparentFilter="false"/>
-        <viewAttribute id="CANCELLED" transparentFilter="false"/>
-        <viewAttribute id="CPNT_TYP_ID" transparentFilter="false"/>
-        <viewAttribute id="CANCEL_DTE" transparentFilter="false"/>
-        <viewAttribute id="FACILITY_ID" transparentFilter="false"/>
-        <viewAttribute id="CITY" transparentFilter="false"/>
-        <viewAttribute id="ADDR" transparentFilter="false"/>
-        <viewAttribute id="EMAIL_ADDR" transparentFilter="false"/>
-        <viewAttribute id="PHON_NUM" transparentFilter="false"/>
-        <viewAttribute id="FORMAT" transparentFilter="false"/>
-        <viewAttribute id="LABEL_VALUE" transparentFilter="false"/>
-        <viewAttribute id="REV_DTE" transparentFilter="false"/>
-        <viewAttribute id="ORD" transparentFilter="false"/>
-        <viewAttribute id="FACILITY_DESC" transparentFilter="false"/>
-        <viewAttribute id="WITHDRAW_CUTOFF_DTE" transparentFilter="false"/>
-        <viewAttribute id="SCHD_ID" transparentFilter="false"/>
-        <viewAttribute id="ACT_CPNT_ID" transparentFilter="false"/>
-        <viewAttribute id="ENRL_CUT_DTE" transparentFilter="false"/>
+    <joinAttribute name="JOIN$KURS_ORG_ID$ORG_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="DESCRIPTION"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="CANCELLED"/>
+        <viewAttribute id="CPNT_TYP_ID"/>
+        <viewAttribute id="CANCEL_DTE"/>
+        <viewAttribute id="FACILITY_ID"/>
+        <viewAttribute id="CITY"/>
+        <viewAttribute id="ADDR"/>
+        <viewAttribute id="EMAIL_ADDR"/>
+        <viewAttribute id="PHON_NUM"/>
+        <viewAttribute id="FORMAT"/>
+        <viewAttribute id="LABEL_VALUE"/>
+        <viewAttribute id="REV_DTE"/>
+        <viewAttribute id="ORD"/>
+        <viewAttribute id="FACILITY_DESC"/>
+        <viewAttribute id="WITHDRAW_CUTOFF_DTE"/>
+        <viewAttribute id="SCHD_ID"/>
+        <viewAttribute id="ACT_CPNT_ID"/>
+        <viewAttribute id="ENRL_CUT_DTE"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Projection_1">
         <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIPTION" source="DESCRIPTION"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CANCELLED" source="CANCELLED"/>
@@ -202,7 +171,7 @@ TO_DATE('22001231','YYYYMMDD') ELSE TO_DATE(substr(&quot;KURS_ANMELDESCHLUSS&quo
         <mapping xsi:type="Calculation:AttributeMapping" target="ACT_CPNT_ID" source="ACT_CPNT_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE" source="ENRL_CUT_DATE"/>
       </input>
-      <input emptyUnionBehavior="NO_ROW" node="#Join_1">
+      <input emptyUnionBehavior="NO_ROW" node="Join_1">
         <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DESCRIPTION" null="true" value=""/>
         <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="KURS_NOTACTIVE"/>
         <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CANCELLED" null="true" value=""/>
@@ -224,83 +193,83 @@ TO_DATE('22001231','YYYYMMDD') ELSE TO_DATE(substr(&quot;KURS_ANMELDESCHLUSS&quo
         <mapping xsi:type="Calculation:AttributeMapping" target="ENRL_CUT_DTE" source="ANMELDESCHLUSS_FORMAT"/>
       </input>
     </calculationView>
-  </calculationViews>
+</calculationViews>
   <logicalModel id="Union_1">
     <descriptions/>
     <attributes>
-      <attribute id="SCHD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="SCHD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="SCHD_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="SCHD_ID"/>
       </attribute>
-      <attribute id="DESCRIPTION" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="DESCRIPTION" order="2" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="DESCRIPTION"/>
         <keyMapping columnObjectName="Union_1" columnName="DESCRIPTION"/>
       </attribute>
-      <attribute id="NOTACTIVE" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="NOTACTIVE" order="3" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="NOTACTIVE"/>
         <keyMapping columnObjectName="Union_1" columnName="NOTACTIVE"/>
       </attribute>
-      <attribute id="CANCELLED" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="CANCELLED" order="4" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CANCELLED"/>
         <keyMapping columnObjectName="Union_1" columnName="CANCELLED"/>
       </attribute>
-      <attribute id="CPNT_TYP_ID" order="5" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="CPNT_TYP_ID" order="5" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CPNT_TYP_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="CPNT_TYP_ID"/>
       </attribute>
-      <attribute id="CANCEL_DTE_ORIG" order="6" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="CANCEL_DTE_ORIG" order="6" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CANCEL_DTE_ORIG"/>
         <keyMapping columnObjectName="Union_1" columnName="CANCEL_DTE"/>
       </attribute>
-      <attribute id="FACILITY_ID" order="7" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="FACILITY_ID" order="7" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="FACILITY_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="FACILITY_ID"/>
       </attribute>
-      <attribute id="CITY" order="8" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="CITY" order="8" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="CITY"/>
         <keyMapping columnObjectName="Union_1" columnName="CITY"/>
       </attribute>
-      <attribute id="ADDR" order="9" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="ADDR" order="9" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ADDR"/>
         <keyMapping columnObjectName="Union_1" columnName="ADDR"/>
       </attribute>
-      <attribute id="EMAIL_ADDR" order="10" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="EMAIL_ADDR" order="10" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="EMAIL_ADDR"/>
         <keyMapping columnObjectName="Union_1" columnName="EMAIL_ADDR"/>
       </attribute>
-      <attribute id="PHON_NUM" order="11" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="PHON_NUM" order="11" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="PHON_NUM"/>
         <keyMapping columnObjectName="Union_1" columnName="PHON_NUM"/>
       </attribute>
-      <attribute id="FORMAT" order="12" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="FORMAT" order="12" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="FORMAT"/>
         <keyMapping columnObjectName="Union_1" columnName="FORMAT"/>
       </attribute>
-      <attribute id="ACT_CPNT_ID" order="13" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="ACT_CPNT_ID" order="13" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ACT_CPNT_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="ACT_CPNT_ID"/>
       </attribute>
-      <attribute id="LABEL_VALUE" order="14" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="LABEL_VALUE" order="14" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="LABEL_VALUE"/>
         <keyMapping columnObjectName="Union_1" columnName="LABEL_VALUE"/>
       </attribute>
-      <attribute id="REV_DTE" order="15" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="REV_DTE" order="15" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="REV_DTE"/>
         <keyMapping columnObjectName="Union_1" columnName="REV_DTE"/>
       </attribute>
-      <attribute id="ORD" order="16" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="ORD" order="16" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ORD"/>
         <keyMapping columnObjectName="Union_1" columnName="ORD"/>
       </attribute>
-      <attribute id="FACILITY_DESC" order="17" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="FACILITY_DESC" order="17" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="FACILITY_DESC"/>
         <keyMapping columnObjectName="Union_1" columnName="FACILITY_DESC"/>
       </attribute>
-      <attribute id="WITHDRAW_CUTOFF_DTE" order="18" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="WITHDRAW_CUTOFF_DTE" order="18" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="WITHDRAW_CUTOFF_DTE"/>
         <keyMapping columnObjectName="Union_1" columnName="WITHDRAW_CUTOFF_DTE"/>
       </attribute>
-      <attribute id="ENRL_CUT_DTE" order="19" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="ENRL_CUT_DTE" order="19" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="ENRL_CUT_DTE"/>
         <keyMapping columnObjectName="Union_1" columnName="ENRL_CUT_DTE"/>
       </attribute>
@@ -325,32 +294,40 @@ TO_DATE('22001231','YYYYMMDD') ELSE TO_DATE(substr(&quot;KURS_ANMELDESCHLUSS&quo
     <restrictedMeasures/>
     <localDimensions/>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="99" y="87"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="328.6900820831794" y="112"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="22" y="281"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="395.83468516943316" y="356.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="99" y="377"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="92" y="516.9999976158142"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="253" y="377"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="302" y="516.9999976158142"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="176" y="281"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="118.66666666666666" y="356.9999988079071"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
       <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="99" y="165"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="328.6900820831794" y="217"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
     </shapes>
-  </layout>
+</layout>
 </Calculation:scenario>

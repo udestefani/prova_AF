@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="2.3" id="FACT_CONSUNTIVAZIONE" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
-  <origin/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" schemaVersion="3.0" id="FACT_CONSUNTIVAZIONE" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+<origin/>
   <descriptions defaultDescription="FACT_CPNT_SCHED_STUD"/>
   <metadata activatedAt="2023-05-22 14:44:20.0" changedAt="2023-05-22 14:44:18.889"/>
   <localVariables>
@@ -13,64 +13,57 @@
     </variable>
   </localVariables>
   <variableMappings>
-    <mapping xsi:type="Variable:VariableMapping" dataSource="#PERIODO_CORSO_EDIZ">
-      <targetVariable name="IP_ANNO" resourceUri="/Analisi_Formazione/calculationviews/PERIODO_CORSO_EDIZ"/>
-      <localVariable>#IP_ANNO</localVariable>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="PERIODO_CORSO_EDIZ">
+      <targetVariable name="IP_ANNO" resourceUri="PERIODO_CORSO_EDIZ"/>
+      <localVariable>IP_ANNO</localVariable>
     </mapping>
-    <mapping xsi:type="Variable:VariableMapping" dataSource="#PERIODO_CORSO_EDIZ_STUD_CONS">
-      <targetVariable name="IP_ANNO" resourceUri="/Analisi_Formazione/calculationviews/PERIODO_CORSO_EDIZ_STUD_CONS"/>
-      <localVariable>#IP_ANNO</localVariable>
+    <mapping xsi:type="Variable:VariableMapping" dataSource="PERIODO_CORSO_EDIZ_STUD_CONS">
+      <targetVariable name="IP_ANNO" resourceUri="PERIODO_CORSO_EDIZ_STUD_CONS"/>
+      <localVariable>IP_ANNO</localVariable>
     </mapping>
   </variableMappings>
   <informationModelLayout relativeWidthScenario="44"/>
   <dataSources>
-    <DataSource id="PERIODO_CORSO_EDIZ" type="CALCULATION_VIEW">
+    <DataSource id="PERIODO_CORSO_EDIZ">
       <resourceUri>PERIODO_CORSO_EDIZ</resourceUri>
     </DataSource>
-    <DataSource id="PERIODO_CORSO_EDIZ_STUD_CONS" type="CALCULATION_VIEW">
+    <DataSource id="PERIODO_CORSO_EDIZ_STUD_CONS">
       <resourceUri>PERIODO_CORSO_EDIZ_STUD_CONS</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
-      <descriptions/>
-      <viewAttributes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="CALMONTH"/>
         <viewAttribute id="CPNT_ID"/>
         <viewAttribute id="SCHD_ID"/>
         <viewAttribute id="START_DATE_CPNT"/>
         <viewAttribute id="END_DATE_CPNT"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#PERIODO_CORSO_EDIZ">
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
-      </input>
+    <calculatedViewAttributes/>
+      <input node="PERIODO_CORSO_EDIZ"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute aggregationType="sum" id="NUMEROORE"/>
         <viewAttribute id="STUDENTE"/>
         <viewAttribute id="SCHEDULEID"/>
         <viewAttribute id="CALMONTH"/>
         <viewAttribute id="CALMONTH_CONS"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#PERIODO_CORSO_EDIZ_STUD_CONS">
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="PERIODO_CORSO_EDIZ_STUD_CONS">
         <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE_TOT"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUDENTE" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_CONS" source="CALMONTH_CONS"/>
-      </input>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHEDULEID" source="SCHD_ID"/></input>
     </calculationView>
-    <calculationView xsi:type="Calculation:JoinView" id="Join_1" dynamic="false" joinOrder="OUTSIDE_IN" joinType="leftOuter">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" dynamic="false" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="CALMONTH"/>
         <viewAttribute id="CPNT_ID"/>
         <viewAttribute id="SCHD_ID"/>
@@ -79,26 +72,32 @@
         <viewAttribute id="NUMEROORE"/>
         <viewAttribute id="STUDENTE"/>
         <viewAttribute id="CALMONTH_CONS"/>
-      </viewAttributes>
-      <calculatedViewAttributes/>
-      <input node="#Projection_1">
+      
+      <viewAttribute hidden="true" id="JOIN$SCHD_ID$SCHEDULEID"/>
+      <viewAttribute hidden="true" id="JOIN$CALMONTH$CALMONTH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_1">
         <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="CPNT_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="START_DATE_CPNT" source="START_DATE_CPNT"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="END_DATE_CPNT" source="END_DATE_CPNT"/>
+      
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHD_ID$SCHEDULEID" source="SCHD_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CALMONTH$CALMONTH" source="CALMONTH"/>
       </input>
-      <input node="#Aggregation_1">
+      <input node="Aggregation_1">
         <mapping xsi:type="Calculation:AttributeMapping" target="NUMEROORE" source="NUMEROORE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUDENTE" source="STUDENTE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_CONS" source="CALMONTH_CONS"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="SCHD_ID" source="SCHEDULEID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH" source="CALMONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHD_ID$SCHEDULEID" source="SCHEDULEID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CALMONTH$CALMONTH" source="CALMONTH"/>
       </input>
-      <joinAttribute name="SCHD_ID"/>
-      <joinAttribute name="CALMONTH"/>
-    </calculationView>
-  </calculationViews>
+    <joinAttribute name="JOIN$SCHD_ID$SCHEDULEID"/>
+    <joinAttribute name="JOIN$CALMONTH$CALMONTH"/>
+  </calculationView>
+</calculationViews>
   <logicalModel id="Join_1">
     <descriptions/>
     <attributes>
@@ -140,33 +139,44 @@
       </layout>
     </privateDataFoundation>
     <baseMeasures>
-      <measure id="NUMEROORE" order="7" aggregationType="sum" engineAggregation="sum" measureType="simple">
+      <measure id="NUMEROORE" order="7" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
         <descriptions defaultDescription="NUMEROORE"/>
         <measureMapping columnObjectName="Join_1" columnName="NUMEROORE"/>
+      
+        <exceptionAggregationMetadata/>
       </measure>
     </baseMeasures>
     <calculatedMeasures/>
     <restrictedMeasures/>
     <localDimensions/>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="99" y="120"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="221.11302679000914" y="112"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="22" y="294"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="92.00000000000001" y="376.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="176" y="294"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="302.00000000000006" y="376.9999988079071"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="99" y="198"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="221.11302679000914" y="217"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
-    </shapes>
-  </layout>
+    
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Aggregation_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
 </Calculation:scenario>

@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="STUDENT_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
-  <origin/>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="STUDENT_INTEGRAZ" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" calculationScenarioType="TREE_BASED" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection">
+<origin/>
   <descriptions defaultDescription="STUDENT_INTEGRAZ"/>
   <metadata activatedAt="2023-05-22 09:48:30.0" changedAt="2023-05-22 09:48:33.908"/>
   <localVariables/>
   <variableMappings/>
   <informationModelLayout relativeWidthScenario="39"/>
   <dataSources>
-    <DataSource id="PA_STUDENT" type="DATA_BASE_TABLE">
+    <DataSource id="PA_STUDENT">
       <resourceUri>PA_STUDENT</resourceUri>
     </DataSource>
-    <DataSource id="PARTECIPANTI_STORICO" type="DATA_BASE_TABLE">
+    <DataSource id="PARTECIPANTI_STORICO">
       <resourceUri>PARTECIPANTI_STORICO</resourceUri>
     </DataSource>
   </dataSources>
-  <calculationViews>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
-      <descriptions/>
-      <viewAttributes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="STUD_ID"/>
         <viewAttribute id="PERSON_ID_EXTERNAL"/>
         <viewAttribute id="DMN_ID"/>
@@ -29,7 +30,7 @@
         <viewAttribute id="BIRTH_DATE"/>
         <viewAttribute id="STUD_CF"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="NVARCHAR" id="SOURCE" length="3" expressionLanguage="COLUMN_ENGINE">
           <formula>'LMS'</formula>
         </calculatedViewAttribute>
@@ -37,28 +38,17 @@
           <formula>TO_DATE(&quot;BIRTH_DATE&quot;, 'DD/MM/YYYY')</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="NVARCHAR" id="GENDER_CALC" length="1" expressionLanguage="SQL">
-          <formula>CASE WHEN &quot;GENDER&quot; is null or &quot;GENDER&quot; = '' and length(&quot;STUD_CF&quot;) = 16 THEN&#xD;
-CASE WHEN to_int(SUBSTR(&quot;STUD_CF&quot;,10,2)) >= 41 then 'F' else 'M' end &#xD;
-ELSE &quot;GENDER&quot; END&#xD;
+          <formula>CASE WHEN &quot;GENDER&quot; is null or &quot;GENDER&quot; = '' and length(&quot;STUD_CF&quot;) = 16 THEN
+CASE WHEN to_int(SUBSTR(&quot;STUD_CF&quot;,10,2)) &gt;= 41 then 'F' else 'M' end 
+ELSE &quot;GENDER&quot; END
 </formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#PA_STUDENT">
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="PERSON_ID_EXTERNAL" source="PERSON_ID_EXTERNAL"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="DMN_ID" source="DMN_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="NOTACTIVE" source="NOTACTIVE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="EMP_STAT_ID" source="EMP_STAT_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="LNAME" source="LNAME"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="FNAME" source="FNAME"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="GENDER" source="GENDER"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="BIRTH_DATE" source="BIRTH_DATE"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CF" source="STUD_CF"/>
-      </input>
+      <input node="PA_STUDENT"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
-      <descriptions/>
-      <viewAttributes>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
         <viewAttribute id="TNM_ID"/>
         <viewAttribute id="TNM_VORNAME"/>
         <viewAttribute id="TNM_NACHNAME"/>
@@ -66,13 +56,13 @@ ELSE &quot;GENDER&quot; END&#xD;
         <viewAttribute id="TNM_GEBURTSDATUM"/>
         <viewAttribute id="GSL_BEZEICHNUNG_I"/>
       </viewAttributes>
-      <calculatedViewAttributes>
+    <calculatedViewAttributes>
         <calculatedViewAttribute datatype="NVARCHAR" id="GENDER_STUD" length="1" expressionLanguage="SQL">
-          <formula>CASE&#xD;
-&#xD;
-WHEN &quot;GSL_BEZEICHNUNG_I&quot;='femminile' THEN 'F'&#xD;
-WHEN &quot;GSL_BEZEICHNUNG_I&quot;='maschile' THEN 'M'&#xD;
-&#xD;
+          <formula>CASE
+
+WHEN &quot;GSL_BEZEICHNUNG_I&quot;='femminile' THEN 'F'
+WHEN &quot;GSL_BEZEICHNUNG_I&quot;='maschile' THEN 'M'
+
 END</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="DATE" id="BIRTH_DATE" expressionLanguage="SQL">
@@ -85,37 +75,30 @@ END</formula>
           <formula>'Y'</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="NVARCHAR" id="GENDER_CALC" length="1" expressionLanguage="SQL">
-          <formula>case when (&quot;GENDER_STUD&quot; is null or &quot;GENDER_STUD&quot; = '') and length(&quot;TNM_STEUERNUMMER&quot;) = 16 THEN&#xD;
-CASE WHEN to_int(SUBSTR(&quot;TNM_STEUERNUMMER&quot;,10,2)) >= 41 then 'F' else 'M' end &#xD;
+          <formula>case when (&quot;GENDER_STUD&quot; is null or &quot;GENDER_STUD&quot; = '') and length(&quot;TNM_STEUERNUMMER&quot;) = 16 THEN
+CASE WHEN to_int(SUBSTR(&quot;TNM_STEUERNUMMER&quot;,10,2)) &gt;= 41 then 'F' else 'M' end 
 ELSE &quot;GENDER_STUD&quot; END </formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="#PARTECIPANTI_STORICO">
-        <mapping xsi:type="Calculation:AttributeMapping" target="TNM_ID" source="TNM_ID"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="TNM_VORNAME" source="TNM_VORNAME"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="TNM_NACHNAME" source="TNM_NACHNAME"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="TNM_STEUERNUMMER" source="TNM_STEUERNUMMER"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="TNM_GEBURTSDATUM" source="TNM_GEBURTSDATUM"/>
-        <mapping xsi:type="Calculation:AttributeMapping" target="GSL_BEZEICHNUNG_I" source="GSL_BEZEICHNUNG_I"/>
-      </input>
+      <input node="PARTECIPANTI_STORICO"/>
     </calculationView>
-    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
-      <descriptions/>
-      <viewAttributes>
-        <viewAttribute id="STUD_ID" transparentFilter="false"/>
-        <viewAttribute id="PERSON_ID_EXTERNAL" transparentFilter="false"/>
-        <viewAttribute id="DMN_ID" transparentFilter="false"/>
-        <viewAttribute id="NOTACTIVE" transparentFilter="false"/>
-        <viewAttribute id="EMP_STAT_ID" transparentFilter="false"/>
-        <viewAttribute id="LNAME" transparentFilter="false"/>
-        <viewAttribute id="FNAME" transparentFilter="false"/>
-        <viewAttribute id="GENDER" transparentFilter="false"/>
-        <viewAttribute id="BIRTH_DATE" transparentFilter="false"/>
-        <viewAttribute id="STUD_CF" transparentFilter="false"/>
-        <viewAttribute id="SOURCE" transparentFilter="false"/>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="STUD_ID"/>
+        <viewAttribute id="PERSON_ID_EXTERNAL"/>
+        <viewAttribute id="DMN_ID"/>
+        <viewAttribute id="NOTACTIVE"/>
+        <viewAttribute id="EMP_STAT_ID"/>
+        <viewAttribute id="LNAME"/>
+        <viewAttribute id="FNAME"/>
+        <viewAttribute id="GENDER"/>
+        <viewAttribute id="BIRTH_DATE"/>
+        <viewAttribute id="STUD_CF"/>
+        <viewAttribute id="SOURCE"/>
       </viewAttributes>
-      <calculatedViewAttributes/>
-      <input emptyUnionBehavior="NO_ROW" node="#Projection_1">
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Projection_1">
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="PERSON_ID_EXTERNAL" source="PERSON_ID_EXTERNAL"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="DMN_ID" source="DMN_ID"/>
@@ -128,7 +111,7 @@ ELSE &quot;GENDER_STUD&quot; END </formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_CF" source="STUD_CF"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
       </input>
-      <input emptyUnionBehavior="NO_ROW" node="#Projection_2">
+      <input emptyUnionBehavior="NO_ROW" node="Projection_2">
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="TNM_ID"/>
         <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PERSON_ID_EXTERNAL" null="true" value=""/>
         <mapping xsi:type="Calculation:ConstantAttributeMapping" target="DMN_ID" null="true" value=""/>
@@ -142,51 +125,51 @@ ELSE &quot;GENDER_STUD&quot; END </formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
       </input>
     </calculationView>
-  </calculationViews>
+</calculationViews>
   <logicalModel id="Union_1">
     <descriptions/>
     <attributes>
-      <attribute id="STUD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="STUD_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="STUD_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="STUD_ID"/>
       </attribute>
-      <attribute id="PERSON_ID_EXTERNAL" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="PERSON_ID_EXTERNAL" order="2" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="PERSON_ID_EXTERNAL"/>
         <keyMapping columnObjectName="Union_1" columnName="PERSON_ID_EXTERNAL"/>
       </attribute>
-      <attribute id="DMN_ID" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="DMN_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="DMN_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="DMN_ID"/>
       </attribute>
-      <attribute id="NOTACTIVE" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="NOTACTIVE" order="4" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="NOTACTIVE"/>
         <keyMapping columnObjectName="Union_1" columnName="NOTACTIVE"/>
       </attribute>
-      <attribute id="EMP_STAT_ID" order="5" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="EMP_STAT_ID" order="5" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="EMP_STAT_ID"/>
         <keyMapping columnObjectName="Union_1" columnName="EMP_STAT_ID"/>
       </attribute>
-      <attribute id="LNAME" order="6" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="LNAME" order="6" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="LNAME"/>
         <keyMapping columnObjectName="Union_1" columnName="LNAME"/>
       </attribute>
-      <attribute id="FNAME" order="7" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="FNAME" order="7" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="FNAME"/>
         <keyMapping columnObjectName="Union_1" columnName="FNAME"/>
       </attribute>
-      <attribute id="GENDER" order="8" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="GENDER" order="8" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="GENDER"/>
         <keyMapping columnObjectName="Union_1" columnName="GENDER"/>
       </attribute>
-      <attribute id="BIRTH_DATE_v0" order="9" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="BIRTH_DATE_v0" order="9" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="BIRTH_DATE_v0"/>
         <keyMapping columnObjectName="Union_1" columnName="BIRTH_DATE"/>
       </attribute>
-      <attribute id="STUD_CF" order="10" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="STUD_CF" order="10" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="STUD_CF"/>
         <keyMapping columnObjectName="Union_1" columnName="STUD_CF"/>
       </attribute>
-      <attribute id="SOURCE" order="11" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+      <attribute id="SOURCE" order="11" attributeHierarchyActive="false" displayAttribute="false">
         <descriptions defaultDescription="SOURCE"/>
         <keyMapping columnObjectName="Union_1" columnName="SOURCE"/>
       </attribute>
@@ -211,24 +194,24 @@ ELSE &quot;GENDER_STUD&quot; END </formula>
     <restrictedMeasures/>
     <localDimensions/>
   </logicalModel>
-  <layout>
-    <shapes>
+<layout>
+  <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="99" y="87"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="221.11302679000914" y="112"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="22" y="281"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="92.00000000000001" y="356.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="180" y="290"/>
-        <rectangleSize height="-1" width="-1"/>
+        <upperLeftCorner x="302.00000000000006" y="356.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="99" y="165"/>
-        <rectangleSize height="0" width="0"/>
+        <upperLeftCorner x="221.11302679000914" y="217"/>
+        <rectangleSize height="0" width="160"/>
       </shape>
     </shapes>
-  </layout>
+</layout>
 </Calculation:scenario>
