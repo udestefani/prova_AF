@@ -97,3 +97,16 @@ key![DESC_DOMINIO_SICUREZZA_D]:String(256) @title : 'DESC_DOMINIO_SICUREZZA_D ';
 key![ID_DOMINIO]:String(90) @title : 'ID_DOMINIO ';
 key![NUMEROORE]:Decimal(13, 5) @title : 'NUMEROORE ';
 }
+
+@cds.persistence.exists
+@cds.persistence.calcview
+entity![CV_MAP_DOMINIO]{
+key![SOURCE]                  :	String(50)		@title : 'SOURCE';
+key![ID_DOMINIO_SOURCE]       :	String(50)		@title : 'ID_DOMINIO_SOURCE';
+key![DESCRIZIONE_SOURCE_D]    :	String(127)		@title : 'DESCRIZIONE_SOURCE_D';
+key![DESCRIZIONE_SOURCE_I]    :	String(127)	    @title : 'DESCRIZIONE_SOURCE_I';
+key![ID_DOMINIO]              :	String(50)		@title : 'ID_DOMINIO';
+key![DESC_DOMINIO SICUREZZA_D]:	String(127)		@title : 'DESC_DOMINIO SICUREZZA_D';
+key![DESC_DOMINIO SICUREZZA_I]:	String(127)		@title : 'DESC_DOMINIO SICUREZZA_I';
+key![TIPO SOURCE]             :	String(6)		@title : 'TIPO SOURCE';
+}

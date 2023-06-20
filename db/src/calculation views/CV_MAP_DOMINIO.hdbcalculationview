@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_MAP_DOMINIO" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CV_MAP_DOMINIO"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MAP_DOMINIO">
+    <resourceUri>MAP_DOMINIO</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+
+<logicalModel id="MAP_DOMINIO">
+  <attributes>
+    <attribute id="SOURCE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SOURCE"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="SOURCE"/>
+    </attribute>
+    <attribute id="ID_DOMINIO_SOURCE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID_DOMINIO_SOURCE"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="ID_DOMINIO_SOURCE"/>
+    </attribute>
+    <attribute id="DESCRIZIONE_SOURCE_D" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESCRIZIONE_SOURCE_D"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="DESCRIZIONE_SOURCE_D"/>
+    </attribute>
+    <attribute id="DESCRIZIONE_SOURCE_I" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESCRIZIONE_SOURCE_I"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="DESCRIZIONE_SOURCE_I"/>
+    </attribute>
+    <attribute id="ID_DOMINIO" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID_DOMINIO"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="ID_DOMINIO"/>
+    </attribute>
+    <attribute id="DESC_DOMINIO_SICUREZZA_D" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESC_DOMINIO_SICUREZZA_D"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="DESC_DOMINIO SICUREZZA_D"/>
+    </attribute>
+    <attribute id="DESC_DOMINIO_SICUREZZA_I" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DESC_DOMINIO_SICUREZZA_I"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="DESC_DOMINIO SICUREZZA_I"/>
+    </attribute>
+    <attribute id="TIPO_SOURCE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TIPO_SOURCE"/>
+      <keyMapping columnObjectName="MAP_DOMINIO" columnName="TIPO SOURCE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  </shapes>
+</layout>
+</Calculation:scenario>
