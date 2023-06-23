@@ -106,7 +106,7 @@ key![ID_DOMINIO_SOURCE]       :	String(50)		@title : 'ID_DOMINIO_SOURCE';
 key![DESCRIZIONE_SOURCE_D]    :	String(127)		@title : 'DESCRIZIONE_SOURCE_D';
 key![DESCRIZIONE_SOURCE_I]    :	String(127)	    @title : 'DESCRIZIONE_SOURCE_I';
 key![ID_DOMINIO]              :	String(50)		@title : 'ID_DOMINIO';
-key![DESC_DOMINIO SICUREZZA_D]:	String(127)		@title : 'DESC_DOMINIO SICUREZZA_D';
-key![DESC_DOMINIO SICUREZZA_I]:	String(127)		@title : 'DESC_DOMINIO SICUREZZA_I';
-key![TIPO SOURCE]             :	String(6)		@title : 'TIPO SOURCE';
+key![DESC_DOMINIO_SICUR_D]    :	String(127)		@title : 'DESC_DOMINIO_SICUR_D';
+key![DESC_DOMINIO_SICUR_I]    :	String(127)		@title : 'DESC_DOMINIO_SICUR_I';
+key![TIPO_SOURCE]             :	String(6)		@title : 'TIPO_SOURCE';
 }

@@ -2,3 +2,7 @@ mta_archives/
 
 # auto generated wildcard
 db/.env
+node_modules/*
+mta_archives/*
+**/node_modules/*
+mta-op-*/*

@@ -181,7 +181,6 @@ else TO_TIMESTAMP (&quot;TNA_VORGEMERKTAM&quot; ,'DD/MM/YYYY HH24:MI:SS') end
         <viewAttribute id="DATA_ENROL"/>
         <viewAttribute id="SOURCE"/>
         <viewAttribute id="END_DATE"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHD_ID$SCHD_ID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -191,7 +190,6 @@ else TO_TIMESTAMP (&quot;TNA_VORGEMERKTAM&quot; ,'DD/MM/YYYY HH24:MI:SS') end
         <mapping xsi:type="Calculation:AttributeMapping" target="STUD_ID" source="STUD_ID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="DATA_ENROL" source="DATA_ENROL"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHD_ID$SCHD_ID" source="SCHD_ID"/>
       </input>
       <input node="Aggregation_1">
@@ -261,43 +259,43 @@ END</formula>
 <layout>
   <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="424.5790048733975" y="112"/>
+        <upperLeftCorner x="424" y="112"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="746.5569213879703" y="531.9999976158142"/>
+        <upperLeftCorner x="746" y="531"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="354.70125986662276" y="761.9999964237213"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="354.70125986662276" y="656.9999964237213"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Aggregation_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="326.5569213879703" y="531.9999976158142"/>
+        <upperLeftCorner x="354" y="761"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="536.5569213879703" y="531.9999976158142"/>
+        <upperLeftCorner x="536" y="531"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
-      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="536.5569213879703" y="376.9999988079071"/>
-        <rectangleSize height="0" width="160"/>
-      </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="92" y="531.9999976158142"/>
+        <upperLeftCorner x="92" y="531"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="354" y="656"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="92" y="391.9999988079071"/>
+        <upperLeftCorner x="92" y="391"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="326" y="531"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="536" y="376"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="424.5790048733975" y="217"/>
+        <upperLeftCorner x="424" y="217"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     

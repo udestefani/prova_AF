@@ -162,7 +162,10 @@ WHEN &quot;ID_DOMINIO_SOURCE&quot; = '157' and &quot;DESCRIZIONE_SOURCE_D&quot; 
 ELSE &quot;ID_DOMINIO_SOURCE&quot; END</formula>
         </calculatedViewAttribute>
       </calculatedViewAttributes>
-      <input node="CV_MAP_DOMINIO"/>
+      <input node="CV_MAP_DOMINIO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_D" source="DESC_DOMINIO_SICUR_D"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DESC_DOMINIO_SICUREZZA_I" source="DESC_DOMINIO_SICUR_I"/>
+      </input>
     </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3">
     <descriptions/>

@@ -1,0 +1,13 @@
+_schema-version: "3.1"
+ID: prd_env
+extends: AF_prd
+version: 1.0.0
+
+modules:
+ - name: AF-srv
+   parameters:
+    app-name: "AF-srv-prod"
+resources:
+ - name: AF_hdi_Container
+   parameters:
+     service-name: "AF_PROD_HDI"

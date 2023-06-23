@@ -1,0 +1,147 @@
+{
+  "Synonym_REFERENTI_STORICO": {
+    "target": {
+      "object": "REFERENTI_STORICO"
+    }
+  },
+  "Synonym_CONSUNTIVO": {
+    "target": {
+      "object": "CONSUNTIVO"
+    }
+  },
+  "Synonym_CORSI_STORICO": {
+    "target": {
+      "object": "CORSI_STORICO"
+    }
+  },
+  "Synonym_ISCRIZIONE_STORICO": {
+    "target": {
+      "object": "ISCRIZIONE_STORICO"
+    }
+  },
+  "Synonym_LOCATION_STORICO": {
+    "target": {
+      "object": "LOCATION_STORICO"
+    }
+  },
+  "Synonym_MAP_DOMINIO": {
+    "target": {
+      "object": "MAP_DOMINIO"
+    }
+  },
+  "Synonym_MAP_DOMINIO_1": {
+    "target": {
+      "object": "MAP_DOMINIO_1"
+    }
+  },
+  "Synonym_PA_CPNT_EVTHST_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_CPNT_EVTHST_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_CPNT_EVTHST": {
+    "target": {
+      "object": "PA_CPNT_EVTHST"
+    }
+  },
+  "Synonym_PA_CPNT_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_CPNT_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_CPNT_SUBJ": {
+    "target": {
+      "object": "PA_CPNT_SUBJ"
+    }
+  },
+  "Synonym_PA_CPNT": {
+    "target": {
+      "object": "PA_CPNT"
+    }
+  },
+  "Synonym_PA_ENROLL_SEAT_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_ENROLL_SEAT_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_ENROLL_SEAT": {
+    "target": {
+      "object": "PA_ENROLL_SEAT"
+    }
+  },
+  "Synonym_PA_FIN_ORDER_ITEM_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_FIN_ORDER_ITEM_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_FIN_ORDER_ITEM": {
+    "target": {
+      "object": "PA_FIN_ORDER_ITEM"
+    }
+  },
+  "Synonym_PA_INST_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_INST_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_INST": {
+    "target": {
+      "object": "PA_INST"
+    }
+  },
+  "Synonym_PA_SCH_SEG_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_SCH_SEG_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_SCH_SEG": {
+    "target": {
+      "object": "PA_SCH_SEG"
+    }
+  },
+  "Synonym_PA_SCHED_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_SCHED_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_SCHED": {
+    "target": {
+      "object": "PA_SCHED"
+    }
+  },
+  "Synonym_PA_STUD_CPNT_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_STUD_CPNT_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_STUD_CPNT": {
+    "target": {
+      "object": "PA_STUD_CPNT"
+    }
+  },
+  "Synonym_PA_STUDENT_LAST_DAY_BCK": {
+    "target": {
+      "object": "PA_STUDENT_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PA_STUDENT": {
+    "target": {
+      "object": "PA_STUDENT"
+    }
+  },
+  "Synonym_PARTECIPANTI_STORICO": {
+    "target": {
+      "object": "PARTECIPANTI_STORICO"
+    }
+  },
+  "Synonym_PH_ENROLL_SEAT_LAST_DAY_BCK": {
+    "target": {
+      "object": "PH_ENROLL_SEAT_LAST_DAY_BCK"
+    }
+  },
+  "Synonym_PH_ENROLL_SEAT": {
+    "target": {
+      "object": "PH_ENROLL_SEAT"
+    }
+  }
+}

@@ -58,7 +58,6 @@
         <viewAttribute id="CPNT_TYP_ID"/>
         <viewAttribute id="CPNT_ID"/>
         <viewAttribute id="TNA_TNM_ID"/>
-      
       <viewAttribute hidden="true" id="JOIN$KURS_ID$TNA_KURS_ID"/>
     </viewAttributes>
     <calculatedViewAttributes>
@@ -69,7 +68,6 @@
       <input node="Projection_2">
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_TYP_ID" source="PERI_BEZEICHNUNG"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CPNT_ID" source="KURS_ID"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KURS_ID$TNA_KURS_ID" source="KURS_ID"/>
       </input>
       <input node="Projection_4">
@@ -165,23 +163,23 @@
 <layout>
   <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="318.8946185774839" y="112"/>
+        <upperLeftCorner x="318" y="112"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="389.56590854394864" y="356.9999988079071"/>
+        <upperLeftCorner x="389" y="356"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="92.00000000000001" y="516.9999976158142"/>
+        <upperLeftCorner x="92" y="516"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="302" y="516.9999976158142"/>
+        <upperLeftCorner x="302" y="516"/>
         <rectangleSize height="64" width="141"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="118.66666666666669" y="356.9999988079071"/>
+        <upperLeftCorner x="118" y="356"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
@@ -193,7 +191,7 @@
       <rectangleSize width="250"/>
     </shape>
       <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="318.8946185774839" y="217"/>
+        <upperLeftCorner x="318" y="217"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     </shapes>

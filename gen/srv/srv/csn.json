@@ -1,0 +1,1111 @@
+{
+  "definitions": {
+    "DIM_INSTR": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "@cds.persistence.calcview": true,
+      "elements": {
+        "FNAME": {
+          "@title": "FNAME",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "LNAME": {
+          "@title": "LNAMNE",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "NOTACTIVE": {
+          "@title": "NOTACTIVE",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "INST_ID": {
+          "@title": "INST_ID",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "FULL_NAME_INSTR": {
+          "@title": "FULL_NAME_INSTR",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        }
+      }
+    },
+    "DIM_STUDENT": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "@cds.persistence.calcview": true,
+      "elements": {
+        "FULL_NAME": {
+          "@title": "FULL_NAME",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "STUD_ID_DIM": {
+          "@title": "STUD_ID_DIM",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "FIRST_NAME_STUD": {
+          "@title": "FIRST_NAME_STUD",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "LAST_NAME_STUD": {
+          "@title": "LAST_NAME_STUD",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "STUD_GENDER": {
+          "@title": "STUD_GENDER",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "STUD_DOMAIN_ID": {
+          "@title": "STUD_DOMAIN_ID",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "STUD_CF": {
+          "@title": "STUD_CF",
+          "key": true,
+          "type": "cds.String",
+          "length": 32
+        },
+        "STUD_NOTACTIVE": {
+          "@title": "STUD_NOTACTIVE",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "BIRTH_DATE_STAMP": {
+          "@title": "BIRTH_DATE_STAMP",
+          "key": true,
+          "type": "cds.Date"
+        }
+      }
+    },
+    "DIM_CORSO_EDIZIONE": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "@cds.persistence.calcview": true,
+      "elements": {
+        "CPNT_ID_DIM": {
+          "@title": "CPNT_ID_DIM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "CPNT_TYP_ID_DIM": {
+          "@title": "CPNT_TYP_ID_DIM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "CPNT_NOTACTIVE": {
+          "@title": "CPNT_NOTACTIVE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "CPNT_PRICE": {
+          "@title": "CPNT_PRICE ",
+          "key": true,
+          "type": "cds.Double"
+        },
+        "PHON_NUM": {
+          "@title": "PHON_NUM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "CITY": {
+          "@title": "CITY ",
+          "key": true,
+          "type": "cds.String",
+          "length": 300
+        },
+        "CPNT_MAX_NUMBER_STUDENT": {
+          "@title": "CPNT_MAX_NUMBER_STUDENT ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "STATUS_CORSO": {
+          "@title": "STATUS_CORSO ",
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "SCHD_ID_DIM": {
+          "@title": "SCHD_ID_DIM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "CPNT_START_DATE": {
+          "@title": "CPNT_START_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "SCHD_DURATA_DAYS": {
+          "@title": "SCHD_DURATA_DAYS ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "SCHD_DURATA_MONTHS": {
+          "@title": "SCHD_DURATA_MONTHS ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "STATUS_EDIZIONE": {
+          "@title": "STATUS_EDIZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "ADDR": {
+          "@title": "ADDR ",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "EMAIL_ADDR": {
+          "@title": "EMAIL_ADDR ",
+          "key": true,
+          "type": "cds.String",
+          "length": 1536
+        },
+        "CPNT_CANCEL_DTE": {
+          "@title": "CPNT_CANCEL_DTE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_CERTIFICAZIONE": {
+          "@title": "CPNT_CERTIFICAZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "CPNT_AREA_TEMATICA": {
+          "@title": "CPNT_AREA_TEMATICA ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "CPNT_AREA_TEMATICA_LABEL": {
+          "@title": "CPNT_AREA_TEMATICA_LABEL ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "KTKODEX": {
+          "@title": "KTKODEX ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "SCHED_ENRL_CUT_DATE": {
+          "@title": "SCHED_ENRL_CUT_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CREATE_DTE_TIMESTAMP": {
+          "@title": "CREATE_DTE_TIMESTAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_END_DATE": {
+          "@title": "CPNT_END_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CHIAVE_DIM_CORSO_ED_KEY": {
+          "@title": "CHIAVE_DIM_CORSO_ED_KEY ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "TOT_ORE_LEZIONE": {
+          "@title": "TOT_ORE_LEZIONE ",
+          "key": true,
+          "type": "cds.Double"
+        },
+        "FORMAT_EDIZIONE": {
+          "@title": "FORMAT_EDIZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 30
+        },
+        "CPNT_TITLE_ITA": {
+          "@title": "CPNT_TITLE_ITA ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "CPNT_TITLE_DEU": {
+          "@title": "CPNT_TITLE_DEU ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "FACILITY_ID": {
+          "@title": "FACILITY_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "FACILITY_DESC": {
+          "@title": "FACILITY_DESC ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "STATUS_CORSO_DEU": {
+          "@title": "STATUS_CORSO_DEU ",
+          "key": true,
+          "type": "cds.String",
+          "length": 30
+        },
+        "STATUS_EDIZIONE_DEU": {
+          "@title": "STATUS_EDIZIONE_DEU ",
+          "key": true,
+          "type": "cds.String",
+          "length": 30
+        },
+        "CPNT_SCH_LAST_DATE_LEZIONE": {
+          "@title": "CPNT_SCH_LAST_DATE_LEZIONE ",
+          "key": true,
+          "type": "cds.Date"
+        }
+      }
+    },
+    "FACT_CPNT_SCHED_STUD": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "@cds.persistence.calcview": true,
+      "elements": {
+        "CMPL_STAT_ID": {
+          "@title": "CMPL_STAT_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "GRADE": {
+          "@title": "GRADE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "AGE_STUD": {
+          "@title": "AGE_STUD ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "STUD_CLASSE_ISCRIZIONE": {
+          "@title": "STUD_CLASSE_ISCRIZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "INST_ID": {
+          "@title": "INST_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "KEY_DIM_CORSO_ED": {
+          "@title": "KEY_DIM_CORSO_ED ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "FASCE_ETA_STUD": {
+          "@title": "FASCE_ETA_STUD ",
+          "key": true,
+          "type": "cds.String",
+          "length": 20
+        },
+        "COUNTER_COMPLETED_STUD": {
+          "@title": "COUNTER_COMPLETED_STUD ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "ENRL_DATE_STAMP": {
+          "@title": "ENRL_DATE_STAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "STUD_CANCEL_DATE": {
+          "@title": "STUD_CANCEL_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "STUD_ID": {
+          "@title": "STUD_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "ANNO_MESE": {
+          "@title": "ANNO_MESE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "COUNTER_ENROLLED_ISCR": {
+          "@title": "COUNTER_ENROLLED_ISCR ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "COUNTER_CANCELLED_ISCR": {
+          "@title": "COUNTER_CANCELLED_ISCR ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "SCHEDULEID": {
+          "@title": "SCHEDULEID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "CPNT_ID": {
+          "@title": "CPNT_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "FASCIA_STUD_ONLINE": {
+          "@title": "FASCIA_STUD_ONLINE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "BIRTH_DATE_STAMP": {
+          "@title": "BIRTH_DATE_STAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_START_DATE": {
+          "@title": "CPNT_START_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_CANCEL_DTE": {
+          "@title": "CPNT_CANCEL_DTE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "SCHED_ENRL_CUT_DATE": {
+          "@title": "SCHED_ENRL_CUT_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CREATE_DTE_TIMESTAMP": {
+          "@title": "CREATE_DTE_TIMESTAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_END_DATE": {
+          "@title": "CPNT_END_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_SCH_LAST_DATE_LEZIONE": {
+          "@title": "CPNT_SCH_LAST_DATE_LEZIONE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "ID_DOMINIO_SOURCE": {
+          "@title": "ID_DOMINIO_SOURCE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "SOURCE": {
+          "@title": "SOURCE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 6
+        },
+        "DESCRIZIONE_SOURCE_D": {
+          "@title": "DESCRIZIONE_SOURCE_D ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "DESC_DOMINIO_SICUREZZA_I": {
+          "@title": "DESC_DOMINIO_SICUREZZA_I ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "DESCRIZIONE_SOURCE_I": {
+          "@title": "DESCRIZIONE_SOURCE_I ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "DESC_DOMINIO_SICUREZZA_D": {
+          "@title": "DESC_DOMINIO_SICUREZZA_D ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "ID_DOMINIO": {
+          "@title": "ID_DOMINIO ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "NUMEROORE": {
+          "@title": "NUMEROORE ",
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 13,
+          "scale": 5
+        }
+      }
+    },
+    "CV_MAP_DOMINIO": {
+      "kind": "entity",
+      "@cds.persistence.exists": true,
+      "@cds.persistence.calcview": true,
+      "elements": {
+        "SOURCE": {
+          "@title": "SOURCE",
+          "key": true,
+          "type": "cds.String",
+          "length": 50
+        },
+        "ID_DOMINIO_SOURCE": {
+          "@title": "ID_DOMINIO_SOURCE",
+          "key": true,
+          "type": "cds.String",
+          "length": 50
+        },
+        "DESCRIZIONE_SOURCE_D": {
+          "@title": "DESCRIZIONE_SOURCE_D",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "DESCRIZIONE_SOURCE_I": {
+          "@title": "DESCRIZIONE_SOURCE_I",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "ID_DOMINIO": {
+          "@title": "ID_DOMINIO",
+          "key": true,
+          "type": "cds.String",
+          "length": 50
+        },
+        "DESC_DOMINIO_SICUR_D": {
+          "@title": "DESC_DOMINIO_SICUR_D",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "DESC_DOMINIO_SICUR_I": {
+          "@title": "DESC_DOMINIO_SICUR_I",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "TIPO_SOURCE": {
+          "@title": "TIPO_SOURCE",
+          "key": true,
+          "type": "cds.String",
+          "length": 6
+        }
+      }
+    },
+    "CatalogService": {
+      "@source": "interaction_srv.cds",
+      "kind": "service",
+      "@requires": [
+        "authenticated-user",
+        "system-user"
+      ]
+    },
+    "CatalogService.CV_DIM_INSTR": {
+      "kind": "entity",
+      "@readonly": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "DIM_INSTR"
+          ]
+        }
+      },
+      "elements": {
+        "FNAME": {
+          "@title": "FNAME",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "LNAME": {
+          "@title": "LNAMNE",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "NOTACTIVE": {
+          "@title": "NOTACTIVE",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "INST_ID": {
+          "@title": "INST_ID",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "FULL_NAME_INSTR": {
+          "@title": "FULL_NAME_INSTR",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        }
+      }
+    },
+    "CatalogService.CV_DIM_STUDENT": {
+      "kind": "entity",
+      "@readonly": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "DIM_STUDENT"
+          ]
+        }
+      },
+      "elements": {
+        "FULL_NAME": {
+          "@title": "FULL_NAME",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "STUD_ID_DIM": {
+          "@title": "STUD_ID_DIM",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "FIRST_NAME_STUD": {
+          "@title": "FIRST_NAME_STUD",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "LAST_NAME_STUD": {
+          "@title": "LAST_NAME_STUD",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "STUD_GENDER": {
+          "@title": "STUD_GENDER",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "STUD_DOMAIN_ID": {
+          "@title": "STUD_DOMAIN_ID",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "STUD_CF": {
+          "@title": "STUD_CF",
+          "key": true,
+          "type": "cds.String",
+          "length": 32
+        },
+        "STUD_NOTACTIVE": {
+          "@title": "STUD_NOTACTIVE",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "BIRTH_DATE_STAMP": {
+          "@title": "BIRTH_DATE_STAMP",
+          "key": true,
+          "type": "cds.Date"
+        }
+      }
+    },
+    "CatalogService.CV_DIM_CORSO_EDIZIONE": {
+      "kind": "entity",
+      "@readonly": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "DIM_CORSO_EDIZIONE"
+          ]
+        }
+      },
+      "elements": {
+        "CPNT_ID_DIM": {
+          "@title": "CPNT_ID_DIM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "CPNT_TYP_ID_DIM": {
+          "@title": "CPNT_TYP_ID_DIM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "CPNT_NOTACTIVE": {
+          "@title": "CPNT_NOTACTIVE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 1
+        },
+        "CPNT_PRICE": {
+          "@title": "CPNT_PRICE ",
+          "key": true,
+          "type": "cds.Double"
+        },
+        "PHON_NUM": {
+          "@title": "PHON_NUM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "CITY": {
+          "@title": "CITY ",
+          "key": true,
+          "type": "cds.String",
+          "length": 300
+        },
+        "CPNT_MAX_NUMBER_STUDENT": {
+          "@title": "CPNT_MAX_NUMBER_STUDENT ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "STATUS_CORSO": {
+          "@title": "STATUS_CORSO ",
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "SCHD_ID_DIM": {
+          "@title": "SCHD_ID_DIM ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "CPNT_START_DATE": {
+          "@title": "CPNT_START_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "SCHD_DURATA_DAYS": {
+          "@title": "SCHD_DURATA_DAYS ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "SCHD_DURATA_MONTHS": {
+          "@title": "SCHD_DURATA_MONTHS ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "STATUS_EDIZIONE": {
+          "@title": "STATUS_EDIZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "ADDR": {
+          "@title": "ADDR ",
+          "key": true,
+          "type": "cds.String",
+          "length": 600
+        },
+        "EMAIL_ADDR": {
+          "@title": "EMAIL_ADDR ",
+          "key": true,
+          "type": "cds.String",
+          "length": 1536
+        },
+        "CPNT_CANCEL_DTE": {
+          "@title": "CPNT_CANCEL_DTE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_CERTIFICAZIONE": {
+          "@title": "CPNT_CERTIFICAZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "CPNT_AREA_TEMATICA": {
+          "@title": "CPNT_AREA_TEMATICA ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "CPNT_AREA_TEMATICA_LABEL": {
+          "@title": "CPNT_AREA_TEMATICA_LABEL ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "KTKODEX": {
+          "@title": "KTKODEX ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "SCHED_ENRL_CUT_DATE": {
+          "@title": "SCHED_ENRL_CUT_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CREATE_DTE_TIMESTAMP": {
+          "@title": "CREATE_DTE_TIMESTAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_END_DATE": {
+          "@title": "CPNT_END_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CHIAVE_DIM_CORSO_ED_KEY": {
+          "@title": "CHIAVE_DIM_CORSO_ED_KEY ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "TOT_ORE_LEZIONE": {
+          "@title": "TOT_ORE_LEZIONE ",
+          "key": true,
+          "type": "cds.Double"
+        },
+        "FORMAT_EDIZIONE": {
+          "@title": "FORMAT_EDIZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 30
+        },
+        "CPNT_TITLE_ITA": {
+          "@title": "CPNT_TITLE_ITA ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "CPNT_TITLE_DEU": {
+          "@title": "CPNT_TITLE_DEU ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "FACILITY_ID": {
+          "@title": "FACILITY_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "FACILITY_DESC": {
+          "@title": "FACILITY_DESC ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "STATUS_CORSO_DEU": {
+          "@title": "STATUS_CORSO_DEU ",
+          "key": true,
+          "type": "cds.String",
+          "length": 30
+        },
+        "STATUS_EDIZIONE_DEU": {
+          "@title": "STATUS_EDIZIONE_DEU ",
+          "key": true,
+          "type": "cds.String",
+          "length": 30
+        },
+        "CPNT_SCH_LAST_DATE_LEZIONE": {
+          "@title": "CPNT_SCH_LAST_DATE_LEZIONE ",
+          "key": true,
+          "type": "cds.Date"
+        }
+      }
+    },
+    "CatalogService.CV_FACT_CPNT_SCHED_STUD": {
+      "kind": "entity",
+      "@readonly": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "FACT_CPNT_SCHED_STUD"
+          ]
+        }
+      },
+      "elements": {
+        "CMPL_STAT_ID": {
+          "@title": "CMPL_STAT_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "GRADE": {
+          "@title": "GRADE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "AGE_STUD": {
+          "@title": "AGE_STUD ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "STUD_CLASSE_ISCRIZIONE": {
+          "@title": "STUD_CLASSE_ISCRIZIONE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "INST_ID": {
+          "@title": "INST_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "KEY_DIM_CORSO_ED": {
+          "@title": "KEY_DIM_CORSO_ED ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "FASCE_ETA_STUD": {
+          "@title": "FASCE_ETA_STUD ",
+          "key": true,
+          "type": "cds.String",
+          "length": 20
+        },
+        "COUNTER_COMPLETED_STUD": {
+          "@title": "COUNTER_COMPLETED_STUD ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "ENRL_DATE_STAMP": {
+          "@title": "ENRL_DATE_STAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "STUD_CANCEL_DATE": {
+          "@title": "STUD_CANCEL_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "STUD_ID": {
+          "@title": "STUD_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "ANNO_MESE": {
+          "@title": "ANNO_MESE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "COUNTER_ENROLLED_ISCR": {
+          "@title": "COUNTER_ENROLLED_ISCR ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "COUNTER_CANCELLED_ISCR": {
+          "@title": "COUNTER_CANCELLED_ISCR ",
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "SCHEDULEID": {
+          "@title": "SCHEDULEID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "CPNT_ID": {
+          "@title": "CPNT_ID ",
+          "key": true,
+          "type": "cds.String",
+          "length": 2000
+        },
+        "FASCIA_STUD_ONLINE": {
+          "@title": "FASCIA_STUD_ONLINE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "BIRTH_DATE_STAMP": {
+          "@title": "BIRTH_DATE_STAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_START_DATE": {
+          "@title": "CPNT_START_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_CANCEL_DTE": {
+          "@title": "CPNT_CANCEL_DTE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "SCHED_ENRL_CUT_DATE": {
+          "@title": "SCHED_ENRL_CUT_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CREATE_DTE_TIMESTAMP": {
+          "@title": "CREATE_DTE_TIMESTAMP ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_END_DATE": {
+          "@title": "CPNT_END_DATE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "CPNT_SCH_LAST_DATE_LEZIONE": {
+          "@title": "CPNT_SCH_LAST_DATE_LEZIONE ",
+          "key": true,
+          "type": "cds.Date"
+        },
+        "ID_DOMINIO_SOURCE": {
+          "@title": "ID_DOMINIO_SOURCE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "SOURCE": {
+          "@title": "SOURCE ",
+          "key": true,
+          "type": "cds.String",
+          "length": 6
+        },
+        "DESCRIZIONE_SOURCE_D": {
+          "@title": "DESCRIZIONE_SOURCE_D ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "DESC_DOMINIO_SICUREZZA_I": {
+          "@title": "DESC_DOMINIO_SICUREZZA_I ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "DESCRIZIONE_SOURCE_I": {
+          "@title": "DESCRIZIONE_SOURCE_I ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "DESC_DOMINIO_SICUREZZA_D": {
+          "@title": "DESC_DOMINIO_SICUREZZA_D ",
+          "key": true,
+          "type": "cds.String",
+          "length": 256
+        },
+        "ID_DOMINIO": {
+          "@title": "ID_DOMINIO ",
+          "key": true,
+          "type": "cds.String",
+          "length": 90
+        },
+        "NUMEROORE": {
+          "@title": "NUMEROORE ",
+          "key": true,
+          "type": "cds.Decimal",
+          "precision": 13,
+          "scale": 5
+        }
+      }
+    },
+    "CatalogService.CV_CV_MAP_DOMINIO": {
+      "kind": "entity",
+      "@readonly": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "CV_MAP_DOMINIO"
+          ]
+        }
+      },
+      "elements": {
+        "SOURCE": {
+          "@title": "SOURCE",
+          "key": true,
+          "type": "cds.String",
+          "length": 50
+        },
+        "ID_DOMINIO_SOURCE": {
+          "@title": "ID_DOMINIO_SOURCE",
+          "key": true,
+          "type": "cds.String",
+          "length": 50
+        },
+        "DESCRIZIONE_SOURCE_D": {
+          "@title": "DESCRIZIONE_SOURCE_D",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "DESCRIZIONE_SOURCE_I": {
+          "@title": "DESCRIZIONE_SOURCE_I",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "ID_DOMINIO": {
+          "@title": "ID_DOMINIO",
+          "key": true,
+          "type": "cds.String",
+          "length": 50
+        },
+        "DESC_DOMINIO_SICUR_D": {
+          "@title": "DESC_DOMINIO_SICUR_D",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "DESC_DOMINIO_SICUR_I": {
+          "@title": "DESC_DOMINIO_SICUR_I",
+          "key": true,
+          "type": "cds.String",
+          "length": 127
+        },
+        "TIPO_SOURCE": {
+          "@title": "TIPO_SOURCE",
+          "key": true,
+          "type": "cds.String",
+          "length": 6
+        }
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v2.15.10",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}
