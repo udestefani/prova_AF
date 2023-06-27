@@ -283,7 +283,6 @@ END</formula>
         <viewAttribute id="FLAG_ISCRIZIONE"/>
         <viewAttribute id="FLAG_ANNULLAMENTO"/>
         <viewAttribute id="CALMONTH_ISCR"/>
-      
       <viewAttribute hidden="true" id="JOIN$STUD_ID$STUD_ID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -297,7 +296,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUD_ID$STUD_ID" source="STUD_ID"/>
       </input>
       <input node="Projection_4">
@@ -376,7 +374,6 @@ END</formula>
         <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
         <viewAttribute id="SOURCE"/>
         <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHEDULEID$SCHD_ID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -395,7 +392,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ISCRIZIONE" source="FLAG_ISCRIZIONE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FLAG_ANNULLAMENTO" source="FLAG_ANNULLAMENTO"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="CALMONTH_ISCR" source="CALMONTH_ISCR"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHEDULEID"/>
       </input>
       <input node="Rank_2">
@@ -445,7 +441,6 @@ END</formula>
         <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
         <viewAttribute id="SOURCE"/>
         <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHEDULEID$SCHD_ID"/>
       <viewAttribute hidden="true" id="JOIN$STUD_ID$STUD_ID"/>
     </viewAttributes>
@@ -476,7 +471,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHEDULEID"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STUD_ID$STUD_ID" source="STUD_ID"/>
       </input>
@@ -522,7 +516,6 @@ END</formula>
         <viewAttribute id="DESCRIZIONE_SOURCE_D"/>
         <viewAttribute id="SOURCE"/>
         <viewAttribute id="FIX_ID_DOMINIO_SOURCE"/>
-      
       <viewAttribute hidden="true" id="JOIN$SCHEDULEID$SCHD_ID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -554,7 +547,6 @@ END</formula>
         <mapping xsi:type="Calculation:AttributeMapping" target="DESCRIZIONE_SOURCE_D" source="DESCRIZIONE_SOURCE_D"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
         <mapping xsi:type="Calculation:AttributeMapping" target="FIX_ID_DOMINIO_SOURCE" source="FIX_ID_DOMINIO_SOURCE"/>
-      
         <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$SCHEDULEID$SCHD_ID" source="SCHEDULEID"/>
       </input>
       <input node="Projection_1">
@@ -654,9 +646,8 @@ END</formula>
           <formula>&quot;CPNT_ID&quot; || COALESCE(&quot;CPNT_TYP_ID&quot;,'')|| COALESCE(&quot;SCHEDULEID&quot;,'') </formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="INTEGER" id="COUNTER_COMPLETED_STUD" expressionLanguage="SQL">
-          <formula>CASE WHEN &quot;CMPL_STAT_ID_FORMAT&quot; IN('CERTIFICATION_Complete', 'COURSE_Complete', 'HALBTAGSVERANST_Complete', 'KURSFOLGE_Complete', 'LEHRGANG_Complete', 'ONLINE_Complete', 'SEMINARREIHE_Complete', 'SEMINAR_Complete', 'WERKSTAETTE_Complete')  THEN 1
+          <formula>CASE WHEN &quot;CMPL_STAT_ID_FORMAT&quot; IN('COURSE-COMPL', 'ONLINE-COMPL', 'BRIEF-COMPL', 'MOOC-CMPL', 'CERT-COMPL', 'OJT-COMPL')  THEN 1
 ELSE 0
-
 END</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="NVARCHAR" id="FASCIA_STUD_ONLINE" length="127" expressionLanguage="SQL">
@@ -887,23 +878,35 @@ END</formula>
 <layout>
   <shapes>
       <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-        <upperLeftCorner x="377.5534844615145" y="112"/>
+        <upperLeftCorner x="377" y="112"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="CORSI_COMPLETATI" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="354.45413441017763" y="816.9999964237213"/>
+        <upperLeftCorner x="354" y="816"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="BIRTH_DATE" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="301.99999999999994" y="1441.9999916553497"/>
+        <upperLeftCorner x="301" y="1441"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="511.9999999999999" y="1441.9999916553497"/>
+        <upperLeftCorner x="511" y="1441"/>
         <rectangleSize height="0" width="160"/>
       </shape>
+      <shape expanded="true" modelObjectName="START_ENROLL" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="91" y="1546"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="577" y="1121"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="268" y="656"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
       <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="388.01483007811805" y="1281.9999928474426"/>
+        <upperLeftCorner x="388" y="1281"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
@@ -914,20 +917,20 @@ END</formula>
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="250"/>
     </shape>
-      <shape expanded="true" modelObjectName="START_ENROLL" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="91.99999999999989" y="1546.9999916553497"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
       <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="91.99999999999989" y="1441.9999916553497"/>
+        <upperLeftCorner x="91" y="1441"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Rank_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="594" y="976"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="91.99999999999989" y="1299.4999928474426"/>
+        <upperLeftCorner x="91" y="1299"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="361.3481634114514" y="1121.9999940395355"/>
+        <upperLeftCorner x="361" y="1121"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     <shape modelObjectName="Join_2" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
@@ -939,19 +942,11 @@ END</formula>
       <rectangleSize width="250"/>
     </shape>
       <shape expanded="true" modelObjectName="ETA_STUD" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="361.3481634114514" y="986.9999952316284"/>
-        <rectangleSize height="0" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Projection_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="577.4568727384985" y="1121.9999940395355"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
-      <shape expanded="true" modelObjectName="Rank_2" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="594.2921294178551" y="976.9999952316284"/>
+        <upperLeftCorner x="361" y="986"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="564.4541344101776" y="816.9999964237213"/>
+        <upperLeftCorner x="564" y="816"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
     <shape modelObjectName="ETA_STUD" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
@@ -963,7 +958,7 @@ END</formula>
       <rectangleSize width="250"/>
     </shape>
       <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="478.07280010351974" y="656.9999976158142"/>
+        <upperLeftCorner x="478" y="656"/>
         <rectangleSize height="-1" width="160"/>
       </shape>
     <shape modelObjectName="Join_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
@@ -974,12 +969,8 @@ END</formula>
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="250"/>
     </shape>
-      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="268.07280010351974" y="656.9999976158142"/>
-        <rectangleSize height="-1" width="160"/>
-      </shape>
       <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="359.44330146119125" y="496.9999988079071"/>
+        <upperLeftCorner x="359" y="496"/>
         <rectangleSize height="0" width="160"/>
       </shape>
     <shape modelObjectName="Join_3" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
@@ -991,11 +982,11 @@ END</formula>
       <rectangleSize width="250"/>
     </shape>
       <shape expanded="true" modelObjectName="Rank_Stud" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="359.44330146119125" y="391.9999988079071"/>
+        <upperLeftCorner x="359" y="391"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape expanded="true" modelObjectName="FORMATTAZIONE_DATI" modelObjectNameSpace="CalculationView">
-        <upperLeftCorner x="359.44330146119125" y="266.9999988079071"/>
+        <upperLeftCorner x="359" y="266"/>
         <rectangleSize height="0" width="160"/>
       </shape>
       <shape modelObjectName="FORMATTAZIONE_DATI" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">

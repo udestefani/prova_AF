@@ -287,7 +287,9 @@ END</formula>
       <input node="Projection_5"/>
     </calculationView>
   <calculationView xsi:type="Calculation:RankView" id="Rank_1">
-    <descriptions/>
+    <descriptions>
+      <comment text="Nodo aggiunto per gestire corso problematico, record doppio per stessa edizione. Qui si prende un solo record per corso. Non ha impatti sugli altri record"/>
+    </descriptions>
     <viewAttributes>
         <viewAttribute id="CPNT_ID"/>
         <viewAttribute id="CPNT_TYP_ID"/>
