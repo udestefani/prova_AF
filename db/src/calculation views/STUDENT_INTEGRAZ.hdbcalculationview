@@ -43,7 +43,13 @@ CASE WHEN to_int(SUBSTR(&quot;STUD_CF&quot;,10,2)) &gt;= 41 then 'F' else 'M' en
 ELSE &quot;GENDER&quot; END
 </formula>
         </calculatedViewAttribute>
-      </calculatedViewAttributes>
+      
+      <calculatedViewAttribute id="CC_BIRTH_DATE" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+      
+        <formula>COALESCE(&quot;BIRTH_DATE&quot;, '01/01/1900')</formula>
+      
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
       <input node="PA_STUDENT"/>
     </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
