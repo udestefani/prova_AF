@@ -6,9 +6,13 @@
   <localVariables>
     <variable id="IP_ANNO" parameter="true">
       <descriptions defaultDescription="IP_ANNO"/>
-      <variableProperties datatype="INTEGER" defaultValue="" mandatory="true">
+      <variableProperties datatype="INTEGER" defaultValue="" mandatory="false" length="10" scale="0">
         <valueDomain type="empty"/>
         <selection multiLine="false" type="SingleValue"/>
+        <derivationRule inputEnabled="true">
+          <resourceUri>ANNO_ELABORAZIONE</resourceUri>
+          <resultElementName>ANNO</resultElementName>
+        </derivationRule>
       </variableProperties>
     </variable>
   </localVariables>

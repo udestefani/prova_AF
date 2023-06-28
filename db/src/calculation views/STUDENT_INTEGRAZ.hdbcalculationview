@@ -35,7 +35,7 @@
           <formula>'LMS'</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="DATE" id="BIRTH_DATE_STAMP" expressionLanguage="SQL">
-          <formula>TO_DATE(&quot;BIRTH_DATE&quot;, 'DD/MM/YYYY')</formula>
+          <formula>TO_DATE('01/01/1950', 'DD/MM/YYYY')</formula>
         </calculatedViewAttribute>
         <calculatedViewAttribute datatype="NVARCHAR" id="GENDER_CALC" length="1" expressionLanguage="SQL">
           <formula>CASE WHEN &quot;GENDER&quot; is null or &quot;GENDER&quot; = '' and length(&quot;STUD_CF&quot;) = 16 THEN

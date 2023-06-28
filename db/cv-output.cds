@@ -63,7 +63,8 @@ key![CPNT_SCH_LAST_DATE_LEZIONE]:Date @title : 'CPNT_SCH_LAST_DATE_LEZIONE ';
 
 @cds.persistence.exists
 @cds.persistence.calcview
-entity![FACT_CPNT_SCHED_STUD]{                            
+/*entity![FACT_CPNT_SCHED_STUD] (IP_ANNO: Integer){      */
+entity![FACT_CPNT_SCHED_STUD]{
 key![CMPL_STAT_ID]:String(256) @title : 'CMPL_STAT_ID ';
 key![GRADE]:String(90) @title : 'GRADE ';
 key![AGE_STUD]:Integer @title : 'AGE_STUD ';
